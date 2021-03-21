@@ -1,0 +1,23 @@
+{
+	"name": "phobos",
+	"version": "1.0.0",
+	"description": "Moon of the planet Mars.",
+	"main": "index.js",
+	"scripts": {
+		"start": "node ."
+	},
+	"author": "MarsRon",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MarsRon/phobos.git"
+	},
+	"bugs": {
+		"url": "https://github.com/MarsRon/phobos/issues"
+	},
+	"homepage": "https://github.com/MarsRon/phobos#readme",
+	"dependencies": {
+		"discord.js": "^12.5.1",
+		"express": "^4.17.1"
+	}
+}
