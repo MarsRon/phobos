@@ -1,0 +1,12 @@
+module.exports = {
+	name: "",
+	alias: [],
+	description: "",
+	args: true,
+	usage: "",
+	guildOnly: true,
+	permission: "",
+	execute(message, args) {
+		
+	}
+}
