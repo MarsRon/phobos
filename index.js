@@ -44,21 +44,21 @@ client.on("message", message => {
 	const command = getCmd(args.shift().toLowerCase());
 
 	if (command) {
-		// Arguments check
-		if (command.args && !args.length) {
-			let reply = ":x: No arguments provided";
-			if (command.usage)
-				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``
-			return channel.send(reply);
-		}
 		// Guild only check
-		if (command.guildOnly)
+		if (command.guildOnly && channel.type === "dm")
 			return channel.send(":x: This command is unavailable in DMs");
 		// Permission check
 		if (command.permissions) {
 			const perms = channel.permissionsFor(author);
 			if (!(perms && perms.has(command.permissions)))
 				return channel.send(":x: Missing permission");
+		}
+		// Arguments check
+		if (command.args && !args.length) {
+			let reply = ":x: No arguments provided";
+			if (command.usage)
+				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``
+			return channel.send(reply);
 		}
 		// Execute command
 		try {

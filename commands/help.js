@@ -40,7 +40,7 @@ module.exports = {
 			],
 			author: {
 				name: "Phobos Commands",
-				url: "https://marsron.github.io/",
+				url: "https://marsron.github.io",
 				icon_url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32"
 			},
 			thumbnail: { url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=256" }
