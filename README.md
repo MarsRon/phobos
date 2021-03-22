@@ -1,3 +1,5 @@
 # Phobos Discord.js Bot
 
-A Discord.js bot by MarsRon
+## Moon of the planet Mars.
+
+A Discord.js bot by MarsRon.

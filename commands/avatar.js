@@ -6,9 +6,13 @@ module.exports = {
 	execute(message, args) {
 		const { author, channel, guild, mentions } = message;
 
-		let user = (mentions.members.first() || guild?.members?.cache?.get(args[0]))?.user;
-		if (!user) user = author;
-
+		let user = author;
+		if (channel.type !== "dm") {
+			let member = (mentions.members.first() || guild.members.cache.get(args[0]));
+			if (member)
+				user = member.user;
+		}
+		
 		const url = user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 });
 
 		channel.send({embed: {

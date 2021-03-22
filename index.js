@@ -1,6 +1,7 @@
 // Modules
-const { Client, MessageEmbed } = require("discord.js");
+const { Client } = require("discord.js");
 const { readdirSync } = require("fs");
+const wordCatcher = require("./features/word-catcher");
 
 // Constants
 const client = new Client();
@@ -35,8 +36,8 @@ client.on("message", message => {
 	
 	const { author, channel, content } = message;
 	
-	// Checks
 	if (author.bot) return;
+	wordCatcher(message); // Catch words
 	if (!content.startsWith(prefix)) return;
 
 	// Getting command and arguments
