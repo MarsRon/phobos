@@ -20,15 +20,17 @@ const getCmd = cmdName => {
 	const cmd = commands.get(cmdName);
 	if (cmd) return cmd;
 	for (const command of commands.values()) {
-		if (command.alias.some(alias => cmdName === alias))
-			return command;
+		if (command.alias) {
+			if (command.alias.some(alias => cmdName === alias))
+				return command;
+		}
 	}
 }
 
 // On bot ready
 client.on("ready", () => {
 	console.log(`Phobos is ready! ${Date()}`);
-	client.user.setActivity(`${prefix}help`, { type: "LISTENING" });
+	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 });
 
 // On new message
