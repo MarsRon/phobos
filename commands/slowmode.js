@@ -16,6 +16,6 @@ module.exports = {
 		
 		const target = mentions.channels.first() || guild.channels.cache.get(args[1]) || channel;
 		target.setRateLimitPerUser(rate);
-		message.reply(`Slowmode set to ${rate.toString()}`);
+		message.reply(`Slowmode set to ${rate}`);
 	}
 }

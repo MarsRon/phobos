@@ -5,6 +5,7 @@ const { readdirSync } = require("fs");
 // Features
 const wordCatcher = require("./features/word-catcher");
 const reactionRole = require("./features/reaction-role");
+require("./features/ExtendedMessage");
 
 // Constants
 const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
@@ -34,6 +35,7 @@ const getCmd = cmdName => {
 client.on("ready", async () => {
 	console.log(`Phobos is ready! ${Date()}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
+
 	const reactionRoleChannel = await client.channels.fetch("728979803172110386");
 	reactionRoleChannel.messages.fetch("824841058826584134");
 });
