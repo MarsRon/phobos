@@ -27,7 +27,7 @@ module.exports = {
 				const cmd = client.commands.get(cmdName);
 				if (cmd) return cmd;
 				for (const command of client.commands.values()) {
-					if (command.alias.some(alias => cmdName === alias))
+					if (command.alias?.some(alias => cmdName === alias))
 						return command;
 				}
 			}
