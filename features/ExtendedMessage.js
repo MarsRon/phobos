@@ -37,7 +37,8 @@ class Message extends Structures.get("Message") {
 				data,
 				files
 			})
-			.then(d => this.client.actions.MessageCreate.handle(d).message);
+			.then(d => this.client.actions.MessageCreate.handle(d).message)
+			.catch(console.log);
 	}
 }
 

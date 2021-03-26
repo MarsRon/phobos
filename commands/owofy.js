@@ -7,6 +7,6 @@ module.exports = {
 	usage: "<text>",
 	execute(message, args) {
 		message.reply(owofy(args.join(" ")))
-			.then(msg => msg.react("745664423456145424"));
+			.then(msg => msg.react("745664423456145424").catch(() => {}));
 	}
 }

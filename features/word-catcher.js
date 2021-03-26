@@ -10,12 +10,14 @@ const catchers = [
 
 	async function brrr(message) {
 		if (message.content.toLowerCase().includes("brrr")) {
-			await message.react("🏎️");
-			await message.react("🇻");
-			await message.react("🇷");
-			await message.react("🇴");
-			await message.react("🅾️");
-			message.react("🇲");
+			try {
+				await message.react("🏎️");
+				await message.react("🇻");
+				await message.react("🇷");
+				await message.react("🇴");
+				await message.react("🅾️");
+				message.react("🇲");
+			} catch(e) {}
 		}
 	}
 ];
