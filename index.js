@@ -1,10 +1,13 @@
 // Modules
-const { Client } = require("discord.js");
+const { Client, Intents } = require("discord.js");
 const { readdirSync } = require("fs");
+
+// Features
 const wordCatcher = require("./features/word-catcher");
+const reactionRole = require("./features/reaction-role");
 
 // Constants
-const client = new Client();
+const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
 const { PREFIX: prefix } = process.env;
 
 // Setting up commands
@@ -28,9 +31,11 @@ const getCmd = cmdName => {
 }
 
 // On bot ready
-client.on("ready", () => {
+client.on("ready", async () => {
 	console.log(`Phobos is ready! ${Date()}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
+	const reactionRoleChannel = await client.channels.fetch("728979803172110386");
+	reactionRoleChannel.messages.fetch("824841058826584134");
 });
 
 // On new message
@@ -73,6 +78,15 @@ client.on("message", message => {
 	}
 
 });
+
+// Reaction Role
+client.on("messageReactionAdd", (reaction, user) =>
+	reactionRole(reaction, user, false)
+);
+
+client.on("messageReactionRemove", (reaction, user) =>
+	reactionRole(reaction, user, true)
+);
 
 // Website & Uptime Robot
 const server = require("express")();
