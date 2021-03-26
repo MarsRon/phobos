@@ -7,7 +7,7 @@ const wordCatcher = require("./features/word-catcher");
 const reactionRole = require("./features/reaction-role");
 
 // Constants
-const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
+const client = new Client({ intents: new Intents(Intents.ALL) });
 const { PREFIX: prefix } = process.env;
 
 // Setting up commands
@@ -35,7 +35,7 @@ client.on("ready", async () => {
 	console.log(`Phobos is ready! ${Date()}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 	const reactionRoleChannel = await client.channels.fetch("728979803172110386");
-	reactionRoleChannel.messages.fetch("824841058826584134");
+	reactionRoleChannel.messages.fetch();
 });
 
 // On new message
