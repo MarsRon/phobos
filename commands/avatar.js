@@ -15,7 +15,7 @@ module.exports = {
 		
 		const url = user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 });
 
-		channel.send({embed: {
+		message.reply({embed: {
 			title: "Avatar",
 			url,
 			color: 2793983,

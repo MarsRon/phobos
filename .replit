@@ -1,2 +1,2 @@
-run="npm i; npm start"
+run="npm start"
 language="node"

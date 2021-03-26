@@ -16,9 +16,9 @@ module.exports = {
 			let evaled = eval(args.join(" "));
 			if (typeof(evaled) !== "string")
 				evaled = require("util").inspect(evaled);
-			channel.send(clean(evaled), {code: "xl", split: true});
+			message.reply(clean(evaled), {code: "xl", split: true});
 		} catch (err) {
-			channel.send(":x: **ERROR**```xl\n" + clean(err) + "```", { split: true });
+			message.reply(":x: **ERROR**```xl\n" + clean(err) + "```", { split: true });
 		}
 	}
 }

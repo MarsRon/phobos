@@ -3,7 +3,7 @@ module.exports = {
 	description: "Invite the bot to your server.",
 	execute(message) {
 		const url = "https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=2147483647";
-		message.channel.send({embed: {
+		message.reply({embed: {
 			description: `**[Click here](${url})** to invite me to your server!`,
 			color: 2793983,
 			author: {

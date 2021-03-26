@@ -22,6 +22,6 @@ module.exports = {
 					console.log(err);
 				});
 		} else
-			channel.send(":x: Please enter a number between 1 and 100");
+			message.reply(":x: Please enter a number between 1 and 100");
 	}
 }

@@ -8,7 +8,7 @@ module.exports = {
 	args: true,
 	usage: "<question>",
 	execute(message, args) {
-		message.channel.send({embed: {
+		message.reply({embed: {
 			description: `Question: ${args.join(" ")}\nAnswer: ${answers[floor(random() * answers.length)]}`,
 			color: 2793983,
 			author: {

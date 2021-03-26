@@ -54,26 +54,26 @@ client.on("message", message => {
 	if (command) {
 		// Guild only check
 		if (command.guildOnly && channel.type === "dm")
-			return channel.send(":x: This command is unavailable in DMs");
+			return message.reply(":x: This command is unavailable in DMs");
 		// Permission check
 		if (command.permissions) {
 			const perms = channel.permissionsFor(author);
 			if (!(perms && perms.has(command.permissions)))
-				return channel.send(":x: Missing permission");
+				return message.reply(":x: Missing permission");
 		}
 		// Arguments check
 		if (command.args && !args.length) {
 			let reply = ":x: No arguments provided";
 			if (command.usage)
 				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``
-			return channel.send(reply);
+			return message.reply(reply);
 		}
 		// Execute command
 		try {
 			command.execute(message, args);
 		} catch(error) {
 			console.log(error);
-			channel.send(`:x: An error occured`);
+			message.reply(`:x: An error occured`);
 		}
 	}
 

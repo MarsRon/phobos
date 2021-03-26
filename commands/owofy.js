@@ -6,8 +6,7 @@ module.exports = {
 	args: true,
 	usage: "<text>",
 	execute(message, args) {
-		message.channel
-			.send(owofy(args.join(" ")))
+		message.reply(owofy(args.join(" ")))
 			.then(msg => msg.react("745664423456145424"));
 	}
 }
