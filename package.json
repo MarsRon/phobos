@@ -18,7 +18,7 @@
 	},
 	"homepage": "https://github.com/MarsRon/phobos#readme",
 	"dependencies": {
-		"discord.js": "github:discordjs/discord.js",
+		"discord.js": "^12.5.1",
 		"express": "^4.17.1",
 		"ms": "^2.0.0",
 		"owofy": "^1.0.2"
