@@ -6,6 +6,7 @@ const { readdirSync } = require("fs");
 const wordCatcher = require("./features/word-catcher");
 const reactionRole = require("./features/reaction-role");
 require("./features/ExtendedMessage");
+require("./features/mongo");
 
 // Constants
 const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
