@@ -33,7 +33,7 @@ const getCmd = cmdName => {
 }
 
 // On bot ready
-client.on("ready", async () => {
+client.once("ready", async () => {
 	console.log(`Phobos is ready! ${Date()}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 
@@ -42,9 +42,9 @@ client.on("ready", async () => {
 });
 
 // On new message
-client.on("message", message => {
+client.on("message", async message => {
 	
-	const { author, channel, content } = message;
+	const { author, channel, content, guild } = message;
 	
 	if (author.bot) return;
 	wordCatcher(message); // Catch words
@@ -90,6 +90,18 @@ client.on("messageReactionAdd", (reaction, user) =>
 client.on("messageReactionRemove", (reaction, user) =>
 	reactionRole(reaction, user, true)
 );
+
+// New user joined
+const profileModel = require("./models/profileSchema");
+client.on("guildMemberAdd", async member => {
+	let profile = await profileModel.create({
+		userID: member.id,
+		serverID: member.guild.id,
+		coins: 1000,
+		bank: 0
+	});
+	profile.save();
+});
 
 // Website & Uptime Robot
 const server = require("express")();
