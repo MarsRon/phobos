@@ -3,7 +3,7 @@ const getProfileData = require("../features/getProfileData");
 module.exports = {
 	name: "balance",
 	alias: ["bal"],
-	description: "Get the user balance",
+	description: "Get your balance",
 	async execute(message) {
 		const { author, member } = message;
 
@@ -11,8 +11,8 @@ module.exports = {
 
 		message.reply({embed: {
 			fields: [
-				{ name: "Wallet", value: `$${coins}`, inline: true },
-				{ name: "Bank", value: `$${bank}`, inline: true }
+				{ name: "Wallet", value: `${coins}$`, inline: true },
+				{ name: "Bank", value: `${bank}$`, inline: true }
 			],
 			color: 2793983,
 			author: {

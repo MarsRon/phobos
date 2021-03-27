@@ -17,7 +17,7 @@ module.exports = {
 
 		message.reply(`Choose from \`${Object.keys(answers).join("`, `")}\` to continue the conversation`);
 		channel.send("Hello there!");
-		
+
 		function convo() {
 			channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
 				.then(collected => {

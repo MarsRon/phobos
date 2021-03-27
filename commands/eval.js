@@ -19,7 +19,7 @@ module.exports = {
 		const GUILD = async id => await client.guilds.fetch(id);
 		const MEMBER = async id => await guild.members.fetch(id);
 		const USER = async id => await client.users.fetch(id);
-		
+
 		const OUT = input => {
 			if (typeof(input) !== "string")
 				input = inspect(input);

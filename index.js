@@ -38,14 +38,14 @@ client.once("ready", async () => {
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 
 	const reactionRoleChannel = await client.channels.fetch("728979803172110386");
-	reactionRoleChannel.messages.fetch("824841058826584134");
+	reactionRoleChannel.messages.fetch();
 });
 
 // On new message
 client.on("message", async message => {
-	
+
 	const { author, channel, content, guild } = message;
-	
+
 	if (author.bot) return;
 	wordCatcher(message); // Catch words
 	if (!content.startsWith(prefix)) return;
@@ -75,7 +75,7 @@ client.on("message", async message => {
 		try {
 			command.execute(message, args);
 		} catch(error) {
-			console.log(error);
+			console.log(error.message);
 			message.reply(`:x: An error occured`);
 		}
 	}

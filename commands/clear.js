@@ -9,7 +9,7 @@ module.exports = {
 	execute(message, args) {
 		const { channel } = message;
 		const limit = args[0];
-		
+
 		if (limit >= 1 && limit <= 100) {
 			message.delete();
 			channel.bulkDelete(limit, true)

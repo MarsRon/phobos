@@ -18,6 +18,6 @@ module.exports = async function(message) {
 	} catch (e) {
 		console.log(e.message);
 	}
-	
+
 	return profileData;
 }

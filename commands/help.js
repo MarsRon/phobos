@@ -22,7 +22,7 @@ module.exports = {
 					)
 				);
 			}
-			
+
 			const getCmd = cmdName => {
 				const cmd = client.commands.get(cmdName);
 				if (cmd) return cmd;
