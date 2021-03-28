@@ -22,7 +22,7 @@
 		"express": "^4.17.1",
 		"mongoose": "^5.12.2",
 		"ms": "^2.0.0",
-		"owofire": "^1.0.0"
+		"owofire": "^1.0.1"
 	},
 	"devDependencies": {
 		"dotenv": "^8.2.0"

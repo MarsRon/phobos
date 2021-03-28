@@ -19,16 +19,12 @@ module.exports = {
 		const GUILD = async id => await client.guilds.fetch(id);
 		const MEMBER = async id => await guild.members.fetch(id);
 		const USER = async id => await client.users.fetch(id);
-
-		const OUT = input => {
-			if (typeof(input) !== "string")
-				input = inspect(input);
-			message.reply(clean(input), { code: "js", split: true });
-		}
-
+		
 		try {
-			let code = args.join(" ").trim();
-			OUT(eval(code.includes("await ") ? `(async () => {${code}})()` : code));
+			let evaled = eval(args.join(" "));
+			if (typeof(evaled) !== "string")
+				evaled = inspect(evaled);
+			message.reply(clean(evaled), { code: "js", split: true });
 		} catch (err) {
 			message.reply(":x: **ERROR**```js\n" + clean(err.message) + "```", { split: true });
 		}
