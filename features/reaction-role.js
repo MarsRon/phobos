@@ -1,26 +1,28 @@
-module.exports = async function(reaction, user, deleted) {
+const { REACTION_ROLE_CHANNEL: rrChannel, REACTION_ROLE_ROLE: rrRole } = process.env;
 
-	const { message: { guild, id }, emoji } = reaction;
+module.exports = async function(reaction, user, deleted) {
+	const { message: { guild, channel }, emoji } = reaction;
 	
-	if (id !== "824841058826584134") return;
+	if (channel.id !== rrChannel) return;
 
 	const { roles } = await guild.members.fetch(user.id);
 
 	let role;
-	console.log(emoji.name)
 	switch (emoji.name) {
 		case "🔵":
-			role = await guild.roles.fetch("748697043471696062");
+			role = await guild.roles.fetch(rrRole);
 			break;
 		default:
 			break;
 	}
-
 	if (!role) return;
 
-	if (deleted)
-		roles.remove(role).catch(e => console.log(e.message));
-	else
-		roles.add(role).catch(e => console.log(e.message));
-
+	try {
+		if (deleted)
+			roles.remove(role);
+		else
+			roles.add(role);
+	} catch (e) {
+		console.log(e.message);
+	}
 }
