@@ -96,8 +96,7 @@ const profileModel = require("./models/profileSchema");
 client.on("guildMemberAdd", async member => {
 	let profile = await profileModel.create({
 		userID: member.id,
-		serverID: member.guild.id,
-		coins: 1000,
+		coins: 100,
 		bank: 0
 	});
 	profile.save();

@@ -9,8 +9,7 @@ module.exports = async function(message) {
 		if (!profileData) {
 			let profile = await profileModel.create({
 				userID: author.id,
-				serverID: guild.id,
-				coins: 1000,
+				coins: 100,
 				bank: 0
 			});
 			profile.save();
