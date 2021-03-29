@@ -1,7 +1,7 @@
 module.exports = {
-	name: "play",
-	alias: ["p"],
-	description: "Plays a song with the given name or url",
+	name: "playskip",
+	alias: ["ps", "pskip"],
+	description: "Skips the current song and plays the song you requested",
 	args: true,
 	usage: "<link|query>",
 	guildOnly: true,
@@ -11,6 +11,6 @@ module.exports = {
 		
 		const query = args.join(" ");
 		message.reply(`:mag_right: **Searching** \`${query}\``);
-		message.client.distube.play(message, query);
+		message.client.distube.playSkip(message, query);
 	}
 }

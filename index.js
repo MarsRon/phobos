@@ -2,15 +2,16 @@
 const { Client, Intents } = require("discord.js");
 const { readdirSync } = require("fs");
 
+// Constants
+const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
+const { PREFIX: prefix } = process.env;
+
 // Features
 const wordCatcher = require("./features/word-catcher");
 const reactionRole = require("./features/reaction-role");
 require("./features/ExtendedMessage");
 require("./features/mongo");
-
-// Constants
-const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
-const { PREFIX: prefix } = process.env;
+require("./features/music")(client);
 
 // Setting up commands
 const commands = new Map();
@@ -34,7 +35,7 @@ const getCmd = cmdName => {
 
 // On bot ready
 client.once("ready", async () => {
-	console.log(`Phobos is ready! ${Date()}`);
+	console.log(`${client.user.tag} is ready! ${new Date().toISOString().substr(11, 8)}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 
 	const reactionRoleChannel = await client.channels.fetch("728979803172110386");
