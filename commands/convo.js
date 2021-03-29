@@ -1,3 +1,5 @@
+const users = new Map();
+
 const answers = {
 	get random() {
 		return `Random number: ${Math.ceil(Math.random() * 10)}`;
@@ -13,6 +15,11 @@ module.exports = {
 	description: "Have a conversation with me",
 	execute(message) {
 		const { author, channel } = message;
+
+		if (users.has(author.id))
+			return message.reply(`:x: You are already using \`${process.env.PREFIX}convo\``);
+		users.set(author.id, true);
+
 		const filter = response => response.author.id === author.id && answers[response.content.toLowerCase()];
 
 		message.reply(`Choose from \`${Object.keys(answers).join("`, `")}\` to continue the conversation`);
@@ -26,7 +33,10 @@ module.exports = {
 					msg.reply(answers[response]);
 					if (response !== "bye") convo();
 				})
-				.catch(() => channel.send("Nobody wants to talk to me \:("));
+				.catch(() => {
+					users.delete(author.id);
+					channel.send("Nobody wants to talk to me \:(");
+				});
 		}
 		convo();
 	}
