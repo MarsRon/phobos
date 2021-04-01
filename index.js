@@ -105,7 +105,7 @@ client.on("guildMemberAdd", async member => {
 
 // Website & Uptime Robot
 const server = require("express")();
-server.all("/", (req, res) => res.redirect(301, "https://marsron.github.io"));
+server.all("/", (req, res) => res.redirect(307, "https://marsron.github.io"));
 server.listen(3000);
 
 // Login bot
