@@ -1,14 +1,14 @@
 {
 	"name": "phobos",
 	"version": "1.0.0",
-	"description": "Moon of the planet Mars.",
+	"description": "A Discord.js bot by MarsRon.",
 	"main": "index.js",
 	"scripts": {
 		"start": "node .",
 		"dev": "nodemon -r dotenv/config ."
 	},
 	"author": "MarsRon",
-	"license": "ISC",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/MarsRon/phobos.git"
