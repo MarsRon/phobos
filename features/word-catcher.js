@@ -1,27 +1,32 @@
+const ownerId = process.env.OWNER_ID;
+
 const catchers = [
-	async function imDad(message) {
-		const { content } = message;
-		const match = /^i\s*('|a)?\s*m\s*/gi.exec(content);
+
+	function imDad(message) {
+		const { author, content } = message;
+		if (author.id === ownerId) return;
+		const match = /^i\s*('|`|a)?\s*m\s*/i.exec(content);
 		if (match) {
 			const text = content.slice(match[0].length).trim();
 			message.reply(`Hi **${text === "" ? "blank" : text}**, I'm dad!`);
 		}
 	},
 
-	async function brrr(message) {
-		if (message.content.toLowerCase().includes("brrr")) {
-			try {
-				await message.react("🏎️");
-				await message.react("🇻");
-				await message.react("🇷");
-				await message.react("🇴");
-				await message.react("🅾️");
-				message.react("🇲");
-			} catch(e) {
-				console.log(`Error reacting to message ${message.id}`);
-			}
-		}
+	function brrr(message) {
+		if (message.content.toLowerCase().includes("brrr"))
+			(async () => {
+				try {
+					await message.react("🏎️");
+					await message.react("🇻");
+					await message.react("🇷");
+					await message.react("🇴");
+					await message.react("🅾️");
+					message.react("🇲");
+				// eslint-disable-next-line no-empty
+				} catch(e) {}
+			})();
 	}
+
 ];
 
 module.exports = function(message) {
