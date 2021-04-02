@@ -1,22 +1,19 @@
 const profileModel = require("../models/profileSchema");
 
-module.exports = async function(message) {
-	const { author: { id: userID } } = message;
-
-	let profileData;
+module.exports = async function(userID) {
 	try {
-		profileData = await profileModel.findOne({ userID });
+		let profileData = await profileModel.findOne({ userID });
 		if (!profileData) {
-			let profile = await profileModel.create({
+			profileData = {
 				userID,
 				coins: 100,
 				bank: 0
-			});
-			profile.save();
+			};
+			profileModel.create(profileData)
+				.then(p => p.save());
 		}
+		return profileData;
 	} catch (e) {
-		console.log(e.message);
+		console.log(`Error in getProfileData: ${e.message}`);
 	}
-
-	return profileData;
 };

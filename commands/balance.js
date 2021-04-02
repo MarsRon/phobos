@@ -7,7 +7,7 @@ module.exports = {
 	async execute(message) {
 		const { author, member } = message;
 
-		const { coins, bank } = await getProfileData(message);
+		const { coins, bank } = await getProfileData(author.id);
 
 		message.reply({embed: {
 			fields: [
@@ -16,7 +16,7 @@ module.exports = {
 			],
 			color: 2793983,
 			author: {
-				name: `${member?.displayName || author}'s Balance`,
+				name: `${member?.displayName || author.name}'s Balance`,
 				url: "https://marsron.github.io",
 				icon_url: author.displayAvatarURL({ dynamic: true })
 			}

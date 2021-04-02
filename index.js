@@ -9,6 +9,7 @@ const prefix = process.env.PREFIX;
 // Features
 const wordCatcher = require("./features/word-catcher");
 const reactionRole = require("./features/reaction-role");
+const getProfileData = require("./features/getProfileData");
 require("./features/ExtendedMessage");
 require("./features/mongo");
 require("./features/music")(client);
@@ -93,14 +94,8 @@ client.on("messageReactionRemove", (reaction, user) =>
 );
 
 // New user joined
-const profileModel = require("./models/profileSchema");
 client.on("guildMemberAdd", async member => {
-	let profile = await profileModel.create({
-		userID: member.id,
-		coins: 100,
-		bank: 0
-	});
-	profile.save();
+	getProfileData(member.id);
 });
 
 // Website & Uptime Robot

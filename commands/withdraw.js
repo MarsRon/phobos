@@ -13,7 +13,7 @@ module.exports = {
 		if (!amount || amount <= 0)
 			return message.reply(":x: Withdraw amount must be a whole number");
 
-		const profileData = await getProfileData(message);
+		const profileData = await getProfileData(message.author.id);
 
 		if (profileData.bank <= 0)
 			return message.reply(":x: Not enough coins to withdraw");
