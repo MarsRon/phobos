@@ -1,4 +1,4 @@
-const getProfileData = require("../features/getProfileData");
+const getProfileData = require("../../features/getProfileData");
 
 module.exports = {
 	name: "balance",

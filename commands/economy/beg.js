@@ -1,4 +1,4 @@
-const profileModel = require("../models/profileSchema");
+const profileModel = require("../../models/profileSchema");
 const { ceil, random } = Math;
 
 module.exports = {

@@ -1,5 +1,5 @@
-const getProfileData = require("../features/getProfileData");
-const profileModel = require("../models/profileSchema");
+const getProfileData = require("../../features/getProfileData");
+const profileModel = require("../../models/profileSchema");
 
 module.exports = {
 	name: "deposit",
