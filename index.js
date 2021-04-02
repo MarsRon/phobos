@@ -7,8 +7,8 @@ const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
 const prefix = process.env.PREFIX;
 
 // Features
-const wordCatcher = require("./features/word-catcher");
-const reactionRole = require("./features/reaction-role");
+const wordCatcher = require("./features/wordCatcher");
+const reactionRole = require("./features/reactionRole");
 const getProfileData = require("./features/getProfileData");
 require("./features/ExtendedMessage");
 require("./features/mongo");
