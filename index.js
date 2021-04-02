@@ -4,7 +4,7 @@ const { readdirSync } = require("fs");
 
 // Constants
 const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
-const { PREFIX: prefix } = process.env;
+const prefix = process.env.PREFIX;
 
 // Features
 const wordCatcher = require("./features/word-catcher");
@@ -31,7 +31,7 @@ const getCmd = cmdName => {
 				return command;
 		}
 	}
-}
+};
 
 // On bot ready
 client.once("ready", async () => {
@@ -45,7 +45,7 @@ client.once("ready", async () => {
 // On new message
 client.on("message", async message => {
 
-	const { author, channel, content, guild } = message;
+	const { author, channel, content } = message;
 
 	if (author.bot) return;
 	wordCatcher(message); // Catch words
@@ -69,7 +69,7 @@ client.on("message", async message => {
 		if (command.args && !args.length) {
 			let reply = ":x: No arguments provided";
 			if (command.usage)
-				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``
+				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
 			return message.reply(reply);
 		}
 		// Execute command
@@ -77,7 +77,7 @@ client.on("message", async message => {
 			command.execute(message, args);
 		} catch(error) {
 			console.log(error.message);
-			message.reply(`:x: An error occured`);
+			message.reply(":x: An error occured");
 		}
 	}
 

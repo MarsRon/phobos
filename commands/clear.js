@@ -24,4 +24,4 @@ module.exports = {
 		} else
 			message.reply(":x: Please enter a number between 1 and 100");
 	}
-}
+};

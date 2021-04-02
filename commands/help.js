@@ -30,7 +30,7 @@ module.exports = {
 					if (command.alias?.some(alias => cmdName === alias))
 						return command;
 				}
-			}
+			};
 			const command = getCmd(args[0]);
 			if (command)
 				return message.reply(new MessageEmbed()
@@ -59,4 +59,4 @@ module.exports = {
 			thumbnail: { url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=256" }
 		}});
 	}
-}
+};

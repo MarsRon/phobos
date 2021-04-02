@@ -10,16 +10,12 @@ module.exports = {
 	args: true,
 	usage: "<js_code>",
 	async execute(message, args) {
+		// eslint-disable-next-line no-unused-vars
 		const { channel, client, guild, member, author: user } = message;
 		
 		if (user.id !== ownerId) return;
-		if (!args) return;
+		if (!args.length) return;
 
-		const CHANNEL = async id => await client.channels.fetch(id);
-		const GUILD = async id => await client.guilds.fetch(id);
-		const MEMBER = async id => await guild.members.fetch(id);
-		const USER = async id => await client.users.fetch(id);
-		
 		try {
 			let evaled = eval(args.join(" "));
 			if (typeof(evaled) !== "string")
@@ -29,4 +25,4 @@ module.exports = {
 			message.reply(":x: **ERROR**```js\n" + clean(err.message) + "```", { split: true });
 		}
 	}
-}
+};

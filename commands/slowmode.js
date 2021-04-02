@@ -18,4 +18,4 @@ module.exports = {
 		target.setRateLimitPerUser(rate);
 		message.reply(`Slowmode set to ${rate}`);
 	}
-}
+};

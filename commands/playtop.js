@@ -16,4 +16,4 @@ module.exports = {
 		await distube.play(message, query);
 		distube.getQueue(guild.id).songs.splice(1, 0, distube.getQueue(guild.id).songs.pop());
 	}
-}
+};

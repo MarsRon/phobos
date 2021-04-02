@@ -13,4 +13,4 @@ module.exports = {
 		message.reply(`:mag_right: **Searching** \`${query}\``);
 		message.client.distube.playSkip(message, query);
 	}
-}
+};

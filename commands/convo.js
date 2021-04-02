@@ -8,7 +8,7 @@ const answers = {
 	hi: "why cant you type \"hello\"",
 	haha: "Not. Funny.",
 	bye: "Cya next time"
-}
+};
 
 module.exports = {
 	name: "convo",
@@ -35,9 +35,9 @@ module.exports = {
 				})
 				.catch(() => {
 					users.delete(author.id);
-					channel.send("Nobody wants to talk to me \:(");
+					channel.send("Nobody wants to talk to me \\:(");
 				});
 		}
 		convo();
 	}
-}
+};

@@ -1,6 +1,6 @@
 const catchers = [
 	async function imDad(message) {
-		const { channel, content } = message;
+		const { content } = message;
 		const match = /^i\s*('|a)?\s*m\s*/gi.exec(content);
 		if (match) {
 			const text = content.slice(match[0].length).trim();
@@ -17,11 +17,13 @@ const catchers = [
 				await message.react("🇴");
 				await message.react("🅾️");
 				message.react("🇲");
-			} catch(e) {}
+			} catch(e) {
+				console.log(`Error reacting to message ${message.id}`);
+			}
 		}
 	}
 ];
 
 module.exports = function(message) {
 	catchers.forEach(func => func(message));
-}
+};

@@ -10,4 +10,4 @@ module.exports = {
 		distube.stop(message);
 		message.reply("**Successfully disconnected**");
 	}
-}
+};

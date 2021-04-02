@@ -1,14 +1,14 @@
 const profileModel = require("../models/profileSchema");
 
 module.exports = async function(message) {
-	const { author, guild } = message;
+	const { author: { id: userID } } = message;
 
 	let profileData;
 	try {
-		profileData = await profileModel.findOne({ userID: author.id });
+		profileData = await profileModel.findOne({ userID });
 		if (!profileData) {
 			let profile = await profileModel.create({
-				userID: author.id,
+				userID,
 				coins: 100,
 				bank: 0
 			});
@@ -19,4 +19,4 @@ module.exports = async function(message) {
 	}
 
 	return profileData;
-}
+};

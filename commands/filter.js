@@ -13,4 +13,4 @@ module.exports = {
 			return message.reply(`:x: Invalid filter\nAvailable filters: \`${filters.join("`, `")}\``);
 		message.reply(`Current filter: ${distube.setFilter(message, args[0]) || "Off"}`);
 	}
-}
+};

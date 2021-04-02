@@ -9,4 +9,4 @@ module.exports = {
 		message.reply(owo(args.join(" ")))
 			.then(msg => msg.react("745664423456145424").catch(() => {}));
 	}
-}
+};

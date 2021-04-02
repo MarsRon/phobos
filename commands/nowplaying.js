@@ -4,7 +4,7 @@ module.exports = {
 	description: "Shows what song Rythm is currently playing",
 	guildOnly: true,
 	execute(message) {
-		const queue = message.client.distube.getQueue(message)
+		const queue = message.client.distube.getQueue(message);
 		if (!queue)
 			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${process.env.PREFIX}join\` **to get me in one**`);
 
@@ -20,6 +20,6 @@ module.exports = {
 				url: "https://marsron.github.io",
 				icon_url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32"
 			}
-		}})
+		}});
 	}
-}
+};

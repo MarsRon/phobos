@@ -5,7 +5,7 @@ module.exports = {
 	guildOnly: true,
 	async execute(message) {
 		const { author, client, guild } = message;
-		const queue = client.distube.getQueue(message)
+		const queue = client.distube.getQueue(message);
 		if (!queue)
 			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${process.env.PREFIX}join\` **to get me in one**`);
 		const member = await guild.members.fetch(author.id);
@@ -19,4 +19,4 @@ module.exports = {
 			}
 		}});
 	}
-}
+};
