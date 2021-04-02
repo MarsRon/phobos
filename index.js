@@ -95,7 +95,22 @@ client.on("messageReactionRemove", (reaction, user) =>
 
 // New user joined
 client.on("guildMemberAdd", async member => {
-	getProfileData(member.id);
+
+	const { user } = member;
+
+	// MongoDB
+	getProfileData(user.id);
+
+	// Welcome Message
+	const channel = member.guild.channels.cache.get(process.env.WELCOME_CHANNEL);
+	if (channel)
+		channel.send({embed: {
+			title: `Welcome, ${user.tag}`,
+			description: `Hey <@${user.id}>, welcome to **Mars Hangout**!\nDon't forget to read <#728979803172110386> too.`,
+			color: 2793983,
+			thumbnail: { url: user.displayAvatarURL({ dynamic: true, size: 256 }) }
+		}});
+
 });
 
 // Website & Uptime Robot
