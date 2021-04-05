@@ -7,7 +7,7 @@ module.exports = {
 	async execute(message) {
 		const { author, member } = message;
 
-		const { coins, bank } = await getProfileData(author.id);
+		const { coins, bank } = await getProfileData(author);
 
 		message.reply({embed: {
 			fields: [

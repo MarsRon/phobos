@@ -107,7 +107,7 @@ client.on("guildMemberAdd", async member => {
 	const { user } = member;
 
 	// MongoDB
-	getProfileData(user.id);
+	getProfileData(user);
 
 	// Welcome Message
 	const channel = member.guild.channels.cache.get(process.env.WELCOME_CHANNEL);

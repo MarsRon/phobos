@@ -1,14 +1,16 @@
 const profileModel = require("../models/profileSchema");
 
-module.exports = async function(userID) {
+
+
+module.exports = async function(user) {
+	const userID = user.id;
+	const defaultValue = { userID, coins: 100, bank: 0 };
+	if (user.bot)
+		return defaultValue;
 	try {
 		let profileData = await profileModel.findOne({ userID });
 		if (!profileData) {
-			profileData = {
-				userID,
-				coins: 100,
-				bank: 0
-			};
+			profileData = { ...defaultValue };
 			profileModel.create(profileData)
 				.then(p => p.save());
 		}
