@@ -3,7 +3,7 @@ const getProfileData = require("../../features/getProfileData");
 module.exports = {
 	name: "balance",
 	alias: ["bal"],
-	description: "Get your balance",
+	description: "Check your coin balance.",
 	async execute(message) {
 		const { author, member } = message;
 

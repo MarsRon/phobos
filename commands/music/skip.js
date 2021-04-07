@@ -1,7 +1,7 @@
 module.exports = {
 	name: "skip",
 	alias: ["s"],
-	description: "Skips the current playing song",
+	description: "Skips the current playing song.",
 	guildOnly: true,
 	execute(message) {
 		const { client: { distube } } = message;

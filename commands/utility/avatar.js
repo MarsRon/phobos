@@ -1,7 +1,7 @@
 module.exports = {
 	name: "avatar",
 	alias: ["av", "pfp"],
-	description: "Get the avatar/profile picture of a user",
+	description: "Fetches the avatar/profile picture of a user.",
 	usage: "[user]",
 	async execute(message, args) {
 		const { author, channel, guild, mentions } = message;

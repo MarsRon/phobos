@@ -1,7 +1,5 @@
 const profileModel = require("../models/profileSchema");
 
-
-
 module.exports = async function(user) {
 	const userID = user.id;
 	const defaultValue = { userID, coins: 100, bank: 0 };

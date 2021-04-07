@@ -4,7 +4,7 @@ const profileModel = require("../../models/profileSchema");
 module.exports = {
 	name: "withdraw",
 	alias: ["wd"],
-	description: "Withdraw coins from your bank",
+	description: "Withdraw coins from your bank.",
 	args: true,
 	usage: "<amount>",
 	async execute(message, args) {

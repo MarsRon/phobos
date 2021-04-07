@@ -3,7 +3,7 @@ const prefix = process.env.PREFIX;
 module.exports = {
 	name: "help",
 	alias: ["phobos"],
-	description: "Brings up the help message",
+	description: "Shows all Phobos commands.",
 	execute(message) {
 		message.reply({embed: {
 			color: 2793983,

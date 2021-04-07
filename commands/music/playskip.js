@@ -1,7 +1,7 @@
 module.exports = {
 	name: "playskip",
 	alias: ["ps", "pskip"],
-	description: "Skips the current song and plays the song you requested",
+	description: "Skips the current song and plays the song you requested.",
 	args: true,
 	usage: "<link|query>",
 	guildOnly: true,

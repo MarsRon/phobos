@@ -1,6 +1,6 @@
 module.exports = {
 	name: "invite",
-	description: "Invite the bot to your server.",
+	description: "Shows Phobos's invite link!",
 	execute(message) {
 		const url = "https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=2147483647";
 		message.reply({embed: {

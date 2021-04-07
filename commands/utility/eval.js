@@ -6,11 +6,11 @@ const { inspect } = require("util");
 
 module.exports = {
 	name: "eval",
-	description: "Evaluate JavsScript code (only available for <@611166639534112769>)",
+	description: "Run JavaScript code.",
 	args: true,
 	usage: "<js_code>",
 	async execute(message, args) {
-		// eslint-disable-next-line no-unused-vars
+		//eslint-disable-next-line no-unused-vars
 		const { channel, client, guild, member, author: user } = message;
 		
 		if (user.id !== ownerId) return;

@@ -1,7 +1,7 @@
 module.exports = {
 	name: "play",
 	alias: ["p"],
-	description: "Plays a song with the given name or url",
+	description: "Plays a song with the given name or URL.",
 	args: true,
 	usage: "<link|query>",
 	guildOnly: true,

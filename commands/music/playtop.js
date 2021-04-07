@@ -1,7 +1,7 @@
 module.exports = {
 	name: "playtop",
 	alias: ["pt", "ptop"],
-	description: "Adds a song on the top of the queue",
+	description: "Adds a song on the top of the queue.",
 	args: true,
 	usage: "<link|query>",
 	guildOnly: true,

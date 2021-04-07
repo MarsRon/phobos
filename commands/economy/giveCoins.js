@@ -2,7 +2,7 @@ const profileModel = require("../../models/profileSchema");
 
 module.exports = {
 	name: "give-coins",
-	description: "Give an amount of coins to user",
+	description: "Gives some coins to a user.",
 	args: true,
 	usage: "<user> <amount>",
 	guildOnly: true,

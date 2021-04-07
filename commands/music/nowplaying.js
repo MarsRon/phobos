@@ -1,7 +1,7 @@
 module.exports = {
 	name: "nowplaying",
 	alias: ["np"],
-	description: "Shows what song Rythm is currently playing",
+	description: "Shows what song Phobos is currently playing.",
 	guildOnly: true,
 	execute(message) {
 		const queue = message.client.distube.getQueue(message);

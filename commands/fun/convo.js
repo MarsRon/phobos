@@ -12,32 +12,32 @@ const answers = {
 
 module.exports = {
 	name: "convo",
-	description: "Have a conversation with me",
-	execute(message) {
+	description: "Have a conversation with me.",
+	async execute(message) {
 		const { author, channel } = message;
 
 		if (users.has(author.id))
 			return message.reply(`:x: You are already using \`${process.env.PREFIX}convo\``);
-		users.set(author.id, true);
+		users.set(author.id, message.id);
 
-		const filter = response => response.author.id === author.id && answers[response.content.toLowerCase()];
+		
+		const filter = response => //eslint-disable-next-line no-prototype-builtins
+			response.author.id === author.id && answers.hasOwnProperty(response.content.toLowerCase());
 
 		message.reply(`Choose from \`${Object.keys(answers).join("`, `")}\` to continue the conversation`);
 		channel.send("Hello there!");
 
-		function convo() {
-			channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
-				.then(collected => {
-					const msg = collected.first();
-					const response = msg.content.toLowerCase();
-					msg.reply(answers[response]);
-					if (response !== "bye") convo();
-				})
-				.catch(() => {
-					users.delete(author.id);
-					channel.send("Nobody wants to talk to me \\:(");
-				});
+		//eslint-disable-next-line no-constant-condition
+		while (true) {
+			try {
+				const msg = await channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] }).first();
+				const response = msg.content.toLowerCase();
+				msg.reply(answers[response]);
+				if (response === "bye") break;
+			} catch(e) {
+				users.delete(author.id);
+				channel.send("Nobody wants to talk to me \\:(");
+			}
 		}
-		convo();
 	}
 };

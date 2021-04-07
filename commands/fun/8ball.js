@@ -4,7 +4,7 @@ const { floor, random } = Math;
 module.exports = {
 	name: "8ball",
 	alias: ["8b"],
-	description: "Just a 8ball command :eyes:",
+	description: "Sends random response to your question.",
 	args: true,
 	usage: "<question>",
 	execute(message, args) {

@@ -1,6 +1,6 @@
 module.exports = {
 	name: "slowmode",
-	description: "Set slowmode time for a channel",
+	description: "Sets slowmode time for a channel.",
 	args: true,
 	usage: "<seconds> [channel]",
 	guildOnly: true,

@@ -2,7 +2,7 @@ const filters = ["3d", "bassboost", "echo", "karaoke", "nightcore", "vaporwave",
 
 module.exports = {
 	name: "filter",
-	description: "Sets the music filter",
+	description: "Change the music filter.",
 	usage: "<filter>",
 	guildOnly: true,
 	execute(message, args) {

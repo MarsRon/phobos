@@ -4,7 +4,7 @@ const profileModel = require("../../models/profileSchema");
 module.exports = {
 	name: "deposit",
 	alias: ["dep"],
-	description: "Deposit coins into your bank",
+	description: "Deposit coins into your bank from your wallet.",
 	args: true,
 	usage: "<amount>",
 	async execute(message, args) {

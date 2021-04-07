@@ -3,7 +3,7 @@ const { ceil, random } = Math;
 
 module.exports = {
 	name: "beg",
-	description: "Beg for coins",
+	description: "Beg for coins. You'll get 1-50 coins each time you beg.",
 	async execute(message) {
 		const coins = ceil(random() * 50);
 		try {

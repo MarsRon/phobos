@@ -1,7 +1,7 @@
 module.exports = {
 	name: "queue",
 	alias: ["q"],
-	description: "Shows the first 10 songs of the queue",
+	description: "Shows the first 10 songs of the queue.",
 	guildOnly: true,
 	async execute(message) {
 		const { author, client, guild } = message;

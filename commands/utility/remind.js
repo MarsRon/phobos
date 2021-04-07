@@ -2,7 +2,7 @@ const ms = require("ms");
 
 module.exports = {
 	name: "remind",
-	description: "Remind you stuff",
+	description: "Sends a reminder message after a given amount of time.",
 	args: true,
 	usage: "<time> <message>",
 	execute(message, args) {

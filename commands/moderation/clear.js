@@ -1,7 +1,7 @@
 module.exports = {
 	name: "clear",
 	alias: ["purge"],
-	description: "Clears messages with a limit of 100",
+	description: "Clears messages with a limit of 100.",
 	args: true,
 	usage: "<message_count 1-100>",
 	guildOnly: true,

@@ -2,7 +2,7 @@ const owo = require("owofire");
 
 module.exports = {
 	name: "owo",
-	description: "Owoify your message",
+	description: "Owoifies your message.",
 	args: true,
 	usage: "<text>",
 	execute(message, args) {

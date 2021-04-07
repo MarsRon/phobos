@@ -1,6 +1,6 @@
 module.exports = {
 	name: "ping",
-	description: "Returns bot latency and passed arguments",
+	description: "Checks the bot's latency.",
 	execute(message, args) {
 		message.reply({embed: {
 			title: ":ping_pong: Pong!",
