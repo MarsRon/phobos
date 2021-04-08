@@ -5,11 +5,9 @@ const catchers = [
 	function imDad(message) {
 		const { author, content } = message;
 		if (author.id === ownerId) return;
-		const match = /^i\s*['`a]?\s*m\s*/i.exec(content);
-		if (match) {
-			const text = content.slice(match[0].length).trim();
-			message.reply(`Hi **${text === "" ? "blank" : text}**, I'm dad!`);
-		}
+		const match = content.match(/^i\s*['`a]?\s*m\s*([\s\S]*)/i);
+		if (match)
+			message.reply(`Hi **${match[1] === "" ? "blank" : match[1]}**, I'm dad!`);
 	},
 
 	function brrr(message) {
