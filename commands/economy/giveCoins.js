@@ -1,4 +1,4 @@
-const profileModel = require("../../models/profileSchema");
+const userDB = require("../../db/userDB");
 
 module.exports = {
 	name: "give-coins",
@@ -18,19 +18,7 @@ module.exports = {
 		if (!coins)
 			return message.reply(":x: Amount must be a whole number");
 
-		try {
-			const targetData = await profileModel.findOne({ userID: target.id });
-			if (!targetData)
-				return message.reply(":x: User doesn't exist in the database");
-
-			await profileModel.findOneAndUpdate(
-				{ userID: target.id },
-				{ $inc: { coins } }
-			);
-
-			message.reply(`${target.displayName} received ${coins}$`);
-		} catch(e) {
-			console.log(e.message);
-		}
+		await userDB.set(target, { $inc: { coins } });
+		message.reply(`${target.displayName} received ${coins}$`);
 	}
 };

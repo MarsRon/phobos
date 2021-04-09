@@ -1,5 +1,4 @@
-const getProfileData = require("../../features/getProfileData");
-const profileModel = require("../../models/profileSchema");
+const userDB = require("../../db/userDB");
 
 module.exports = {
 	name: "withdraw",
@@ -8,29 +7,21 @@ module.exports = {
 	args: true,
 	usage: "<amount>",
 	async execute(message, args) {
+		const { author } = message;
+		
 		let amount = parseInt(args[0]);
 
 		if (!amount || amount <= 0)
 			return message.reply(":x: Withdraw amount must be a whole number");
 
-		const profileData = await getProfileData(message.author);
+		const userData = await userDB.get(author);
 
-		if (profileData.bank <= 0)
+		if (userData.bank <= 0)
 			return message.reply(":x: Not enough coins to withdraw");
 
-		amount = Math.min(amount, profileData.bank);
+		amount = Math.min(amount, userData.bank);
 
-		try {
-			await profileModel.findOneAndUpdate(
-				{ userID: message.author.id },
-				{ $inc: {
-					coins: amount,
-					bank: -amount
-				} }
-			);
-			message.reply(`Withdrawn ${amount}$ from bank`);
-		} catch(e) {
-			console.log(e.message);
-		}
+		await userDB.set(author, { $inc: { coins: amount, bank: -amount } });
+		message.reply(`Withdrawn ${amount}$ from bank`);
 	}
 };

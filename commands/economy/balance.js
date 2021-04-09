@@ -1,4 +1,4 @@
-const getProfileData = require("../../features/getProfileData");
+const userDB = require("../../db/userDB");
 
 module.exports = {
 	name: "balance",
@@ -7,7 +7,7 @@ module.exports = {
 	async execute(message) {
 		const { author, member } = message;
 
-		const { coins, bank } = await getProfileData(author);
+		const { coins, bank } = await userDB.get(author);
 
 		message.reply({embed: {
 			fields: [

@@ -9,28 +9,22 @@ const prefix = process.env.PREFIX;
 // Features
 const wordCatcher = require("./features/wordCatcher");
 const reactionRole = require("./features/reactionRole");
-const getProfileData = require("./features/getProfileData");
+const userDB = require("./db/userDB");
 require("./features/ExtendedMessage");
-require("./features/mongo");
+require("./db/mongoose");
 require("./features/music")(client);
 
 // Setting up commands
-const commands = new Map();
-readdirSync("./commands")
-	.forEach(categoryName => {
-		if (categoryName === "cmd.js.example") return;
-		const category = new Map();
-		readdirSync(`./commands/${categoryName}`)
-			.filter(file => file.endsWith(".js"))
-			.map(file => ({
-				...require(`./commands/${categoryName}/${file}`),
-				category: categoryName
-			}))
-			.forEach(command => category.set(command.name, command));
-		commands.set(categoryName, category);
-	});
-	
-client.commands = commands;
+const commands = client.commands = new Map();
+for (const categoryName of readdirSync("./commands")) {
+	if (categoryName === "cmd.js.example") continue;
+	const category = new Map();
+	readdirSync(`./commands/${categoryName}`)
+		.filter(file => file.endsWith(".js"))
+		.map(file => require(`./commands/${categoryName}/${file}`))
+		.forEach(command => category.set(command.name, command));
+	commands.set(categoryName, category);
+}
 
 // Get command function
 const getCmd = client.getCmd = cmdName => {
@@ -38,7 +32,7 @@ const getCmd = client.getCmd = cmdName => {
 		for (const command of category.values())
 			if (command.name === cmdName)
 				return command;
-			else if (command.alias?.some(alias => alias === cmdName))
+			else if (command.alias?.includes(cmdName))
 				return command;
 };
 
@@ -47,8 +41,10 @@ client.once("ready", async () => {
 	console.log(`${client.user.tag} is ready! ${new Date().toISOString().substr(11, 8)}`);
 	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
 
-	const reactionRoleChannel = await client.channels.fetch(process.env.REACTION_ROLE_CHANNEL);
-	reactionRoleChannel.messages.fetch();
+	// Fetch reaction role channel
+	client.channels
+		.fetch(process.env.REACTION_ROLE_CHANNEL)
+		.then(channel => channel.messages.fetch());
 });
 
 // On new message
@@ -104,13 +100,13 @@ client.on("messageReactionRemove", (reaction, user) =>
 // New user joined
 client.on("guildMemberAdd", async member => {
 
-	const { user } = member;
+	const { guild, user } = member;
 
 	// MongoDB
-	getProfileData(user);
+	userDB.get(user);
 
 	// Welcome Message
-	const channel = member.guild.channels.cache.get(process.env.WELCOME_CHANNEL);
+	const channel = guild.channels.cache.get(process.env.WELCOME_CHANNEL);
 	if (channel)
 		channel.send({embed: {
 			title: `Welcome, ${user.tag}`,
