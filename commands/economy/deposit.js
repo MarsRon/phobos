@@ -6,6 +6,7 @@ module.exports = {
 	description: "Deposit coins into your bank from your wallet.",
 	args: true,
 	usage: "<amount>",
+	cooldown: 10,
 	async execute(message, args) {
 		const { author } = message;
 

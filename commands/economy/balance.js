@@ -4,6 +4,7 @@ module.exports = {
 	name: "balance",
 	alias: ["bal"],
 	description: "Check your coin balance.",
+	cooldown: 5,
 	async execute(message) {
 		const { author, member } = message;
 

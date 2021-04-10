@@ -6,6 +6,7 @@ module.exports = {
 	usage: "",
 	guildOnly: true,
 	permission: "",
+	cooldown: 3,
 	execute(message, args) {
 		
 	}

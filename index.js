@@ -14,6 +14,9 @@ require("./features/ExtendedMessage");
 require("./db/mongoose");
 require("./features/music")(client);
 
+// Command cooldowns
+const cooldowns = client.cooldowns = new Map();
+
 // Setting up commands
 const commands = client.commands = new Map();
 for (const categoryName of readdirSync("./commands")) {
@@ -22,7 +25,10 @@ for (const categoryName of readdirSync("./commands")) {
 	readdirSync(`./commands/${categoryName}`)
 		.filter(file => file.endsWith(".js"))
 		.map(file => require(`./commands/${categoryName}/${file}`))
-		.forEach(command => category.set(command.name, command));
+		.forEach(command => {
+			category.set(command.name, command);
+			cooldowns.set(command.name, new Map());
+		});
 	commands.set(categoryName, category);
 }
 
@@ -61,6 +67,18 @@ client.on("message", async message => {
 	const command = getCmd(args.shift().toLowerCase());
 
 	if (command) {
+		// Cooldown check
+		const now = Date.now();
+		const timestamps = cooldowns.get(command.name);
+		const userCooldown = timestamps.get(author.id);
+		const cooldownAmount = (command.cooldown || 1) * 1000;
+		if (userCooldown) {
+			const expirationTime = userCooldown + cooldownAmount;
+			if (now < expirationTime)
+				return message.reply(`:x: Please wait ${((expirationTime - now) / 1000).toFixed(1)} more second(s) before reusing this command`);
+		}
+		timestamps.set(author.id, now);
+		setTimeout(() => timestamps.delete(author.id), cooldownAmount);
 		// Guild only check
 		if (command.guildOnly && channel.type === "dm")
 			return message.reply(":x: This command is unavailable in DMs");

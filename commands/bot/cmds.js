@@ -22,6 +22,7 @@ module.exports = {
 					.setColor("#2AA1FF")
 					.addField("Usage", `\`${prefix}${command.name}${command.usage ? ` ${command.usage}` : ""}\``, true)
 					.addField("Aliases", command.alias ? command.alias.join(" ") : "None", true)
+					.addField("Cooldown", command.cooldown ? `${command.cooldown} seconds` : "1 seconds", true)
 				);
 			else {
 				const category = client.commands.get(query);
