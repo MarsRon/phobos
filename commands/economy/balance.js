@@ -4,7 +4,7 @@ module.exports = {
 	name: "balance",
 	alias: ["bal"],
 	description: "Check your coin balance.",
-	cooldown: 5,
+	cooldown: 10,
 	async execute(message) {
 		const { author, member } = message;
 
@@ -13,7 +13,8 @@ module.exports = {
 		message.reply({embed: {
 			fields: [
 				{ name: "Wallet", value: `${coins}$`, inline: true },
-				{ name: "Bank", value: `${bank}$`, inline: true }
+				{ name: "Bank", value: `${bank}$`, inline: true },
+				{ name: "Total", value: `${bank + coins}$`, inline: true },
 			],
 			color: 2793983,
 			author: {

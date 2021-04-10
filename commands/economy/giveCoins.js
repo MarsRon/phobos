@@ -7,7 +7,6 @@ module.exports = {
 	usage: "<user> <amount>",
 	guildOnly: true,
 	permission: "MANAGE_SERVER",
-	cooldown: 5,
 	async execute(message, args) {
 		const { guild, mentions } = message;
 

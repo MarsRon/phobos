@@ -74,11 +74,21 @@ client.on("message", async message => {
 		const cooldownAmount = (command.cooldown || 1) * 1000;
 		if (userCooldown) {
 			const expirationTime = userCooldown + cooldownAmount;
-			if (now < expirationTime)
-				return message.reply(`:x: Please wait ${((expirationTime - now) / 1000).toFixed(1)} more second(s) before reusing this command`);
+			if (now < expirationTime) {
+				let timeLeft = (expirationTime - now) / 1000;
+				let timeStr = "";
+				if (timeLeft >= 60) {
+					if (timeLeft >= 3600) {
+						timeStr += ~~(timeLeft / 3600) + " hour(s) ";
+						timeLeft %= 3600;
+					}
+					timeStr += ~~(timeLeft / 60) + " minute(s) ";
+					timeLeft %= 60;
+				}
+				timeStr += timeLeft.toFixed(0);
+				return message.reply(`:x: Please wait ${timeStr} second(s) before reusing this command`);
+			}
 		}
-		timestamps.set(author.id, now);
-		setTimeout(() => timestamps.delete(author.id), cooldownAmount);
 		// Guild only check
 		if (command.guildOnly && channel.type === "dm")
 			return message.reply(":x: This command is unavailable in DMs");
@@ -98,6 +108,9 @@ client.on("message", async message => {
 		// Execute command
 		try {
 			command.execute(message, args);
+			// Cooldown
+			timestamps.set(author.id, now);
+			setTimeout(() => timestamps.delete(author.id), cooldownAmount);
 		} catch(error) {
 			console.log(error.message);
 			message.reply(":x: An error occured");

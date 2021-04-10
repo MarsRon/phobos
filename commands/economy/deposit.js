@@ -10,17 +10,17 @@ module.exports = {
 	async execute(message, args) {
 		const { author } = message;
 
-		let amount = parseInt(args[0]);
-
-		if (!amount || amount <= 0)
-			return message.reply(":x: Deposit amount must be a whole number");
-
 		const userData = await userDB.get(author);
-
 		if (userData.coins <= 0)
 			return message.reply(":x: Not enough coins to deposit");
 
-		amount = Math.min(amount, userData.coins);
+		let amount = userData.coins;
+		if (args[0] !== "all") {
+			let n = parseInt(args[0]);
+			if (!n || n <= 0)
+				return message.reply(":x: Deposit amount must be a whole number");
+			amount = Math.min(userData.coins, n);
+		}
 
 		await userDB.set(author, { $inc: { coins: -amount, bank: amount } });
 		message.reply(`Deposited ${amount}$ into bank`);
