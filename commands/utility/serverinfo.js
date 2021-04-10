@@ -9,26 +9,10 @@ module.exports = {
 		message.reply({embed: {
 			title: `${name}`,
 			fields: [
-				{
-					name: "Members",
-					value: memberCount,
-					inline: true
-				},
-				{
-					name: "Owner",
-					value: `<@${ownerID}>`,
-					inline: true
-				},
-				{
-					name: "Region",
-					value: region,
-					inline: true
-				},
-				{
-					name: "Channel Count",
-					value: channels.cache.length,
-					inline: true
-				}
+				{ name: "Members", value: memberCount, inline: true },
+				{ name: "Owner", value: `<@${ownerID}>`, inline: true },
+				{ name: "Region", value: region, inline: true },
+				{ name: "Channel Count", value: channels.cache.size, inline: true }
 			],
 			color: 2793983,
 			image: { url: guild.bannerURL({ size: 1024 }) },

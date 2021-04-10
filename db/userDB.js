@@ -32,7 +32,8 @@ module.exports = {
 	},
 	async set({ bot, id: userID }, mongoDBData) {
 		if (bot) return;
-		cache.delete(userID);
-		return await userModel.findOneAndUpdate({ userID }, mongoDBData, { upsert: true });
+		const userData = await userModel.findOneAndUpdate({ userID }, mongoDBData, { upsert: true });
+		cache.set(userID, userData);
+		return userData;
 	}
 };
