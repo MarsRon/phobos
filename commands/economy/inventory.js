@@ -32,7 +32,7 @@ module.exports = {
 			color: 2793983,
 			author: {
 				name: `${targetMember?.displayName || targetUser.name}'s Inventory`,
-				url: "https://marsron.github.io",
+				url: "https://marsron.github.io/phobos/",
 				icon_url: targetUser.displayAvatarURL({ dynamic: true })
 			}
 		}});

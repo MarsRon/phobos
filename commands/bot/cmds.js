@@ -16,7 +16,7 @@ module.exports = {
 			const command = client.getCmd(query);
 			if (command)
 				return message.reply(new MessageEmbed()
-					.setAuthor("Phobos", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io")
+					.setAuthor("Phobos", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io/phobos/")
 					.setTitle(prefix + command.name)
 					.setDescription(command.description)
 					.setColor("#2AA1FF")
@@ -28,7 +28,7 @@ module.exports = {
 				const category = client.commands.get(query);
 				if (category)
 					return message.reply(new MessageEmbed()
-						.setAuthor(`${pascalcase(query)} Category`, "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io")
+						.setAuthor(`${pascalcase(query)} Category`, "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io/phobos/")
 						.setColor("#2AA1FF")
 						.addFields([...category.values()]
 							.map(({ name, description: value }) =>
@@ -40,7 +40,7 @@ module.exports = {
 		}
 
 		message.reply(new MessageEmbed()
-			.setAuthor("Phobos Commands", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io")
+			.setAuthor("Phobos Commands", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://marsron.github.io/phobos/")
 			.setColor("#2AA1FF")
 			.addFields([...client.commands.keys()]
 				.map(category =>
