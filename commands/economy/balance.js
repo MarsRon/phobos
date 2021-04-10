@@ -3,12 +3,22 @@ const userDB = require("../../db/userDB");
 module.exports = {
 	name: "balance",
 	alias: ["bal"],
-	description: "Check your coin balance.",
+	description: "Check your coin balance or a user's.",
+	usage: "[user]",
 	cooldown: 10,
-	async execute(message) {
-		const { author, member } = message;
+	async execute(message, args) {
+		const { author, guild, member, mentions } = message;
 
-		const { coins, bank } = await userDB.get(author);
+		let targetMember = member, targetUser = author;
+
+		if (args[0]) {
+			const target = mentions.members.first() || guild.members.cache.get(args[0]);
+			if (!target)
+				return message.reply(":x: User doesn't exist");
+			targetUser = target.user, targetMember = target;
+		}
+
+		const { coins, bank } = await userDB.get(targetUser);
 
 		message.reply({embed: {
 			fields: [
@@ -18,9 +28,9 @@ module.exports = {
 			],
 			color: 2793983,
 			author: {
-				name: `${member?.displayName || author.name}'s Balance`,
+				name: `${targetMember?.displayName || targetUser.name}'s Balance`,
 				url: "https://marsron.github.io",
-				icon_url: author.displayAvatarURL({ dynamic: true })
+				icon_url: targetUser.displayAvatarURL({ dynamic: true })
 			}
 		}});
 	}

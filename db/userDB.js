@@ -4,10 +4,11 @@ const userModel = new model("Users", new Schema({
 	userID: { type: String, required: true, unique: true },
 	coins: { type: Number, default: 100 },
 	bank: { type: Number },
-	multiplier: { type: Number, default: 1 }
+	multiplier: { type: Number, default: 1 },
+	inventory: { type: Map }
 }));
 
-const DEFAULT = { coins: 100, bank: 0, multiplier: 1 };
+const DEFAULT = { coins: 100, bank: 0, multiplier: 1, inventory: new Map() };
 
 const cache = new Map();
 
