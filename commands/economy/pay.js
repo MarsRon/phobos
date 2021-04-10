@@ -17,7 +17,7 @@ module.exports = {
 		const target = mentions.members.first() || guild.members.cache.get(args[0]);
 		if (!target)
 			return message.reply(":x: User doesn't exist");
-		if (target.bot)
+		if (target.user.bot)
 			return message.reply(":x: You cannot pay bots");
 		if (target.id === author.id)
 			return message.reply(":x: You can't pay yourself");
@@ -27,7 +27,7 @@ module.exports = {
 			return message.reply(":x: Amount must be a whole number");
 
 		await userDB.set(author, { $inc: { coins: -coins }});
-		await userDB.set(target, { $inc: { coins } });
+		await userDB.set(target.user, { $inc: { coins } });
 		message.reply(`${target.displayName} successfully received ${coins}$`);
 	}
 };
