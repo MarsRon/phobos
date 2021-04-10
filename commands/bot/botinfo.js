@@ -3,7 +3,7 @@ module.exports = {
 	description: "Shows information about Phobos.",
 	execute(message) {
 		message.reply({embed: {
-			description: "Phobos was created by <@611166639534112769>, the <:cri:745563112106754129> champion.\n**[Click here](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=2147483647)** to invite me to your server!",
+			description: "Phobos was created by <@611166639534112769>, the <:cri:745563112106754129> champion.\n**[Click here](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591)** to invite me to your server!",
 			color: 2793983,
 			author: {
 				name: "Bot Information",

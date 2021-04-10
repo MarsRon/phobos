@@ -2,7 +2,7 @@ module.exports = {
 	name: "invite",
 	description: "Shows Phobos's invite link!",
 	execute(message) {
-		const url = "https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=2147483647";
+		const url = "https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591";
 		message.reply({embed: {
 			description: `**[Click here](${url})** to invite me to your server!`,
 			color: 2793983,
