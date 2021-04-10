@@ -3,10 +3,11 @@ const { Schema, model } = require("mongoose");
 const userModel = new model("Users", new Schema({
 	userID: { type: String, required: true, unique: true },
 	coins: { type: Number, default: 100 },
-	bank: { type: Number }
+	bank: { type: Number },
+	multiplier: { type: Number, default: 1 }
 }));
 
-const DEFAULT = { coins: 100, bank: 0 };
+const DEFAULT = { coins: 100, bank: 0, multiplier: 1 };
 
 const cache = new Map();
 
@@ -32,8 +33,7 @@ module.exports = {
 	},
 	async set({ bot, id: userID }, mongoDBData) {
 		if (bot) return;
-		const userData = await userModel.findOneAndUpdate({ userID }, mongoDBData, { upsert: true });
-		cache.set(userID, userData);
-		return userData;
+		cache.delete(userID);
+		return await userModel.findOneAndUpdate({ userID }, mongoDBData);
 	}
 };
