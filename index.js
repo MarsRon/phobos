@@ -4,12 +4,12 @@ const { readdirSync } = require("fs");
 
 // Constants
 const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
-const prefix = process.env.PREFIX;
 
 // Features
 const wordCatcher = require("./features/wordCatcher");
 const reactionRole = require("./features/reactionRole");
 const userDB = require("./db/userDB");
+const guildDB = require("./db/guildDB");
 require("./features/ExtendedMessage");
 require("./db/mongoose");
 require("./features/music")(client);
@@ -45,7 +45,7 @@ const getCmd = client.getCmd = cmdName => {
 // On bot ready
 client.once("ready", async () => {
 	console.log(`${client.user.tag} is ready! ${new Date().toISOString().substr(11, 8)}`);
-	client.user.setActivity(`${prefix}help | ${prefix}invite`, { type: "PLAYING" });
+	client.user.setActivity(`${process.env.PREFIX}help | ${process.env.PREFIX}invite`, { type: "PLAYING" });
 
 	// Fetch reaction role channel
 	client.channels
@@ -56,14 +56,18 @@ client.once("ready", async () => {
 // On new message
 client.on("message", async message => {
 
-	const { author, channel, content } = message;
+	const { author, channel, content, guild } = message;
 
 	if (author.bot) return;
+
+	// Get guild settings
+	const guildData = await guildDB.get(guild);
+
 	wordCatcher(message); // Catch words
-	if (!content.startsWith(prefix)) return;
+	if (!content.startsWith(guildData.prefix)) return;
 
 	// Getting command and arguments
-	const args = content.slice(prefix.length).trim().split(/ +/);
+	const args = content.slice(guildData.prefix.length).trim().split(/ +/);
 	const command = getCmd(args.shift().toLowerCase());
 
 	if (command) {
@@ -102,7 +106,7 @@ client.on("message", async message => {
 		if (command.args && !args.length) {
 			let reply = ":x: No arguments provided";
 			if (command.usage)
-				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
+				reply += `\nUsage: \`${guildData.prefix}${command.name} ${command.usage}\``;
 			return message.reply(reply);
 		}
 		// Execute command
@@ -130,22 +134,25 @@ client.on("messageReactionRemove", (reaction, user) =>
 
 // New user joined
 client.on("guildMemberAdd", async member => {
-
 	const { guild, user } = member;
 
-	// MongoDB
+	// Get database
 	userDB.get(user);
+	const guildData = await guildDB.get(guild);
 
 	// Welcome Message
-	const channel = guild.channels.cache.get(process.env.WELCOME_CHANNEL);
-	if (channel)
+	const channel = guildData.welcomeChannel !== "" && guild.channels.cache.get(guildData.welcomeChannel);
+	if (channel) {
+		let description = `Hey <@${user.id}>, welcome to **${guild.name}**!`;
+		if (channel.id === process.env.WELCOME_CHANNEL)
+			description += "\nDon't forget to read <#728979803172110386> too.";
 		channel.send({embed: {
 			title: `Welcome, ${user.tag}`,
-			description: `Hey <@${user.id}>, welcome to **Mars Hangout**!\nDon't forget to read <#728979803172110386> too.`,
+			description,
 			color: 2793983,
 			thumbnail: { url: user.displayAvatarURL({ dynamic: true, size: 256 }) }
 		}});
-
+	}
 });
 
 // Website & Uptime Robot

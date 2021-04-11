@@ -19,7 +19,7 @@ module.exports = {
 
 		if (user.bot) return defaultData;
 
-		let userData = cache.get(user.id);
+		let userData = cache.get(userID);
 		if (!userData) {
 			userData = await userModel.findOne({ userID });
 			if (!userData) {
@@ -28,7 +28,7 @@ module.exports = {
 					.create(userData)
 					.then(profile => profile.save());
 			}
-			cache.set(user.id, userData);
+			cache.set(userID, userData);
 		}
 		return userData;
 	},
