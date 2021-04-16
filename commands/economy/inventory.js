@@ -1,10 +1,8 @@
-const userDB = require("../../db/userDB");
+const User = require("../../db/user");
 
 function processInventory(inventory) {
-	let inv = [];
-	for (const item of inventory.values())
-		inv.push(item);
-	return inv.length ? inv : "\\*empty\\*";
+	const inv = Array.from(inventory);
+	return inv.length > 0 ? inv : "\\*empty\\*";
 }
 
 module.exports = {
@@ -12,12 +10,11 @@ module.exports = {
 	alias: ["inv"],
 	description: "Check your inventory or a user's.",
 	usage: "[user]",
-	cooldown: 10,
+	cooldown: 5,
 	async execute(message, args) {
 		const { author, guild, member, mentions } = message;
 
 		let targetMember = member, targetUser = author;
-
 		if (args[0]) {
 			const target = mentions.members.first() || guild.members.cache.get(args[0]);
 			if (!target)
@@ -25,7 +22,8 @@ module.exports = {
 			targetUser = target.user, targetMember = target;
 		}
 
-		const { inventory } = await userDB.get(targetUser);
+		const udb = await User(targetUser.id);
+		const { inventory } = udb.get();
 
 		message.reply({embed: {
 			description: processInventory(inventory),

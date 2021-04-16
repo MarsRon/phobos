@@ -1,16 +1,15 @@
-const userDB = require("../../db/userDB");
+const User = require("../../db/user");
 
 module.exports = {
 	name: "balance",
 	alias: ["bal"],
 	description: "Check your coin balance or a user's.",
 	usage: "[user]",
-	cooldown: 10,
+	cooldown: 5,
 	async execute(message, args) {
 		const { author, guild, member, mentions } = message;
 
 		let targetMember = member, targetUser = author;
-
 		if (args[0]) {
 			const target = mentions.members.first() || guild.members.cache.get(args[0]);
 			if (!target)
@@ -18,7 +17,8 @@ module.exports = {
 			targetUser = target.user, targetMember = target;
 		}
 
-		const { coins, bank } = await userDB.get(targetUser);
+		const udb = await User(targetUser.id);
+		const { coins, bank } = udb.get();
 
 		message.reply({embed: {
 			fields: [

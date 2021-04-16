@@ -1,4 +1,4 @@
-const userDB = require("../../db/userDB");
+const User = require("../../db/user");
 
 module.exports = {
 	name: "withdraw",
@@ -6,23 +6,25 @@ module.exports = {
 	description: "Withdraw coins from your bank.",
 	args: true,
 	usage: "<amount>",
-	cooldown: 10,
+	cooldown: 5,
 	async execute(message, args) {
-		const { author } = message;
-		
-		const userData = await userDB.get(author);
-		if (userData.bank <= 0)
-			return message.reply(":x: Not enough coins to deposit");
+		const amount = args[0];
 
-		let amount = userData.bank;
-		if (args[0] !== "all") {
-			let n = parseInt(args[0]);
+		const udb = await User(message.author.id);
+		const { bank } = udb.get();
+		if (bank <= 0)
+			return message.reply(":x: Not enough coins to withdraw");
+
+		let bankAmount = bank;
+		if (!(amount === "a" || amount === "all")) {
+			const n = parseInt(amount);
 			if (!n || n <= 0)
 				return message.reply(":x: Withdraw amount must be a whole number");
-			amount = Math.min(userData.bank, n);
+			bankAmount = Math.min(bank, n);
 		}
 
-		await userDB.set(author, { $inc: { coins: amount, bank: -amount } });
-		message.reply(`Withdrawn ${amount}$ from bank`);
+		udb.inc("bank", -bankAmount);
+		udb.inc("coins", bankAmount);
+		message.reply(`Withdrawn ${bankAmount}$ from bank`);
 	}
 };

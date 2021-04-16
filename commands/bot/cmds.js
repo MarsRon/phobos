@@ -1,7 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 const prefix = process.env.PREFIX;
 
-const pascalcase = string => string.split(" ").map(s=>s[0].toUpperCase()+s.slice(1)).join(" ");
+const pascalcase = string => string.split(" ")
+	.map(s => s[0].toUpperCase() + s.slice(1)).join(" ");
 
 module.exports = {
 	name: "cmds",

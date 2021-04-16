@@ -1,4 +1,4 @@
-const guildDB = require("../../db/guildDB");
+const Guild = require("../../db/guild");
 
 module.exports = {
 	name: "prefix",
@@ -7,18 +7,18 @@ module.exports = {
 	usage: "<prefix>",
 	guildOnly: true,
 	permission: "MANAGE_SERVER",
-	cooldown: 10,
+	cooldown: 5,
 	async execute(message, args) {
-		const { guild } = message;
+		const gdb = await Guild(message.guild.id);
 
 		if (args[0] === "reset") {
-			await guildDB.set(guild, { $set: { prefix: process.env.PREFIX } });
+			gdb.set("prefix", process.env.PREFIX);
 			return message.reply(`Successfully reset prefix to \`${process.env.PREFIX}\``);
 		}
 
 		const prefix = args[0].slice(0, 5);
 
-		await guildDB.set(guild, { $set: { prefix } });
+		gdb.set("prefix", prefix);
 		message.reply(`Successfully set \`${prefix}\` as Phobos' prefix!\nIf you wish to reset it, please run \`${prefix}prefix reset\``);
 	}
 };

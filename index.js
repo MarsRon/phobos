@@ -8,8 +8,7 @@ const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
 // Features
 const wordCatcher = require("./features/wordCatcher");
 const reactionRole = require("./features/reactionRole");
-const userDB = require("./db/userDB");
-const guildDB = require("./db/guildDB");
+const Guild = require("./db/guild");
 require("./features/ExtendedMessage");
 require("./db/mongoose");
 require("./features/music")(client);
@@ -61,7 +60,8 @@ client.on("message", async message => {
 	if (author.bot) return;
 
 	// Get guild settings
-	const guildData = await guildDB.get(guild);
+	const gdb = await Guild(guild.id);
+	const guildData = gdb.get();
 
 	wordCatcher(message); // Catch words
 	if (!content.startsWith(guildData.prefix)) return;
@@ -137,11 +137,11 @@ client.on("guildMemberAdd", async member => {
 	const { guild, user } = member;
 
 	// Get database
-	userDB.get(user);
-	const guildData = await guildDB.get(guild);
+	const gdb = await Guild(guild.id);
+	const { welcomeChannel } = gdb.get();
 
 	// Welcome Message
-	const channel = guildData.welcomeChannel !== "" && guild.channels.cache.get(guildData.welcomeChannel);
+	const channel = welcomeChannel !== "" && guild.channels.cache.get(welcomeChannel);
 	if (channel) {
 		let description = `Hey <@${user.id}>, welcome to **${guild.name}**!`;
 		if (channel.id === process.env.WELCOME_CHANNEL)

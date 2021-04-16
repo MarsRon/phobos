@@ -1,4 +1,4 @@
-const userDB = require("../../db/userDB");
+const User = require("../../db/user");
 
 module.exports = {
 	name: "give-coins",
@@ -7,6 +7,7 @@ module.exports = {
 	usage: "<user> <amount>",
 	guildOnly: true,
 	permission: "MANAGE_SERVER",
+	cooldown: 5,
 	async execute(message, args) {
 		const { guild, mentions } = message;
 
@@ -14,11 +15,12 @@ module.exports = {
 		if (!target)
 			return message.reply(":x: User doesn't exist");
 
-		const coins = parseInt(args[1]);
-		if (!coins)
+		const amount = parseInt(args[1]);
+		if (!amount)
 			return message.reply(":x: Amount must be a whole number");
 
-		await userDB.set(target, { $inc: { coins } });
-		message.reply(`${target.displayName} received ${coins}$`);
+		const udb = await User(target.id);
+		udb.inc("coins", amount);
+		message.reply(`**${target.displayName}** successfully received ${amount}$`);
 	}
 };

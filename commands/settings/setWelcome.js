@@ -1,4 +1,4 @@
-const guildDB = require("../../db/guildDB");
+const Guild = require("../../db/guild");
 
 module.exports = {
 	name: "set-welcome",
@@ -7,12 +7,13 @@ module.exports = {
 	usage: "<channel>",
 	guildOnly: true,
 	permission: "MANAGE_SERVER",
-	cooldown: 10,
+	cooldown: 5,
 	async execute(message, args) {
 		const { client, guild, mentions } = message;
+		const gdb = await Guild(guild.id);
 
 		if (args[0] === "reset") {
-			await guildDB.set(guild, { $set: { welcomeChannel: "" } });
+			gdb.set("welcomeChannel", "");
 			return message.reply("Successfully removed welcome channel!");
 		}
 
@@ -20,7 +21,7 @@ module.exports = {
 		if (!channel)
 			return message.reply(":x: Channel not found");
 
-		await guildDB.set(guild, { $set: { welcomeChannel: channel.id } });
-		message.reply(`Successfully set <#${channel.id}> as the welcome channel!\nIf you wish to reset it, please run \`${(await guildDB.get(guild)).prefix}set-welcome reset\``);
+		gdb.set("welcomeChannel", channel.id);
+		message.reply(`Successfully set <#${channel.id}> as the welcome channel!\nIf you wish to reset it, please run \`${gdb.get().prefix}set-welcome reset\``);
 	}
 };
