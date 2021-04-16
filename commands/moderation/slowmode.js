@@ -11,7 +11,7 @@ module.exports = {
 
 		if (isNaN(rate))
 			return message.reply(":x: Argument must be a number");
-		if (rate > 21600 || rate < 1)	
+		if (rate > 21600 || rate < 1)
 			return message.reply(":x: Number must be between 1 - 21600");
 
 		const target = mentions.channels.first() || guild.channels.cache.get(args[1]) || channel;

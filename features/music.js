@@ -18,17 +18,22 @@ module.exports = function(client) {
 			}
 		}}))
 
-		.on("addSong", ({ author, channel }, queue, { name, url, duration, formattedDuration, thumbnail }) => channel.send({embed: {
+		.on("addSong", ({ author, channel }, { currentTime, songs }, { name, url, formattedDuration, thumbnail }) => channel.send({embed: {
 			title: name,
 			url,
 			fields: [
 				{ name: "Song Duration", value: formattedDuration, inline: true },
 				{
 					name: "Estimated time until playing",
-					value: formatDuration(queue.songs.reduce((acc, cur) => acc += cur.duration, -duration) * 1000),
+					value: formatDuration(songs
+						.filter((_,i) => i !== 0 && i !== songs.length - 1) // Remove currently playing and this song
+						.reduce(
+							(acc, cur) => acc += cur.duration,
+							songs[0].duration - ~~(currentTime/1000)
+						) * 1000),
 					inline: true
 				},
-				{ name: "Position in queue", value: queue.songs.length-1, inline: true }
+				{ name: "Position in queue", value: songs.length - 1, inline: true }
 			],
 			color: 2793983,
 			thumbnail: { url: thumbnail },
@@ -53,16 +58,15 @@ module.exports = function(client) {
 			`Added \`${playlist.name}\` playlist (${playlist.songs.length} songs) to queue\n${status(queue)}`
 		))
 
-		.on("searchResult", (message, result) => {
-			let i = 0;
-			message.reply(`**Choose an option from below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`);
-		})
+		.on("searchResult", (message, result) =>
+			message.reply(`**Choose an option from below**\n${result.map((song, i) => `**${i+1}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`)
+		)
 
 		.on("searchCancel", message => message.reply(":white_check_mark:"))
 
 		.on("error", (message, e) => {
 			console.log(e.message);
-			message.reply(`:x: An error occured:\n${e}`);
+			message.reply(`:x: An error occured:\n${e.message}`);
 		});
 
 	client.distube = distube;

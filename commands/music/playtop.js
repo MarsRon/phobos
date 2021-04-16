@@ -14,6 +14,7 @@ module.exports = {
 		const query = args.join(" ");
 		message.reply(`:mag_right: **Searching** \`${query}\``);
 		await distube.play(message, query);
-		distube.getQueue(guild.id).songs.splice(1, 0, distube.getQueue(guild.id).songs.pop());
+		const songs = distube.getQueue(guild.id).songs;
+		songs.splice(1, 0, songs.pop());
 	}
 };

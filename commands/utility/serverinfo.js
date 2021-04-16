@@ -5,7 +5,7 @@ module.exports = {
 	execute(message) {
 		const { guild } = message;
 		const { name, region, memberCount, ownerID, channels } = guild;
-		
+
 		message.reply({embed: {
 			title: `${name}`,
 			fields: [

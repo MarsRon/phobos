@@ -13,7 +13,7 @@ module.exports = {
 		if (limit >= 1 && limit <= 100) {
 			message.delete();
 			channel.bulkDelete(limit, true)
-				.then(messages => 
+				.then(messages =>
 					channel.send(`Successfully deleted ${messages.array().length} messages`)
 						.then(msg => msg.delete({timeout: 5000}).catch(() => {}))
 				)

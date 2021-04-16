@@ -20,7 +20,6 @@ module.exports = {
 			return message.reply(`:x: You are already using \`${process.env.PREFIX}convo\``);
 		users.set(author.id, message.id);
 
-		
 		const filter = response => //eslint-disable-next-line no-prototype-builtins
 			response.author.id === author.id && answers.hasOwnProperty(response.content.toLowerCase());
 

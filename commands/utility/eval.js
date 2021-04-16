@@ -12,9 +12,12 @@ module.exports = {
 	async execute(message, args) {
 		//eslint-disable-next-line no-unused-vars
 		const { channel, client, guild, member, author: user } = message;
-		
+
 		if (user.id !== ownerId) return;
 		if (!args.length) return;
+
+		//eslint-disable-next-line no-unused-vars
+		const OUT = text => channel.send(clean(text), { code: "js", split: true });
 
 		try {
 			let evaled = eval(args.join(" "));

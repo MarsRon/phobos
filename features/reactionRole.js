@@ -2,7 +2,7 @@ const { REACTION_ROLE_CHANNEL: rrChannel, REACTION_ROLE_ROLE: rrRole } = process
 
 module.exports = async function(reaction, user, deleted) {
 	const { message: { guild, channel }, emoji } = reaction;
-	
+
 	if (channel.id !== rrChannel) return;
 
 	const { roles } = await guild.members.fetch(user.id);
