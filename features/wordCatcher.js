@@ -27,6 +27,6 @@ const catchers = [
 
 ];
 
-module.exports = function(message) {
+module.exports = async function(message) {
 	catchers.forEach(func => func(message));
 };
