@@ -61,13 +61,13 @@ client.on("message", async message => {
 
 	// Get guild settings
 	const gdb = await Guild(guild.id);
-	const guildData = gdb.get();
+	const { prefix } = gdb.get();
 
 	wordCatcher(message); // Catch words
-	if (!content.startsWith(guildData.prefix)) return;
+	if (!content.startsWith(prefix)) return;
 
 	// Getting command and arguments
-	const args = content.slice(guildData.prefix.length).trim().split(/ +/);
+	const args = content.slice(prefix.length).trim().split(/ +/);
 	const command = getCmd(args.shift().toLowerCase());
 
 	if (command) {
@@ -106,7 +106,7 @@ client.on("message", async message => {
 		if (command.args && !args.length) {
 			let reply = ":x: No arguments provided";
 			if (command.usage)
-				reply += `\nUsage: \`${guildData.prefix}${command.name} ${command.usage}\``;
+				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
 			return message.reply(reply);
 		}
 		// Execute command

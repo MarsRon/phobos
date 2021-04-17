@@ -1,3 +1,6 @@
+
+const Guild = require("../../db/guild");
+
 const users = new Map();
 
 const answers = {
@@ -14,10 +17,12 @@ module.exports = {
 	name: "convo",
 	description: "Have a conversation with me.",
 	async execute(message) {
-		const { author, channel } = message;
+		const { author, channel, guild } = message;
+
+		const gdb = await Guild(guild.id);
 
 		if (users.has(author.id))
-			return message.reply(`:x: You are already using \`${process.env.PREFIX}convo\``);
+			return message.reply(`:x: You are already using \`${gdb.get().prefix}convo\``);
 		users.set(author.id, message.id);
 
 		const filter = response => //eslint-disable-next-line no-prototype-builtins

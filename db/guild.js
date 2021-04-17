@@ -9,7 +9,7 @@ const guildObject = {
 };
 const guildSchema = {
 	guildID: { type: String, required: true, unique: true },
-	prefix: { type: String, default: "."},
+	prefix: { type: String, default: process.env.PREFIX},
 	welcomeChannel: { type: String },
 };
 

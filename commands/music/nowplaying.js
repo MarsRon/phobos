@@ -1,12 +1,17 @@
+
+const Guild = require("../../db/guild");
+
 module.exports = {
 	name: "nowplaying",
 	alias: ["np"],
 	description: "Shows what song Phobos is currently playing.",
 	guildOnly: true,
-	execute(message) {
+	async execute(message) {
+		const gdb = await Guild(message.guild.id);
+
 		const queue = message.client.distube.getQueue(message);
 		if (!queue)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${process.env.PREFIX}join\` **to get me in one**`);
+			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}join\` **to get me in one**`);
 
 		const { songs, formattedCurrentTime } = queue;
 		const { name, url, formattedDuration, user, thumbnail } = songs[0];

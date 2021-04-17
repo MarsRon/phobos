@@ -1,14 +1,15 @@
-const prefix = process.env.PREFIX;
+const Guild = require("../../db/guild");
 
 module.exports = {
 	name: "help",
 	alias: ["phobos", "info"],
 	description: "Shows all Phobos commands.",
-	execute(message) {
+	async execute(message) {
+		const gdb = await Guild(message.guild.id);
 		message.reply({embed: {
 			color: 2793983,
 			fields: [
-				{ name: ":open_file_folder: Commands List", value: `\`${prefix}cmds <category|command>\``},
+				{ name: ":open_file_folder: Commands List", value: `\`${gdb.get().prefix}cmds <category|command>\``},
 				{ name: ":white_check_mark: Help Page", value: "https://marsron.github.io/phobos/" },
 				{ name: ":question: Arguments usage", value: "`<required>`, `[optional]`" },
 				{ name: ":page_facing_up: Still need help?", value: "[**Click here**](https://discord.gg/TSqw3jx) to join our Discord server!" },

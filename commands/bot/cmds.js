@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const prefix = process.env.PREFIX;
+const Guild = require("../../db/guild");
 
 const pascalcase = string => string.split(" ")
 	.map(s => s[0].toUpperCase() + s.slice(1)).join(" ");
@@ -9,9 +9,12 @@ module.exports = {
 	alias: ["commands"],
 	description: "Shows information of a command/category.",
 	usage: "<category|command>",
-	execute(message, args) {
-		const { client } = message;
+	async execute(message, args) {
+		const { client, guild } = message;
 		const query = args[0];
+
+		const gdb = await Guild(guild.id);
+		const { prefix } = gdb.get();
 
 		if (query) {
 			const command = client.getCmd(query);
