@@ -3,7 +3,7 @@ const Guild = require("../../db/guild");
 module.exports = {
 	name: "help",
 	alias: ["phobos", "info"],
-	description: "Shows all Phobos commands.",
+	description: "Bring up the help message.",
 	async execute(message) {
 		const gdb = await Guild(message.guild.id);
 		message.reply({embed: {
