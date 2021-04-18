@@ -33,14 +33,15 @@ module.exports = {
 		//eslint-disable-next-line no-constant-condition
 		while (true) {
 			try {
-				const msg = await channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] }).first();
+				const msg = (await channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })).first();
 				const response = msg.content.toLowerCase();
 				msg.reply(answers[response]);
 				if (response === "bye") break;
 			} catch(e) {
-				users.delete(author.id);
 				channel.send("Nobody wants to talk to me \\:(");
+				break;
 			}
 		}
+		users.delete(author.id);
 	}
 };
