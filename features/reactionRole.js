@@ -9,11 +9,11 @@ module.exports = async function(reaction, user, deleted) {
 
 	let role;
 	switch (emoji.name) {
-	case "🔵":
-		role = await guild.roles.fetch(rrRole);
-		break;
-	default:
-		break;
+		case "🔵":
+			role = await guild.roles.fetch(rrRole);
+			break;
+		default:
+			break;
 	}
 	if (!role) return;
 

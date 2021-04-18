@@ -1,4 +1,3 @@
-
 const Guild = require("../../db/guild");
 
 const filters = ["3d", "bassboost", "echo", "karaoke", "nightcore", "vaporwave", "flanger", "gate", "haas", "reverse", "surround", "mcompand", "phaser", "tremolo", "earwax"];

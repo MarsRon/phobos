@@ -1,8 +1,13 @@
 const User = require("../../db/user");
+const { getItem } = require("../../const/economyStore");
 
 function processInventory(inventory) {
-	const inv = Array.from(inventory);
-	return inv.length > 0 ? inv : "\\*empty\\*";
+	const items = Object.entries(inventory);
+	if (items.length !== 0)
+		return items.map(([name, count]) => [getItem(name), count === 1 ? "" : `× ${count}`])
+			.map(([item, count], i) => `\`${i+1}.\` ${item.name}${count} (${item.price}$)`)
+			.join("\n");
+	return "\\*empty\\*";
 }
 
 module.exports = {

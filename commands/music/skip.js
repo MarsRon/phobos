@@ -1,4 +1,3 @@
-
 const Guild = require("../../db/guild");
 
 module.exports = {

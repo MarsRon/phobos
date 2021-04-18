@@ -13,7 +13,7 @@ module.exports = {
 		const { client, guild } = message;
 		const query = args[0];
 
-		const gdb = await Guild(guild.id);
+		const gdb = await Guild(guild?.id);
 		const { prefix } = gdb.get();
 
 		if (query) {

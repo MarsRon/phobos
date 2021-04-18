@@ -5,7 +5,7 @@ module.exports = {
 	alias: ["phobos", "info"],
 	description: "Bring up the help message.",
 	async execute(message) {
-		const gdb = await Guild(message.guild.id);
+		const gdb = await Guild(message.guild?.id);
 		message.reply({embed: {
 			color: 2793983,
 			fields: [

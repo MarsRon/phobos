@@ -59,6 +59,8 @@ const save = async (guildID, changes) => {
 };
 
 module.exports = async guildID => {
+	if (guildID === undefined)
+		return deepClone(guildObject);
 	if (!dbCache.has(guildID))
 		await load(guildID);
 	return {

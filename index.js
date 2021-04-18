@@ -60,7 +60,7 @@ client.on("message", async message => {
 	if (author.bot) return;
 
 	// Get guild settings
-	const gdb = await Guild(guild.id);
+	const gdb = await Guild(guild?.id);
 	const { prefix } = gdb.get();
 
 	wordCatcher(message); // Catch words

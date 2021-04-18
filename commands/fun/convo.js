@@ -1,4 +1,3 @@
-
 const Guild = require("../../db/guild");
 
 const users = new Map();
@@ -19,7 +18,7 @@ module.exports = {
 	async execute(message) {
 		const { author, channel, guild } = message;
 
-		const gdb = await Guild(guild.id);
+		const gdb = await Guild(guild?.id);
 
 		if (users.has(author.id))
 			return message.reply(`:x: You are already using \`${gdb.get().prefix}convo\``);
