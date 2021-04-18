@@ -4,7 +4,7 @@ const { getItem } = require("../../const/economyStore");
 function processInventory(inventory) {
 	const items = Object.entries(inventory);
 	if (items.length !== 0)
-		return items.map(([name, count]) => [getItem(name), count === 1 ? "" : `× ${count}`])
+		return items.map(([name, count]) => [getItem(name), count === 1 ? "" : ` × ${count}`])
 			.map(([item, count], i) => `\`${i+1}.\` ${item.name}${count} (${item.price}$)`)
 			.join("\n");
 	return "\\*empty\\*";

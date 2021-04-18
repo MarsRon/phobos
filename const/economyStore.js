@@ -2,7 +2,7 @@ const items = {
 	"VIP Ranks": {
 		vipbronze: {
 			name: "Bronze VIP",
-			price: 3500
+			price: 2500
 		}
 	},
 	"Lifestyle Itmes": {
