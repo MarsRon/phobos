@@ -156,9 +156,9 @@ client.on("guildMemberAdd", async member => {
 });
 
 // Website & Uptime Robot
-const server = require("express")();
-server.all("/", (req, res) => res.redirect(307, "https://marsron.github.io/phobos/"));
-server.listen(3000);
+require("http").createServer((req, res) =>
+	res.writeHead(307, {Location: "https://marsron.github.io/phobos/"}).end()
+).listen(3000);
 
 // Login bot
 client.login(process.env.TOKEN);
