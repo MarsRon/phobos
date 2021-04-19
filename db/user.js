@@ -8,7 +8,8 @@ const userObject = {
 	bank: 0,
 	multiplier: 1,
 	inventory: {},
-	lastDaily: Date.now() - 86400000
+	lastDaily: Date.now() - 86400000,
+	fishingrodUsage: 0
 };
 const userSchema = {
 	userID: { type: String, required: true, unique: true },
@@ -16,7 +17,8 @@ const userSchema = {
 	bank: { type: Number },
 	multiplier: { type: Number },
 	inventory: { type: Object },
-	lastDaily: { type: Number }
+	lastDaily: { type: Number },
+	fishingrodUsage: { type: Number }
 };
 
 const deepClone = obj => JSON.parse(JSON.stringify(obj));

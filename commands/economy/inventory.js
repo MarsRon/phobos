@@ -2,10 +2,10 @@ const User = require("../../db/user");
 const { getItem } = require("../../const/economyStore");
 
 function processInventory(inventory) {
-	const items = Object.entries(inventory);
+	const items = Object.entries(inventory).filter(e => e[1] > 0);
 	if (items.length !== 0)
-		return items.map(([name, count]) => [getItem(name), count === 1 ? "" : ` × ${count}`])
-			.map(([item, count], i) => `\`${i+1}.\` ${item.name}${count} (${item.price}$)`)
+		return items.map(([name, count]) => [getItem(name), count])
+			.map(([item, count], i) => `\`${i+1}.\` ${item.name}${count === 1 ? "" : ` × ${count}`} (${item.price * count}$)`)
 			.join("\n");
 	return "\\*empty\\*";
 }
