@@ -23,6 +23,18 @@ const catchers = [
 				// eslint-disable-next-line no-empty
 				} catch(e) {}
 			})();
+	},
+
+	function normal(message) {
+		const words = {
+			sad: "Don't be sad, I'm here for you \\:)",
+			nice: "Nice",
+			phobos: "who called me"
+		};
+		const messageWords = message.content.toLowerCase().split(/ +/);
+		const word = Object.keys(words).find(word => messageWords.includes(word));
+		if (word)
+			message.reply(words[word]);
 	}
 
 ];
