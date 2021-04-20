@@ -20,7 +20,7 @@ module.exports = {
 		const queue = client.distube.getQueue(message);
 		const gdb = await Guild(guild.id);
 		if (!queue)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}join\` **to get me in one**`);
+			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
 		const { songs } = queue;
 		const currentlyPlaying = songs.shift();
 		shuffle(songs);

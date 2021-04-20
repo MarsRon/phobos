@@ -9,7 +9,7 @@ module.exports = {
 		const { client: { distube }, guild } = message;
 		const gdb = await Guild(guild.id);
 		if (!distube.getQueue(message))
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}join\` **to get me in one**`);
+			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
 		distube.stop(message);
 		message.reply("**Successfully disconnected**");
 	}

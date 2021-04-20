@@ -12,7 +12,7 @@ module.exports = {
 		const gdb = await Guild(guild.id);
 		const songs = distube.getQueue(message)?.songs;
 		if (!songs)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}join\` **to get me in one**`);
+			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
 		if (songs.length === 0)
 			return message.reply(":x: No songs in queue");
 		const index = parseInt(args[0]);
