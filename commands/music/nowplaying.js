@@ -10,7 +10,7 @@ module.exports = {
 
 		const queue = message.client.distube.getQueue(message);
 		if (!queue)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
 
 		const { songs, formattedCurrentTime } = queue;
 		const { name, url, formattedDuration, user, thumbnail } = songs[0];

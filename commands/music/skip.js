@@ -10,7 +10,7 @@ module.exports = {
 		const gdb = Guild(guild.id);
 		const queue = distube.getQueue(message);
 		if (!queue)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
 		distube.skip(message);
 		message.reply("**Skipped song**");
 	}

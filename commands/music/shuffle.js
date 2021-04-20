@@ -16,16 +16,16 @@ module.exports = {
 	description: "Shuffles the music queue.",
 	guildOnly: true,
 	async execute(message) {
-		const { author, client, guild, member } = message;
+		const { author, client, guild } = message;
 		const queue = client.distube.getQueue(message);
 		const gdb = await Guild(guild.id);
 		if (!queue)
-			return message.reply(`:x: **I am not connected to a voice channel. Type** \`${gdb.get().prefix}play\` **to get me in one**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
 		const { songs } = queue;
 		const currentlyPlaying = songs.shift();
 		shuffle(songs);
 		songs.unshift(currentlyPlaying);
-		const formattedSongs = queue.songs.map(({ name, url, formattedDuration, user }, index) => `\`${index}.\` [${name}](${url}) | \`${formattedDuration} Requested by: ${member.displayName} (${user.tag})\``);
+		const formattedSongs = queue.songs.map(({ name, url, formattedDuration, user }, index) => `\`${index}.\` [${name}](${url}) | \`${formattedDuration}\` Requested by: <@${user.id}> (${user.tag})`);
 		let maxI = 0, count = 0;
 		for (const song of songs) {
 			let sum = count + song.length + 1;

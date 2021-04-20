@@ -12,7 +12,7 @@ module.exports = function(client) {
 			color: 2793983,
 			thumbnail: { url: thumbnail },
 			author: {
-				name: "Playing ♪",
+				name: "Now Playing ♪",
 				url: "https://marsron.github.io/phobos/",
 				icon_url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32"
 			}
