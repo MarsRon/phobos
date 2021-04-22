@@ -15,10 +15,11 @@ const fishes = [
 	"Shrimp :shrimp:",
 	"Octopus :octopus:",
 	"Duck :duck:",
-	"Diamond :gem:"
+	"Diamond :gem:",
+	"Cri fish <:cri:745563112106754129>",
 ];
 
-const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+const rand = (max, min = 0) => Math.floor(Math.random() * (max - min)) + min;
 
 module.exports = {
 	name: "fish",
@@ -30,19 +31,23 @@ module.exports = {
 		const gdb = await Guild(guild.id);
 		const { inventory, fishingrodUsage } = udb.get();
 		const { prefix } = gdb.get();
-		
-		if (inventory.fishingrod === 0)
+
+		if (inventory.fishingrod === undefined || inventory.fishingrod === 0)
 			return message.reply(`:x: You need to buy a fishing rod from the store. Use \`${prefix}buy fishingrod\` to buy one`);
-		
-		if (fishingrodUsage > rand(5, 10)) {
+
+		udb.inc("fishingrodUsage", 1);
+
+		const fish = fishes[rand(fishes.length - 1)];
+		message.reply(`Congratulations, you've fished a ${fish}!`);
+
+		if (fishingrodUsage >= rand(5, 1)) {
 			inventory.fishingrod--;
 			udb.set("inventory", inventory);
 			udb.set("fishingrodUsage", 0);
-			return message.reply(`:x: Your fishing rod has broken. Use \`${prefix}buy fishingrod\` to buy a new one`);
+			if (inventory.fishingrod === 0)
+				message.reply(`You don't have any fishing rods left. Use \`${prefix}buy fishingrod\` to buy a new one`);
+			else
+				message.reply("Your fishing rod broke");
 		}
-		udb.inc("fishingrodUsage", 1);
-
-		const fish = fishes[rand(0, fishes.length - 1)];
-		message.reply(`Congratulations, you've won a ${fish}!`);
 	}
 };
