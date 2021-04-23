@@ -19,12 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		button.onclick = createRipple;
 
 	// Rotate background gradient
-	const { style } = document.getElementById("title");
+	const { style } = document.getElementById("title"),
+		{ requestAnimationFrame: animate } = window;
 	let deg = 62;
-	setInterval(() => {
-		deg += 4;
-		if (deg >= 360)
-			deg = 0;
+	const rotate = () => {
+		deg += 0.5;
 		style.backgroundImage = `linear-gradient(${deg}deg, #3a3d40 0, #181719 100%)`;
-	}, 100);
+		animate(rotate);
+	};
+	animate(rotate);
 });
