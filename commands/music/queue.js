@@ -11,10 +11,9 @@ module.exports = {
 		const queue = client.distube.getQueue(message);
 		if (!queue)
 			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
-		const { songs } = queue;
 		const formattedSongs = queue.songs.map(({ name, url, formattedDuration, user }, index) => `\`${index}.\` [${name}](${url}) | \`${formattedDuration}\` Requested by: <@${user.id}> (${user.tag})`);
 		let maxI = 0, count = 0;
-		for (const song of songs) {
+		for (const song of formattedSongs) {
 			let sum = count + song.length + 1;
 			if (sum > 2031)
 				break;
