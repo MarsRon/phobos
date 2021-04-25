@@ -4,18 +4,19 @@ module.exports = {
 	name: "lyrics",
 	description: "Finds the lyrics of the current song or a provided song name.",
 	usage: "<link|query>",
+	cooldown: 5,
 	execute(message, args) {
 		let query = args.join(" ");
 		const { client, guild, member, author: user } = message;
 
-		if (guild) {
-			const queue = client.distube.getQueue(message);
-			if (queue)
-				query = queue.songs[0].title;
+		if (query === "") {
+			if (guild) {
+				const queue = client.distube.getQueue(message);
+				if (queue)
+					query = queue.songs[0].title;
+			} else
+				return message.reply(":x: You need to provide a song name to be searched");
 		}
-
-		if (query === "")
-			return message.reply(":x: You need to provide a song name to be searched");
 		message.reply(`:mag_right: **Searching lyrics for** \`${query}\``);
 
 		axios.get("https://some-random-api.ml/lyrics?title=" + encodeURIComponent(query))

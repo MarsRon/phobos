@@ -29,7 +29,8 @@ const catchers = [
 		const words = {
 			sad: "Don't be sad, I'm here for you \\:)",
 			nice: "Nice",
-			phobos: "who called me"
+			phobos: "who called me",
+			"shut the fuck up": "<:unoerverse:835873190638649426>"
 		};
 		const messageWords = message.content.toLowerCase().split(/ +/);
 		const word = Object.keys(words).find(word => messageWords.includes(word));
