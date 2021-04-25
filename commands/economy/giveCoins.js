@@ -6,10 +6,10 @@ module.exports = {
 	args: true,
 	usage: "<user> <amount>",
 	guildOnly: true,
-	permission: "MANAGE_SERVER",
 	cooldown: 5,
 	async execute(message, args) {
-		const { guild, mentions } = message;
+		const { author, guild, mentions } = message;
+		if (author.id !== process.env.OWNER_ID) return;
 
 		const target = mentions.members.first() || guild.members.cache.get(args[0]);
 		if (!target)

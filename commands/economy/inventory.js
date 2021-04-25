@@ -34,7 +34,7 @@ module.exports = {
 			description: processInventory(inventory),
 			color: 2793983,
 			author: {
-				name: `${targetMember?.displayName || targetUser.name}'s Inventory`,
+				name: `${targetMember?.displayName || targetUser.username}'s Inventory`,
 				url: "https://marsron.github.io/phobos/",
 				icon_url: targetUser.displayAvatarURL({ dynamic: true })
 			}

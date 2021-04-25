@@ -28,7 +28,7 @@ module.exports = {
 			],
 			color: 2793983,
 			author: {
-				name: `${targetMember?.displayName || targetUser.name}'s Balance`,
+				name: `${targetMember?.displayName || targetUser.username}'s Balance`,
 				url: "https://marsron.github.io/phobos/",
 				icon_url: targetUser.displayAvatarURL({ dynamic: true })
 			}
