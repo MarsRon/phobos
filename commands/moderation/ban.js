@@ -12,8 +12,9 @@ module.exports = {
 		if (!member)
 			return message.reply(":x: You need to specify the user!");
 
-		member.ban({ reason: args.join(" ") })
+		member
+			.ban({ reason: args.join(" ") })
+			.then(() => message.reply(`Successfully banned ${member.user.tag}`))
 			.catch(e => console.log(e.message));
-		message.reply(`Successfully banned ${member.user.tag}`);
 	}
 };

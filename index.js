@@ -97,9 +97,9 @@ client.on("message", async message => {
 		if (command.guildOnly && channel.type === "dm")
 			return message.reply(":x: This command is unavailable in DMs");
 		// Permission check
-		if (command.permissions) {
+		if (command.permission) {
 			const perms = channel.permissionsFor(author);
-			if (!(perms && perms.has(command.permissions)))
+			if (!(perms && perms.has(command.permission)))
 				return message.reply(":x: Missing permission");
 		}
 		// Arguments check
