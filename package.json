@@ -1,7 +1,7 @@
 {
 	"name": "phobos",
 	"version": "1.0.0",
-	"description": "A Discord.js bot by MarsRon.",
+	"description": "The not so cool multi-purpose dumb Discord bot.",
 	"main": "index.js",
 	"scripts": {
 		"start": "node .",
