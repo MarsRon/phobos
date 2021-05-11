@@ -1,6 +1,8 @@
 // Modules
 const { Client, Intents } = require("discord.js");
 const { readdirSync } = require("fs");
+const path = require("path");
+require("dotenv").config();
 
 // Constants
 const client = new Client({ ws: { intents: new Intents(Intents.ALL) } });
@@ -18,10 +20,10 @@ const cooldowns = client.cooldowns = new Map();
 
 // Setting up commands
 const commands = client.commands = new Map();
-for (const categoryName of readdirSync("./commands")) {
+for (const categoryName of readdirSync(path.join(__dirname, "./commands"))) {
 	if (categoryName === "cmd.js.example") continue;
 	const category = new Map();
-	readdirSync(`./commands/${categoryName}`)
+	readdirSync(path.join(__dirname, `./commands/${categoryName}`))
 		.filter(file => file.endsWith(".js"))
 		.map(file => require(`./commands/${categoryName}/${file}`))
 		.forEach(command => {
