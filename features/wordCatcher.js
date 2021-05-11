@@ -1,11 +1,7 @@
-const ownerId = process.env.OWNER_ID;
-
 const catchers = [
 
 	function imDad(message) {
-		const { author, content } = message;
-		if (author.id === ownerId) return;
-		const match = content.match(/^i\s*['`a]?\s*m\s*([\s\S]*)/i);
+		const match = message.content.match(/^i\s*['`a]?\s*m\s*([\s\S]*)/i);
 		if (match)
 			message.reply(`Hi **${match[1] === "" ? "blank" : match[1]}**, I'm dad!`);
 	},
