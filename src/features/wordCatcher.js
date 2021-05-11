@@ -26,7 +26,9 @@ const catchers = [
 			sad: "Don't be sad, I'm here for you \\:)",
 			nice: "Nice",
 			phobos: "who called me",
-			"shut the fuck up": "<:unoerverse:835873190638649426>"
+			"shut the fuck up": "<:unoerverse:835873190638649426>",
+			"<@738252807525892139>": "why ping me",
+			"<@!738252807525892139>": "why ping me",
 		};
 		const messageWords = message.content.toLowerCase().split(/ +/);
 		const word = Object.keys(words).find(word => messageWords.includes(word));
