@@ -1,7 +1,7 @@
 # Phobos
 
 [![Total Lines](https://img.shields.io/tokei/lines/github/MarsRon/phobos)](https://github.com/MarsRon/phobos)
-[![Dependecies](https://img.shields.io/david/MarsRon/phobos)](https://david-dm.org/MarsRon/phobos)
+[![Dependecies](https://status.david-dm.org/gh/MarsRon/phobos.svg)](https://david-dm.org/MarsRon/phobos)
 [![License](https://img.shields.io/github/license/MarsRon/phobos)](https://github.com/MarsRon/phobos/blob/master/LICENSE.md)
 
 The not so cool multi-purpose dumb Discord bot.\
