@@ -20,7 +20,7 @@ module.exports = {
 			const command = client.getCmd(query);
 			if (command)
 				return message.reply(new MessageEmbed()
-					.setAuthor("Phobos", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://phobos.marsron.repl.co")
+					.setAuthor("Phobos", "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
 					.setTitle(prefix + command.name)
 					.setDescription(command.description)
 					.setColor("#2AA1FF")
@@ -32,7 +32,7 @@ module.exports = {
 				const category = client.commands.get(query);
 				if (category)
 					return message.reply(new MessageEmbed()
-						.setAuthor(`${pascalcase(query)} Category`, "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://phobos.marsron.repl.co")
+						.setAuthor(`${pascalcase(query)} Category`, "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
 						.setColor("#2AA1FF")
 						.addFields([...category.values()]
 							.map(({ name, description: value }) =>
@@ -44,14 +44,14 @@ module.exports = {
 		}
 
 		message.reply(new MessageEmbed()
-			.setAuthor("Phobos Commands", "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32", "https://phobos.marsron.repl.co")
+			.setAuthor("Phobos Commands", "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
 			.setColor("#2AA1FF")
 			.addFields([...client.commands.keys()]
 				.map(category =>
 					({ name: pascalcase(category), value: `\`${prefix}cmds ${category}\``, inline: true })
 				)
 			)
-			.setThumbnail("https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=256")
+			.setThumbnail("https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=256")
 		);
 	}
 };
