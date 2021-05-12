@@ -10,7 +10,7 @@ module.exports = {
 	execute(message, args) {
 		message.reply({embed: {
 			description: `Question: ${args.join(" ")}\nAnswer: ${answers[floor(random() * answers.length)]}`,
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: "8Ball",
 				url: "https://phobos.marsron.repl.co",

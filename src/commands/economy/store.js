@@ -11,7 +11,7 @@ module.exports = {
 		message.reply({embed: {
 			description: `To buy an item, run \`${prefix}buy <key>\`\nThe key is the text inside \`codeblocks\``,
 			fields: getStoreList(),
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: "Phobos Store",
 				url: "https://phobos.marsron.repl.co",

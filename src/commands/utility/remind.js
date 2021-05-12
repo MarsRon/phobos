@@ -22,7 +22,7 @@ module.exports = {
 			() => author.send({embed: {
 				title: "**REMINDER**",
 				description: `**It has been ${time} here is your reminder:**\n${reminder}`,
-				color: 2793983
+				color: 4404979
 			}}).catch(e => console.log(`Error sending DM to ${author.tag}: ${e.message}`)),
 			ms(time)
 		);

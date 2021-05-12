@@ -12,7 +12,7 @@ module.exports = {
 				{ name: "API Latency", value: `${Math.round(client.ws.ping)}ms`, inline: true },
 				{ name: "Uptime", value: `${~~(uptime / 86400)}d ${~~(uptime / 3600) % 24}h ${~~(uptime / 60) % 60}m ${~~(uptime) % 60}s`, inline: true }
 			],
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: "Phobos",
 				url: "https://phobos.marsron.repl.co",

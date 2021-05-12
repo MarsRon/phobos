@@ -26,7 +26,7 @@ module.exports = {
 				{ name: "Bank", value: `${bank}$`, inline: true },
 				{ name: "Total", value: `${bank + coins}$`, inline: true },
 			],
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: `${targetMember?.displayName || targetUser.username}'s Balance`,
 				url: "https://phobos.marsron.repl.co",

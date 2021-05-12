@@ -18,7 +18,7 @@ module.exports = {
 		message.reply({embed: {
 			title: "Avatar",
 			url,
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: user.tag,
 				icon_url: user.displayAvatarURL({ dynamic: true })

@@ -23,7 +23,7 @@ module.exports = {
 		message.reply({embed: {
 			title: `Queue for ${guild.name}`,
 			description: `__Now Playing__:\n${formattedSongs.filter((_, i) => i < maxI).join("\n")}`,
-			color: 2793983,
+			color: 4404979,
 			footer: {
 				text: `Volume: ${queue.volume}% | Filter: ${queue.filter || "❌"} | Loop: ${queue.repeatMode ? queue.repeatMode == 2 ? "Entire Queue" : "This Song" : "❌"} | Autoplay: ${queue.autoplay ? "On" : "❌"}`,
 				icon_url: author.displayAvatarURL({ dynamic: true })

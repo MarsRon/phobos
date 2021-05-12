@@ -14,7 +14,7 @@ module.exports = {
 				{ name: "Region", value: region, inline: true },
 				{ name: "Channel Count", value: channels.cache.size, inline: true }
 			],
-			color: 2793983,
+			color: 4404979,
 			image: { url: guild.bannerURL({ size: 4096 }) },
 			thumbnail: { url: guild.iconURL({ dynamic: true, size: 4096 })}
 		}});

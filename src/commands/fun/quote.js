@@ -11,7 +11,7 @@ module.exports = {
 			return message.reply(":x: User doesn't exist");
 		message.reply({embed: {
 			description: args.slice(1).join(" "),
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: target.user.tag,
 				url: "https://phobos.marsron.repl.co",

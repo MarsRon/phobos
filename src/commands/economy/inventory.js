@@ -32,7 +32,7 @@ module.exports = {
 
 		message.reply({embed: {
 			description: processInventory(inventory),
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: `${targetMember?.displayName || targetUser.username}'s Inventory`,
 				url: "https://phobos.marsron.repl.co",

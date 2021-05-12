@@ -17,7 +17,7 @@ module.exports = {
 				{ name: "Uptime", value: `${~~(uptime / 86400)}d ${~~(uptime / 3600) % 24}h ${~~(uptime / 60) % 60}m ${~~(uptime) % 60}s`, inline: true },
 				{ name: "Links", value: "[Add Me](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591) | [Join Server](https://discord.gg/TSqw3jx)", inline: true }
 			],
-			color: 2793983,
+			color: 4404979,
 			author: {
 				name: "Bot Information",
 				url: "https://phobos.marsron.repl.co",

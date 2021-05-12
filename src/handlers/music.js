@@ -10,7 +10,7 @@ const distube = new DisTube(client, { emitNewSongOnly: true, highWaterMark: 1 <<
 distube
 	.on("playSong", ({ channel }, queue, { name, url, formattedDuration, user, thumbnail }) => channel.send({embed: {
 		description: `[${name}](${url}) - \`${formattedDuration}\`\n\n\`Requested by:\` <@${user.id}> (${user.tag})\n\n${status(queue)}`,
-		color: 2793983,
+		color: 4404979,
 		thumbnail: { url: thumbnail },
 		author: {
 			name: "Now Playing ♪",
@@ -36,7 +36,7 @@ distube
 			},
 			{ name: "Position in queue", value: songs.length - 1, inline: true }
 		],
-		color: 2793983,
+		color: 4404979,
 		thumbnail: { url: thumbnail },
 		author: {
 			name: "Added to queue ♪",
@@ -47,7 +47,7 @@ distube
 
 	.on("playList", ({ author, channel }, queue, playlist, song) => channel.send({embed: {
 		description: `Play \`${playlist.name}\` playlist (${playlist.songs.length} songs).\nRequested by: ${song.user}\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`,
-		color: 2793983,
+		color: 4404979,
 		author: {
 			name: "Playlist added to queue ♪",
 			url: "https://phobos.marsron.repl.co",

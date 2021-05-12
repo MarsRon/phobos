@@ -40,7 +40,7 @@ module.exports = {
 						title: `${author} - ${title}`,
 						description: lyrics,
 						thumbnail: { url: Object.values(thumbnail)[0] },
-						color: 2793983,
+						color: 4404979,
 						url: Object.values(links)[0],
 						footer: {
 							text: `Requested by ${member?.displayName || user.username}`,

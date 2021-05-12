@@ -13,7 +13,7 @@ module.exports = async (client, member) => {
 		channel.send({embed: {
 			title: `Welcome, ${user.tag}`,
 			description,
-			color: 2793983,
+			color: 4404979,
 			thumbnail: { url: user.displayAvatarURL({ dynamic: true, size: 256 }) }
 		}});
 	}

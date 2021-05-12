@@ -17,7 +17,7 @@ module.exports = {
 
 		message.reply({embed: {
 			description: `[${name}](${url})\n\n\`${formattedCurrentTime} / ${formattedDuration}\`\n\n\`Requested by:\` <@${user.id}> (${user.tag})`,
-			color: 2793983,
+			color: 4404979,
 			thumbnail: { url: thumbnail },
 			author: {
 				name: "Now Playing ♪",
