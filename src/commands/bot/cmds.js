@@ -23,7 +23,7 @@ module.exports = {
 					.setAuthor("Phobos", "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
 					.setTitle(prefix + command.name)
 					.setDescription(command.description)
-					.setColor("#2AA1FF")
+					.setColor("#4336F3")
 					.addField("Usage", `\`${prefix}${command.name}${command.usage ? ` ${command.usage}` : ""}\``, true)
 					.addField("Aliases", command.alias ? command.alias.join(", ") : "None", true)
 					.addField("Cooldown", command.cooldown ? `${command.cooldown} seconds` : "1 seconds", true)
@@ -33,7 +33,7 @@ module.exports = {
 				if (category)
 					return message.reply(new MessageEmbed()
 						.setAuthor(`${pascalcase(query)} Category`, "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
-						.setColor("#2AA1FF")
+						.setColor("#4336F3")
 						.addFields([...category.values()]
 							.map(({ name, description: value }) =>
 								({ name: prefix + name, value, inline: true })
@@ -45,7 +45,7 @@ module.exports = {
 
 		message.reply(new MessageEmbed()
 			.setAuthor("Phobos Commands", "https://cdn.discordapp.com/avatars/738252807525892139/3d8cd9c0887eeb2c8b6b4a6226e3710a.webp?size=32", "https://phobos.marsron.repl.co")
-			.setColor("#2AA1FF")
+			.setColor("#4336F3")
 			.addFields([...client.commands.keys()]
 				.map(category =>
 					({ name: pascalcase(category), value: `\`${prefix}cmds ${category}\``, inline: true })
