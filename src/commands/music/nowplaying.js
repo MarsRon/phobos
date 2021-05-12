@@ -21,7 +21,7 @@ module.exports = {
 			thumbnail: { url: thumbnail },
 			author: {
 				name: "Now Playing ♪",
-				url: "https://marsron.github.io/phobos/",
+				url: "https://phobos.marsron.repl.co",
 				icon_url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32"
 			}
 		}});

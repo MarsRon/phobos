@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/MarsRon/phobos)](https://github.com/MarsRon/phobos/blob/master/LICENSE.md)
 
 The not so cool multi-purpose dumb Discord bot.\
-Phobos has zero uses except playing music and other cool and useless stuff.\
+Phobos has zero uses except playing music and other cool but useless stuff.\
 It includes commands for Fun, Economy, Music, Moderation, Utility and more.\
 If you liked this open-source project, adding a star on this repository will be greatly appreciated.
 

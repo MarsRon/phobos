@@ -14,7 +14,7 @@ distube
 		thumbnail: { url: thumbnail },
 		author: {
 			name: "Now Playing ♪",
-			url: "https://marsron.github.io/phobos/",
+			url: "https://phobos.marsron.repl.co",
 			icon_url: "https://cdn.discordapp.com/avatars/738252807525892139/70c554767b079e2774ea9a7d8b432cb7.webp?size=32"
 		}
 	}}))
@@ -40,7 +40,7 @@ distube
 		thumbnail: { url: thumbnail },
 		author: {
 			name: "Added to queue ♪",
-			url: "https://marsron.github.io/phobos/",
+			url: "https://phobos.marsron.repl.co",
 			icon_url: author.displayAvatarURL({ dynamic: true })
 		}
 	}}))
@@ -50,7 +50,7 @@ distube
 		color: 2793983,
 		author: {
 			name: "Playlist added to queue ♪",
-			url: "https://marsron.github.io/phobos/",
+			url: "https://phobos.marsron.repl.co",
 			icon_url: author.displayAvatarURL({ dynamic: true })
 		}
 	}}))

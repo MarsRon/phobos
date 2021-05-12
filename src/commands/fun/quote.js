@@ -14,10 +14,11 @@ module.exports = {
 			color: 2793983,
 			author: {
 				name: target.user.tag,
-				url: "https://marsron.github.io/phobos/",
+				url: "https://phobos.marsron.repl.co",
 				icon_url: target.user.displayAvatarURL({ dynamic: true })
 			},
 			footer: { text: "Sent | sometime" }
 		}});
+		message.delete();
 	}
 };
