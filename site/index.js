@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		button.onmousedown = createRipple;
 
 	// Rotate background gradient
-	const { style } = document.getElementById("title"),
+	const { style } = document.getElementById("home"),
 		{ requestAnimationFrame: animate } = window;
 	let deg = 62;
 	const rotate = () => {

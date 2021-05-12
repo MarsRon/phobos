@@ -121,7 +121,7 @@ span.ripple {
 	}
 }
 
-.title-section {
+.home-section {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -132,13 +132,13 @@ span.ripple {
 	background-image: linear-gradient(62deg, #3a3d40 0, #181719 100%)
 }
 
-.title-section>p {
+.home-section>p {
 	font-size: 2.8rem;
 	font-weight: 300;
 	color: var(--blue-light)
 }
 
-.title-section>div {
+.home-section>div {
 	padding: 1.4rem;
 	display: flex;
 	flex-direction: row;
@@ -146,7 +146,7 @@ span.ripple {
 	align-items: center;
 }
 
-.title-section>div>a {
+.home-section>div>a {
 	color: inherit;
 	font-size: 2.5rem;
 	padding: 1rem 1.5rem;
@@ -156,7 +156,7 @@ span.ripple {
 	box-shadow: 3px 3px rgba(0,0,0,.25);
 	transition: background-color .3s ease-out, box-shadow .3s ease-out
 }
-.title-section>div>a:hover {
+.home-section>div>a:hover {
 	background-color: #6d63f0;
 	box-shadow: 5px 5px rgba(0,0,0,.25)
 }
