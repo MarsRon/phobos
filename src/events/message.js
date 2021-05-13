@@ -10,8 +10,8 @@ module.exports = async (client, message) => {
 	// Get guild settings
 	const { prefix } = (await Guild(guild?.id)).get();
 
-	wordCatcher(message); // Catch words
-	if (!content.startsWith(prefix)) return;
+	if (!content.startsWith(prefix))
+		wordCatcher(message);
 
 	// Getting command and arguments
 	const args = content.slice(prefix.length).trim().split(/ +/);
