@@ -5,12 +5,12 @@ module.exports = {
 	usage: "<user> <quote>",
 	guildOnly: true,
 	execute(message, args) {
-		const { guild, mentions } = message;
-		const target = mentions.members.first() || guild.members.cache.get(args[0]);
+		const { channel, client, mentions } = message;
+		const target = mentions.users.first() || client.users.cache.get(args.shift());
 		if (!target)
 			return message.reply(":x: User doesn't exist");
-		message.reply({embed: {
-			description: args.slice(1).join(" "),
+		channel.send({embed: {
+			description: args.join(" "),
 			color: 4404979,
 			author: {
 				name: target.user.tag,
@@ -18,7 +18,8 @@ module.exports = {
 				icon_url: target.user.displayAvatarURL({ dynamic: true })
 			},
 			footer: { text: "Sent | sometime" }
-		}});
-		message.delete();
+		}}).then(() =>
+			message.delete()
+		);
 	}
 };
