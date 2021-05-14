@@ -1,8 +1,8 @@
 # Phobos
 
-[![Total Lines](https://img.shields.io/tokei/lines/github/MarsRon/phobos)](https://github.com/MarsRon/phobos)
+[![Total Lines](https://img.shields.io/tokei/lines/github/MarsRon/phobos.svg)](https://github.com/MarsRon/phobos)
 [![Dependecies](https://status.david-dm.org/gh/MarsRon/phobos.svg)](https://david-dm.org/MarsRon/phobos)
-[![License](https://img.shields.io/github/license/MarsRon/phobos)](https://github.com/MarsRon/phobos/blob/master/LICENSE.md)
+[![License](https://img.shields.io/github/license/MarsRon/phobos.svg)](https://github.com/MarsRon/phobos/blob/master/LICENSE.md)
 
 The not so cool multi-purpose dumb Discord bot.\
 Phobos has zero uses except playing music and other cool but useless stuff.\
