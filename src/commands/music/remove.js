@@ -5,14 +5,13 @@ module.exports = {
 	alias: ["rm"],
 	description: "Removes a certain entry from the queue.",
 	args: true,
-	usage: "<song_index 1-n>",
+	usage: "<song_index>",
 	guildOnly: true,
 	async execute(message, args) {
 		const { client: { distube, getCmd }, guild } = message;
-		const gdb = await Guild(guild.id);
 		const songs = distube.getQueue(message)?.songs;
 		if (!songs)
-			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${(await Guild(guild.id)).get().prefix}play\`** to play some music!**`);
 		if (songs.length === 0)
 			return message.reply(":x: No songs in queue");
 		const index = parseInt(args[0]);

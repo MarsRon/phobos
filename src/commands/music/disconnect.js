@@ -7,9 +7,8 @@ module.exports = {
 	guildOnly: true,
 	async execute(message) {
 		const { client: { distube }, guild } = message;
-		const gdb = await Guild(guild.id);
 		if (!distube.getQueue(message))
-			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${(await Guild(guild.id)).get().prefix}play\`** to play some music!**`);
 		distube.stop(message);
 		message.reply("**Successfully disconnected**");
 	}

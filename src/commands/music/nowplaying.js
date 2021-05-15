@@ -6,11 +6,9 @@ module.exports = {
 	description: "Shows what song Phobos is currently playing.",
 	guildOnly: true,
 	async execute(message) {
-		const gdb = await Guild(message.guild.id);
-
 		const queue = message.client.distube.getQueue(message);
 		if (!queue)
-			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${(await Guild(message.guild.id)).get().prefix}play\`** to play some music!**`);
 
 		const { songs, formattedCurrentTime } = queue;
 		const { name, url, formattedDuration, user, thumbnail } = songs[0];

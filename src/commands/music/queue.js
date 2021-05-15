@@ -6,12 +6,14 @@ module.exports = {
 	description: "Shows the first 10 songs of the queue.",
 	guildOnly: true,
 	async execute(message) {
-		const { author, client, guild } = message;
-		const gdb = await Guild(guild.id);
-		const queue = client.distube.getQueue(message);
+		const { author, client: { distube }, guild } = message;
+		const queue = distube.getQueue(message);
 		if (!queue)
-			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
-		const formattedSongs = queue.songs.map(({ name, url, formattedDuration, user }, index) => `\`${index}.\` [${name}](${url}) | \`${formattedDuration}\` Requested by: <@${user.id}> (${user.tag})`);
+			return message.reply(`:x: **I am not playing music. Use** \`${(await Guild(guild.id)).get().prefix}play\`** to play some music!**`);
+		const formattedSongs = queue.songs
+			.map(({ name, url, formattedDuration, user }, index) =>
+				`\`${index}.\` [${name}](${url}) | \`${formattedDuration}\` Requested by: <@${user.id}> (${user.tag})`
+			);
 		let maxI = 0, count = 0;
 		for (const song of formattedSongs) {
 			let sum = count + song.length + 1;

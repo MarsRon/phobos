@@ -7,11 +7,11 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
 		let query = args.join(" ");
-		const { client, guild, member, author: user } = message;
+		const { client: { distube }, guild, member, author: user } = message;
 
 		if (query === "") {
 			if (guild) {
-				const queue = client.distube.getQueue(message);
+				const queue = distube.getQueue(message);
 				if (queue)
 					query = queue.songs[0].title;
 			} else
