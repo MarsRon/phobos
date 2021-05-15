@@ -11,7 +11,7 @@ module.exports = async (client, message) => {
 	const { prefix } = (await Guild(guild?.id)).get();
 
 	if (!content.startsWith(prefix))
-		wordCatcher(message);
+		return wordCatcher(message);
 
 	// Getting command and arguments
 	const args = content.slice(prefix.length).trim().split(/ +/);
