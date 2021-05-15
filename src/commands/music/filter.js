@@ -9,9 +9,8 @@ module.exports = {
 	guildOnly: true,
 	async execute(message, args) {
 		const { client: { distube }, guild } = message;
-		const gdb = await Guild(guild.id);
 		if (!distube.getQueue(message))
-			return message.reply(`:x: **I am not playing music. Use** \`${gdb.get().prefix}play\`** to play some music!**`);
+			return message.reply(`:x: **I am not playing music. Use** \`${(await Guild(guild.id)).get().prefix}play\`** to play some music!**`);
 		if (!filters.includes(args[0]))
 			return message.reply(`:x: Invalid filter\nAvailable filters: \`${filters.join("`, `")}\``);
 		message.reply(`Current filter: ${distube.setFilter(message, args[0]) || "Off"}`);

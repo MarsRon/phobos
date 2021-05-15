@@ -9,8 +9,7 @@ module.exports = {
 	args: true,
 	usage: "<item>",
 	async execute(message, args) {
-		const gdb = await Guild(message.guild?.id);
-		const { prefix } = gdb.get();
+		const { prefix } = (await Guild(message.guild?.id)).get();
 
 		const item = getItem(args[0]);
 		if (!item)

@@ -28,9 +28,8 @@ module.exports = {
 	async execute(message) {
 		const { author, guild } = message;
 		const udb = await User(author.id);
-		const gdb = await Guild(guild.id);
 		const { inventory, fishingrodUsage } = udb.get();
-		const { prefix } = gdb.get();
+		const { prefix } = (await Guild(guild.id)).get();
 
 		if (inventory.fishingrod === undefined || inventory.fishingrod === 0)
 			return message.reply(`:x: You need to buy a fishing rod from the store. Use \`${prefix}buy fishingrod\` to buy one`);

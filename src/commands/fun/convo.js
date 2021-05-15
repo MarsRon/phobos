@@ -18,10 +18,8 @@ module.exports = {
 	async execute(message) {
 		const { author, channel, guild } = message;
 
-		const gdb = await Guild(guild?.id);
-
 		if (users.has(author.id))
-			return message.reply(`:x: You are already using \`${gdb.get().prefix}convo\``);
+			return message.reply(`:x: You are already using \`${(await Guild(guild?.id)).get().prefix}convo\``);
 		users.set(author.id, message.id);
 
 		const filter = response => //eslint-disable-next-line no-prototype-builtins

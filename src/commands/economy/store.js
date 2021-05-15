@@ -6,8 +6,7 @@ module.exports = {
 	name: "store",
 	description: "Lists items for sale in the store.",
 	async execute(message) {
-		const gdb = await Guild(message.guild?.id);
-		const { prefix } = gdb.get();
+		const { prefix } = (await Guild(message.guild?.id)).get();
 		message.reply({embed: {
 			description: `To buy an item, run \`${prefix}buy <key>\`\nThe key is the text inside \`codeblocks\``,
 			fields: getStoreList(),
