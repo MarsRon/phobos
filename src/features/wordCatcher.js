@@ -17,11 +17,12 @@ const catchers = [
 
 	function normal(message, text) {
 		const words = new Map([
-			[/sad/, "Don't be sad, I'm here for you \\:)"],
+			// Note: Please put "not?\s*<keyword>" first before "<keyword>"
 			[/not?\s*sad/, "Yes, be happy! \\:)"],
-			[/(?<!not?\s*)nice/, "Nice"],
+			[/sad/, "Don't be sad, I'm here for you \\:)"],
 			[/not?\s*nice/, "Not nice \\:("],
-			[/shut|stfu/, "<:unoreverse:835873190638649426>"],
+			[/nice/, "Nice"],
+			[/shut|stfu|(?:^|\s)(?:you|u)\s+suck?/, "<:unoreverse:835873190638649426>"],
 			[/<@!?738252807525892139>/, "why ping me"],
 			[/phobos/, "who called me"],
 		]);
