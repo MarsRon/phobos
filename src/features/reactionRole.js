@@ -1,5 +1,12 @@
 const { REACTION_ROLE_CHANNEL: rrChannel, REACTION_ROLE_ROLE: rrRole } = process.env;
 
+function getRole(roles, emoji) {
+	switch (emoji) {
+		case "🔵":
+			return roles.fetch(rrRole);
+	}
+}
+
 module.exports = async function(reaction, user, deleted) {
 	const { message: { guild, channel }, emoji } = reaction;
 
@@ -7,14 +14,7 @@ module.exports = async function(reaction, user, deleted) {
 
 	const { roles } = await guild.members.fetch(user.id);
 
-	let role;
-	switch (emoji.name) {
-		case "🔵":
-			role = await guild.roles.fetch(rrRole);
-			break;
-		default:
-			break;
-	}
+	const role = await getRole(guild.roles, emoji.name);
 	if (!role) return;
 
 	try {
@@ -23,6 +23,6 @@ module.exports = async function(reaction, user, deleted) {
 		else
 			roles.add(role);
 	} catch (e) {
-		console.log(e.message);
+		console.log(e);
 	}
 };
