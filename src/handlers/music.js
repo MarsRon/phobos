@@ -4,7 +4,7 @@ const { formatDuration } = require("distube/src/duration");
 const client = require("./client");
 
 const status = queue =>
-	`Volume: ${queue.volume}% | Filter: ${queue.filter || "❌"} | Loop: ${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "❌"} | Autoplay: ${queue.autoplay ? "On" : "❌"}`;
+	`Volume: ${queue.volume}% | Filter: ${queue.filter || "❌"} | Loop: ${queue.repeatMode ? queue.repeatMode === 2 ? "All Queue" : "This Song" : "❌"} | Autoplay: ${queue.autoplay ? "On" : "❌"}`;
 
 const distube = new DisTube(client, { emitNewSongOnly: true, highWaterMark: 1 << 25 });
 distube

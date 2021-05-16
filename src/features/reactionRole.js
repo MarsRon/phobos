@@ -7,7 +7,7 @@ function getRole(roles, emoji) {
 	}
 }
 
-module.exports = async function(reaction, user, deleted) {
+module.exports = async function (reaction, user, deleted) {
 	const { message: { guild, channel }, emoji } = reaction;
 
 	if (channel.id !== rrChannel) return;

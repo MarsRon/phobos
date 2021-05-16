@@ -75,6 +75,6 @@ module.exports = async guildID => {
 	};
 };
 
-module.exports.refresh = function() {
+module.exports.refresh = function () {
 	Array.from(dbCache.keys()).forEach(load);
 };

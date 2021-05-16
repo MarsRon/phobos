@@ -28,7 +28,7 @@ module.exports = {
 			description: `**Now Playing:**\n${chunk.join("\n")}${songs.length > 1 ? `\nPage ${index+1} / ${songs.length}` : ""}`,
 			color: 4404979,
 			footer: {
-				text: `Volume: ${queue.volume}% | Filter: ${queue.filter || "❌"} | Loop: ${queue.repeatMode ? queue.repeatMode == 2 ? "Entire Queue" : "This Song" : "❌"} | Autoplay: ${queue.autoplay ? "On" : "❌"}`,
+				text: `Volume: ${queue.volume}% | Filter: ${queue.filter || "❌"} | Loop: ${queue.repeatMode ? queue.repeatMode === 2 ? "Entire Queue" : "This Song" : "❌"} | Autoplay: ${queue.autoplay ? "On" : "❌"}`,
 				icon_url: author.displayAvatarURL({ dynamic: true })
 			}
 		}}));
@@ -60,7 +60,7 @@ function embedPager(message, pages) {
 			await reaction.users.remove(user.id);
 			const currentPage = pageIndex;
 			pageIndex = pageResolver(pages, pageIndex, reaction);
-			if (!message.deleted && currentPage != pageIndex)
+			if (!message.deleted && currentPage !== pageIndex)
 				message.edit(pages[pageIndex]);
 		} // eslint-disable-next-line no-empty
 		catch {}

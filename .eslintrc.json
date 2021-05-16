@@ -10,22 +10,21 @@
 		"ecmaVersion": 12
 	},
 	"rules": {
-		"indent": [
-			"error",
-			"tab",
-			{ "SwitchCase": 1 }
-		],
-		"linebreak-style": [
-			"error",
-			"windows"
-		],
-		"quotes": [
-			"error",
-			"double"
-		],
-		"semi": [
-			"error",
-			"always"
-		]
-	}
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"no-extra-semi": "error",
+		"space-before-function-paren": ["error", {
+			"anonymous": "always",
+			"named": "never",
+			"asyncArrow": "always"
+		}],
+		"eqeqeq": "error",
+		"no-duplicate-imports": "error",
+		"no-const-assign": "error",
+		"no-var": "error",
+		"no-this-before-super": "error",
+		"no-unreachable": "error"
+	},
+	"ignorePatterns": ["Economy-Bot/**"]
 }
