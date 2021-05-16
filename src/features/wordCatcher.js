@@ -21,8 +21,9 @@ const catchers = [
 			[/not?\s*sad/, "Yes, be happy! \\:)"],
 			[/(?<!not?\s*)nice/, "Nice"],
 			[/not?\s*nice/, "Not nice \\:("],
-			[/shut/, "<:unoreverse:835873190638649426>"],
+			[/shut|stfu/, "<:unoreverse:835873190638649426>"],
 			[/<@!?738252807525892139>/, "why ping me"],
+			[/phobos/, "who called me"],
 		]);
 		const match = Array.from(words.keys())
 			.find(regex => regex.test(text));
