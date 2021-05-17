@@ -1,5 +1,6 @@
 module.exports = {
 	name: "ping",
+	alias: ["uptime"],
 	description: "Checks the bot's latency.",
 	execute(message) {
 		const { client, createdTimestamp } = message;
