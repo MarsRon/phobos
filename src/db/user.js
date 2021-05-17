@@ -85,3 +85,5 @@ module.exports = async userID => {
 module.exports.refresh = function () {
 	Array.from(dbCache.keys()).forEach(load);
 };
+
+module.exports.model = User;

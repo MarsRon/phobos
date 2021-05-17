@@ -25,7 +25,7 @@ module.exports = {
 			});
 		}).catch(e => {
 			console.log(e);
-			message.reply(":x: Something went wrong when trying to find miku images \\:(");
+			message.reply(":x: Something went wrong while trying to find miku images \\:(");
 		});
 	}
 };
