@@ -67,7 +67,7 @@ distube
 
 	.on("error", (message, e) => {
 		console.log(e.message);
-		message.reply(`:x: An error occured:\n${e.message}`);
+		message.reply(`:x: An error occurred:\n${e.message}`);
 	});
 
 client.distube = distube;

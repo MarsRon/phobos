@@ -2,7 +2,7 @@ module.exports = {
 	name: "unban",
 	description: "Unban a user.",
 	args: true,
-	usage: "<userid> [reason]",
+	usage: "<userID> [reason]",
 	guildOnly: true,
 	permission: "BAN_MEMBERS",
 	async execute(message, args) {

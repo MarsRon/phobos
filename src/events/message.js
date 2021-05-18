@@ -64,7 +64,7 @@ module.exports = async (client, message) => {
 			setTimeout(() => timestamps.delete(author.id), cooldownAmount);
 		} catch(error) {
 			console.log(error.message);
-			message.reply(`:x: An error occured: ${error.message}`);
+			message.reply(`:x: An error occurred: ${error.message}`);
 		}
 	}
 };

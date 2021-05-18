@@ -51,7 +51,7 @@ module.exports = {
 			})
 			.catch(err => {
 				console.log(err);
-				message.reply(":x: An error occured: " + err.response?.data.error);
+				message.reply(":x: An error occurred: " + err.response?.data.error);
 			});
 	}
 };

@@ -5,7 +5,7 @@ const items = {
 			price: 2500
 		}
 	},
-	"Lifestyle Itmes": {
+	"Lifestyle Items": {
 		nikes: {
 			name: "Fresh Nikes",
 			price: 600
