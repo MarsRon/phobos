@@ -1,18 +1,18 @@
+const { timeToDHMS } = require("../../utils");
+
 module.exports = {
 	name: "ping",
 	alias: ["uptime"],
 	description: "Checks the bot's latency.",
 	execute(message) {
-		const { client, createdTimestamp } = message;
-
-		const uptime = client.uptime / 1000;
+		const { uptime, ws } = message.client;
 
 		message.reply(":ping_pong: Pong!").then(msg => msg.edit({embed: {
 			fields: [
-				{ name: "Bot Latency", value: `${Date.now() - createdTimestamp}ms`, inline: true },
-				{ name: "API Latency", value: `${Math.round(client.ws.ping)}ms`, inline: true },
-				{ name: "Uptime", value: `${~~(uptime / 86400)}d ${~~(uptime / 3600) % 24}h ${~~(uptime / 60) % 60}m ${~~(uptime) % 60}s`, inline: true }
-			],
+				{ name: "Bot Latency", value: `${Date.now() - msg.createdTimestamp}ms` },
+				{ name: "API Latency", value: `${Math.round(ws.ping)}ms` },
+				{ name: "Uptime", value: timeToDHMS(uptime) }
+			].map(field => ({ ...field, inline: true })),
 			color: 4404979,
 			author: {
 				name: "Phobos",
