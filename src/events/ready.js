@@ -1,7 +1,7 @@
 module.exports = client => {
-	process.on("unhandledRejection", err => console.log(err));
+	process.on("unhandledRejection", console.log);
 
-	console.log(`${client.user.tag} is ready! ${new Date().toISOString().substr(11, 8)}`);
+	console.log(`[event/ready] ${client.user.tag} is online`);
 	client.user.setActivity(`${process.env.PREFIX}help | ${client.guilds.cache.size} Servers`, { type: "PLAYING" });
 
 	// Fetch reaction role channel

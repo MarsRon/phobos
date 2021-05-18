@@ -15,6 +15,6 @@ module.exports = {
 		member
 			.kick({ reason: args.slice(1).join(" ") })
 			.then(() => message.reply(`Successfully kicked ${member.user.tag}`))
-			.catch(e => console.log(e.message));
+			.catch(e => console.log(`[command/kick] ${e}`));
 	}
 };

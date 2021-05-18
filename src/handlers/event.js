@@ -1,7 +1,7 @@
 const client = require("./client");
 
 require("fs").readdir("./src/events", (err, files) => {
-	if (err) console.log(err);
+	if (err) console.log(`[handler/event] ${err}`);
 	files.filter(file => file.endsWith(".js"))
 		.map(file => file.slice(0, -3))
 		.forEach(name =>

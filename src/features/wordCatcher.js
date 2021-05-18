@@ -12,7 +12,7 @@ const catchers = [
 				for (const emoji of ["🏎️", "🇻", "🇷", "🇴", "🅾", "🇲"])
 					await message.react(emoji);
 			} // eslint-disable-next-line no-empty
-			catch(e) {console.log(e);}
+			catch {}
 	},
 
 	function normal(message, text) {

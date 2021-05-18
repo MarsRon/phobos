@@ -1,1 +1,1 @@
-module.exports = (client, info) => console.log(`Warning: ${info}`);
+module.exports = (client, info) => console.log(`[event/warn] ${info}`);

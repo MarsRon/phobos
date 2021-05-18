@@ -1,1 +1,1 @@
-module.exports = async (client, info) => console.log(`Debug -> ${info}`);
+module.exports = (client, info) => console.log(`[event/debug] ${info}`);

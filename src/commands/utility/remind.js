@@ -23,7 +23,7 @@ module.exports = {
 				title: "**REMINDER**",
 				description: `**It has been ${time} here is your reminder:**\n${reminder}`,
 				color: 4404979
-			}}).catch(e => console.log(`Error sending DM to ${author.tag}: ${e.message}`)),
+			}}).catch(e => console.log(`[command/remind] Error sending DM to ${author.tag}: ${e.message}`)),
 			ms(time)
 		);
 	}

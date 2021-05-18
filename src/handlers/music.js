@@ -66,7 +66,7 @@ distube
 	.on("searchCancel", message => message.reply(":white_check_mark:"))
 
 	.on("error", (message, e) => {
-		console.log(e.message);
+		console.log(`[music] ${e.message}`);
 		message.reply(`:x: An error occurred:\n${e.message}`);
 	});
 

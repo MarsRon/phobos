@@ -13,7 +13,7 @@ module.exports = {
 			return message.reply(":x: User not found");
 
 		members.unban(user, args.join(" "))
-			.catch(e => console.log(e.message));
+			.catch(e => console.log(`[command/unban] ${e}`));
 		message.reply(`Successfully unbanned ${user.tag}`);
 	}
 };

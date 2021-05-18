@@ -18,7 +18,7 @@ module.exports = {
 				image: { url }
 			}})
 		).catch(e => {
-			console.log(e);
+			console.log(`[command/miku] ${e}`);
 			message.reply(":x: Something went wrong while trying to find Miku images \\:(");
 		});
 	}

@@ -61,7 +61,7 @@ const save = async (userID, changes) => {
 			dbSaveQueue.delete(userID);
 			if (newSaveQueue.length > userSaveQueue.length)
 				save(userID, newSaveQueue.filter(key => !userSaveQueue.includes(key)));
-		}).catch(console.log);
+		}).catch(e => console.log(`[db/user] ${e}`));
 	} else
 		dbSaveQueue.get(userID).push(...changes);
 };

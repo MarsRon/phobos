@@ -23,6 +23,6 @@ module.exports = async function (reaction, user, deleted) {
 		else
 			roles.add(role);
 	} catch (e) {
-		console.log(e);
+		console.log(`[reaction role] ${e.message}`);
 	}
 };

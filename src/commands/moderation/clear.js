@@ -17,9 +17,9 @@ module.exports = {
 					channel.send(`Successfully deleted ${messages.array().length} messages`)
 						.then(msg => msg.delete({timeout: 5000}).catch(() => {}))
 				)
-				.catch(err => {
+				.catch(e => {
+					console.log(`[command/clear] ${e}`);
 					channel.send(":x: Something went wrong");
-					console.log(err);
 				});
 		} else
 			message.reply(":x: Please enter a number between 1 and 100");

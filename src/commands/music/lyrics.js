@@ -49,9 +49,9 @@ module.exports = {
 					}}
 				);
 			})
-			.catch(err => {
-				console.log(err);
-				message.reply(":x: An error occurred: " + err.response?.data.error);
+			.catch(e => {
+				console.log(`[command/lyrics] ${e}`);
+				message.reply(":x: An error occurred: " + e.response?.data.error);
 			});
 	}
 };

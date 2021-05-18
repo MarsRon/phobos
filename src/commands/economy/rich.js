@@ -33,7 +33,7 @@ module.exports = {
 				footer: { text: "NOTE: This doesn't include inventory items." }
 			}});
 		}).catch(e => {
-			console.log(e);
+			console.log(`[command/rich] ${e}`);
 			message.reply(":x: Something went wrong");
 		});
 	}

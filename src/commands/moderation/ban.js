@@ -15,6 +15,6 @@ module.exports = {
 		member
 			.ban({ reason: args.slice(1).join(" ") })
 			.then(() => message.reply(`Successfully banned ${member.user.tag}`))
-			.catch(e => console.log(e.message));
+			.catch(e => console.log(`[command/ban] ${e}`));
 	}
 };

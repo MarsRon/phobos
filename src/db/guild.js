@@ -53,7 +53,7 @@ const save = async (guildID, changes) => {
 			dbSaveQueue.delete(guildID);
 			if (newSaveQueue.length > guildSaveQueue.length)
 				save(guildID, newSaveQueue.filter(key => !guildSaveQueue.includes(key)));
-		}).catch(console.log);
+		}).catch(e => console.log(`[db/guild] ${e}`));
 	} else
 		dbSaveQueue.get(guildID).push(...changes);
 };

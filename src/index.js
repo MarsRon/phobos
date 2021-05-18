@@ -1,3 +1,11 @@
+// Modify console.log
+const { log } = console;
+console.log = function () {
+	const args = Array.from(arguments);
+	args.unshift(new Date().toISOString().substr(11, 8));
+	log.apply(console, args);
+};
+
 // Configure environment variables
 require("dotenv").config();
 
@@ -6,6 +14,4 @@ require("fs").readdirSync("./src/handlers")
 	.forEach(handler => require(`./handlers/${handler}`));
 
 // Login bot
-const client = require("./handlers/client");
-
-client.login(process.env.TOKEN);
+require("./handlers/client").login(process.env.TOKEN);
