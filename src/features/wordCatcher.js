@@ -1,9 +1,9 @@
 const catchers = [
 
 	function imDad(message, text) {
-		const match = text.match(/^i\s*['`a]?\s*m\s*([\s\S]*)/);
+		const match = text.match(/^i\s*['`a]?\s*m\s*/);
 		if (match)
-			message.reply(`Hi **${match[1] === "" ? "blank" : match[1]}**, I'm dad!`);
+			message.reply(`Hi **${message.content.slice(match[0].length) || "blank"}**, I'm dad!`);
 	},
 
 	async function brrr(message, text) {

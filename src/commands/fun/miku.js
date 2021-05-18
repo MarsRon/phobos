@@ -9,7 +9,7 @@ module.exports = {
 		const { author } = message;
 		axios.get("https://mikuapi.predeactor.net/random").then(({ data: { url } }) =>
 			message.reply({embed: {
-				title: "**Here comes Miku!!!11",
+				title: "Here comes Miku!!!11",
 				color: 4404979,
 				author: {
 					name: author.tag,
