@@ -1,5 +1,4 @@
 const answers = ["Yes.", "No.", "Maybe...", "Never.", "Ask again later."];
-const { floor, random } = Math;
 
 module.exports = {
 	name: "8ball",
@@ -9,7 +8,7 @@ module.exports = {
 	usage: "<question>",
 	execute(message, args) {
 		message.reply({embed: {
-			description: `Question: ${args.join(" ")}\nAnswer: ${answers[floor(random() * answers.length)]}`,
+			description: `Question: ${args.join(" ")}\nAnswer: ${answers[Math.floor(Math.random() * answers.length)]}`,
 			color: 4404979,
 			author: {
 				name: "8Ball",
