@@ -13,13 +13,12 @@ module.exports = {
 			description: args.join(" "),
 			color: 4404979,
 			author: {
-				name: target.user.tag,
+				name: target.tag,
 				url: "https://phobos.marsron.repl.co",
-				icon_url: target.user.displayAvatarURL({ dynamic: true })
+				icon_url: target.displayAvatarURL({ dynamic: true })
 			},
 			footer: { text: "Sent | sometime" }
-		}}).then(() =>
-			message.delete()
-		);
+		}});
+		message.delete();
 	}
 };
