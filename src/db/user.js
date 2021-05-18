@@ -86,4 +86,15 @@ module.exports.refresh = function () {
 	Array.from(dbCache.keys()).forEach(load);
 };
 
-module.exports.model = User;
+module.exports.cacheAll = async () => {
+	console.time("cacheAll");
+	const udbs = await User.find();
+	console.timeEnd("cacheAll");
+	return udbs.map(user => {
+		let userCache = {}, defaultObject = deepClone(userObject);
+		for (const key in defaultObject)
+			userCache[key] = user[key] ?? defaultObject[key];
+		dbCache.set(user.userID, userCache);
+		return userCache;
+	});
+};
