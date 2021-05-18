@@ -7,25 +7,19 @@ module.exports = {
 	cooldown: 5,
 	execute(message) {
 		const { author } = message;
-		Promise.all([
-			message.reply(":mag_right: Searching..."),
-			axios.get("https://mikuapi.predeactor.net/random")
-		]).then(([msg, { data: { url } }]) => {
-			msg.edit({
-				content: "**Here comes Miku!!1**",
-				embed: {
-					url,
-					color: 4404979,
-					author: {
-						name: author.tag,
-						icon_url: author.displayAvatarURL({ dynamic: true })
-					},
-					image: { url }
-				}
-			});
-		}).catch(e => {
+		axios.get("https://mikuapi.predeactor.net/random").then(({ data: { url } }) =>
+			message.reply({embed: {
+				title: "**Here comes Miku!!!11",
+				color: 4404979,
+				author: {
+					name: author.tag,
+					icon_url: author.displayAvatarURL({ dynamic: true })
+				},
+				image: { url }
+			}})
+		).catch(e => {
 			console.log(e);
-			message.reply(":x: Something went wrong while trying to find miku images \\:(");
+			message.reply(":x: Something went wrong while trying to find Miku images \\:(");
 		});
 	}
 };
