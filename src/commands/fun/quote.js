@@ -6,11 +6,11 @@ module.exports = {
 	guildOnly: true,
 	execute(message, args) {
 		const { channel, client, mentions } = message;
-		const target = mentions.users.first() || client.users.cache.get(args.shift());
+		const target = mentions.users.first() || client.users.cache.get(args[0]);
 		if (!target)
 			return message.reply(":x: User doesn't exist");
 		channel.send({embed: {
-			description: args.join(" "),
+			description: args.slice(1).join(" "),
 			color: 4404979,
 			author: {
 				name: target.tag,

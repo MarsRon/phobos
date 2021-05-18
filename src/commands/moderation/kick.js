@@ -8,12 +8,12 @@ module.exports = {
 	async execute(message, args) {
 		const { guild, mentions } = message;
 
-		const member = mentions.members.first() || guild.members.cache.get(args.shift());
+		const member = mentions.members.first() || guild.members.cache.get(args[0]);
 		if (!member)
 			return message.reply(":x: You need to specify the user!");
 
 		member
-			.kick({ reason: args.join(" ") })
+			.kick({ reason: args.slice(1).join(" ") })
 			.then(() => message.reply(`Successfully kicked ${member.user.tag}`))
 			.catch(e => console.log(e.message));
 	}
