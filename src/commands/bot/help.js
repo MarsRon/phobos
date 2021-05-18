@@ -2,7 +2,7 @@ const Guild = require("../../db/guild");
 
 module.exports = {
 	name: "help",
-	alias: ["phobos", "info"],
+	alias: ["phobos", "info", "invite"],
 	description: "Bring up the help message.",
 	async execute(message) {
 		message.reply({embed: {
