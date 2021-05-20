@@ -22,16 +22,20 @@ const catchers = [
 			[/sad/, "Don't be sad, I'm here for you \\:)"],
 			[/not?\s*nice/, "Not nice \\:("],
 			[/nice/, "Nice"],
-			[/shut|stfu|(?:^|\s)(?:(?:yo)?u\s+suck?|n(?:o+|u+)b)/, "<:unoreverse:835873190638649426>"],
+			[/shut|stfu/, "shut"],
+			[/(?:^|\s)(?:yo)?u\s+suck?/, "no u"],
+			[/(?:^|\s)n(?:o+|u+)b/, "<:unoreverse:835873190638649426>"],
 			[/<@!?738252807525892139>/, "why ping me"],
 			[/phobos/, "who called me"],
 		];
 		const match = words.find(kv => kv[0].test(text));
 		if (match)
 			message.reply(match[1]);
-	}
+	},
 
 ];
 
-module.exports = async message =>
-	catchers.forEach(func => func(message, message.content.toLowerCase()));
+module.exports = async message => {
+	const text = message.content.toLowerCase();
+	catchers.forEach(func => func(message, text));
+};
