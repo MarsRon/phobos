@@ -3,7 +3,7 @@ const axios = require("axios").default;
 module.exports = {
 	name: "miku",
 	alias: ["hatsune-miku"],
-	description: "Sends a random Hatsune Miku image!",
+	description: "Sends a random Hatsune Miku image! The miku command is useless don't use it Celine hates it.",
 	cooldown: 5,
 	execute(message) {
 		const { author } = message;
