@@ -22,7 +22,7 @@ module.exports = {
 					.setDescription(command.description)
 					.setColor("#4336F3")
 					.addField("Usage", `\`${prefix}${command.name}${command.usage ? ` ${command.usage}` : ""}\``, true)
-					.addField("Aliases", command.alias ? command.alias.join(", ") : "None", true)
+					.addField("Aliases", command.alias ? `\`${command.alias.join("`, `")}\`` : "None", true)
 					.addField("Cooldown", `${command.cooldown ? command.cooldown : "1"} seconds`, true)
 				);
 			else {
