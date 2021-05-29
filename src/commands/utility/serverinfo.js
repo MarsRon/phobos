@@ -1,6 +1,6 @@
 module.exports = {
 	name: "serverinfo",
-	description: "Sends information about the server",
+	description: "Displays information about the server.",
 	guildOnly: true,
 	execute(message) {
 		const { guild } = message;

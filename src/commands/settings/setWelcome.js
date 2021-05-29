@@ -2,7 +2,7 @@ const Guild = require("../../db/guild");
 
 module.exports = {
 	name: "set-welcome",
-	description: "Sends welcome messages to a channel",
+	description: "Sends welcome messages to a channel.",
 	args: true,
 	usage: "<channel>",
 	guildOnly: true,

@@ -1,6 +1,6 @@
 module.exports = {
 	name: "quote",
-	description: "Make a fake a quote by someone",
+	description: "Forge a fake a quote by someone.",
 	args: true,
 	usage: "<user> <quote>",
 	guildOnly: true,
