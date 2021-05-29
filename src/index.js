@@ -1,7 +1,7 @@
 // Modify console.log
 const { log } = console;
 console.log = function () {
-	const args = Array.from(arguments);
+	const args = [...arguments];
 	args.unshift(new Date().toISOString().substr(11, 8));
 	log.apply(console, args);
 };

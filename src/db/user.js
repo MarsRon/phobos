@@ -83,7 +83,7 @@ module.exports = async userID => {
 };
 
 module.exports.refresh = function () {
-	Array.from(dbCache.keys()).forEach(load);
+	[...dbCache.keys()].forEach(load);
 };
 
 module.exports.cacheAll = async () => {
