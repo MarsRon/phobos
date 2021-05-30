@@ -35,7 +35,10 @@ const catchers = [
 
 ];
 
+const blacklist = ["548770927039610921"];
+
 module.exports = async message => {
+	if (blacklist.includes(message.author.id)) return;
 	const text = message.content.toLowerCase();
 	catchers.forEach(func => func(message, text));
 };
