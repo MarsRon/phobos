@@ -12,7 +12,7 @@ module.exports = {
 				{ name: ":white_check_mark: Help Page", value: "https://phobos.marsron.repl.co" },
 				{ name: ":question: Arguments usage", value: "`<required>`, `[optional]`" },
 				{ name: ":page_facing_up: Still need help?", value: "[**Click here**](https://discord.gg/TSqw3jx) to join our Discord server!" },
-				{ name: ":sparkles: Invite me!", value: "[**Invite Phobos**](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591) to your server!", inline: true }
+				{ name: ":sparkles: Add me!", value: "[**Add Phobos**](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591) to your server!", inline: true }
 			],
 			author: {
 				name: "Phobos Help Page",
