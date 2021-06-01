@@ -2,8 +2,26 @@
 const Guild = require("../db/guild");
 const wordCatcher = require("../features/wordCatcher");
 
+const { timeToStr } = require("../utils");
+
 module.exports = async (client, message) => {
+	// Message Partial
+	if (message.partial)
+		try {
+			await message.fetch();
+		} catch {
+			return;
+		}
+
 	const { author, channel, content, guild, webhookID } = message;
+
+	// User Partial
+	if (author.partial)
+		try {
+			await author.fetch();
+		} catch {
+			return;
+		}
 
 	if (author.bot || webhookID) return;
 
@@ -24,21 +42,9 @@ module.exports = async (client, message) => {
 		const userCooldown = timestamps.get(author.id);
 		const cooldownAmount = (command.cooldown || 1) * 1000;
 		if (userCooldown) {
-			const expirationTime = userCooldown + cooldownAmount;
-			if (now < expirationTime) {
-				let timeLeft = (expirationTime - now) / 1000;
-				let timeStr = "";
-				if (timeLeft >= 60) {
-					if (timeLeft >= 3600) {
-						timeStr += ~~(timeLeft / 3600) + " hour(s) ";
-						timeLeft %= 3600;
-					}
-					timeStr += ~~(timeLeft / 60) + " minute(s) ";
-					timeLeft %= 60;
-				}
-				timeStr += timeLeft.toFixed(0);
-				return message.reply(`:x: Please wait ${timeStr} second(s) before reusing this command`);
-			}
+			const timeLeft = userCooldown + cooldownAmount - now;
+			if (timeLeft > 0)
+				return message.reply(`:x: Please wait ${timeToStr(timeLeft)} before reusing this command`);
 		}
 		// Guild only check
 		if (command.guildOnly && channel.type === "dm")
