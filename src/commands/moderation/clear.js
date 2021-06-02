@@ -15,7 +15,7 @@ module.exports = {
 			channel.bulkDelete(limit, true)
 				.then(messages =>
 					channel.send(`Successfully deleted ${messages.array().length} messages`)
-						.then(msg => msg.delete({timeout: 5000}).catch(() => {}))
+						.then(msg => setTimeout(() => msg.delete().catch(() => {}), 5000))
 				)
 				.catch(e => {
 					console.log(`[command/clear] ${e}`);

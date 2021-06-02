@@ -9,10 +9,10 @@ module.exports = {
 
 		message.reply(":ping_pong: Pong!").then(msg => msg.edit({embed: {
 			fields: [
-				{ name: "Bot Latency", value: `${Date.now() - msg.createdTimestamp}ms` },
-				{ name: "API Latency", value: `${Math.round(ws.ping)}ms` },
-				{ name: "Uptime", value: timeToDHMS(uptime) }
-			].map(field => ({ ...field, inline: true })),
+				["Bot Latency", `${Date.now() - msg.createdTimestamp}ms`],
+				["API Latency", `${Math.round(ws.ping)}ms`],
+				["Uptime", timeToDHMS(uptime)]
+			].map(([name, value]) => ({ name, value, inline: true })),
 			color: 4404979,
 			author: {
 				name: "Phobos",
