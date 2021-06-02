@@ -10,19 +10,20 @@ module.exports = {
 		return `${~~(t/86400)}d ${~~(t/3600)%24}h ${~~(t/60)%60}m ${~~(t)%60}s`;
 	},
 
-	timeToStr(t) {
-		t /= 1000;
+	timeToStr(sec) {
+		sec /= 1000;
 		let str = "";
-		if (t >= 60) {
-			if (t >= 3600) {
-				str += ~~(t / 3600) + " hour(s) ";
-				t %= 3600;
+		if (sec >= 60) {
+			if (sec >= 3600) {
+				const hour = ~~(sec / 3600);
+				str += `${hour} hour${hour !== 1 ? "s" : ""} `;
+				sec %= 3600;
 			}
-			str += ~~(t / 60) + " minute(s) ";
-			t %= 60;
+			const minute = ~~(sec / 60);
+			str += `${minute} minute${minute !== 1 ? "s" : ""} `;
+			sec %= 60;
 		}
-		str += t.toFixed(0) + " second";
-		if (t !== 1) str += "s";
+		str += `${sec.toFixed(0)} second${sec !== 1 ? "s" : ""}`;
 		return str;
 	},
 
