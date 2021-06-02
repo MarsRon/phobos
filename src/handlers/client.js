@@ -1,18 +1,12 @@
-
 const { Client, Collection, Intents } = require("discord.js");
 
-const MyClient = class extends Client {
-	constructor(config) {
-		super({
-			disableEveryone: true,
-			disabledEvents: ["TYPING_START"],
-		});
+const client = new Client({
+	ws: { intents: new Intents(Intents.ALL) },
+	partials: ["CHANNEL", "MESSAGE", "REACTION"],
+});
 
-		this.commands = new Collection();
-		this.cooldowns = new Collection();
-		this.aliases = new Collection();
-		this.config = config;
-	}
-};
+client.commands = new Collection();
+client.cooldowns = new Collection();
+client.aliases = new Collection();
 
-module.exports = new MyClient({ ws: { intents: new Intents(Intents.ALL) } });
+module.exports = client;

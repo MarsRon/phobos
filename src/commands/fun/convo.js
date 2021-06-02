@@ -32,6 +32,13 @@ module.exports = {
 		while (true) {
 			try {
 				const msg = (await channel.awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })).first();
+				// Message Partial
+				if (message.partial)
+					try {
+						await message.fetch();
+					} catch(e) {
+						return console.log("[event/message] Message Partial error", e);
+					}
 				const response = msg.content.toLowerCase();
 				msg.reply(answers[response]);
 				if (response === "bye") break;

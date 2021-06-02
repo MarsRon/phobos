@@ -7,7 +7,7 @@ function getRole(roles, emoji) {
 	}
 }
 
-module.exports = async function (reaction, user, deleted) {
+module.exports = async (reaction, user, added) => {
 	const { message: { guild, channel }, emoji } = reaction;
 
 	if (channel.id !== rrChannel) return;
@@ -18,10 +18,10 @@ module.exports = async function (reaction, user, deleted) {
 	if (!role) return;
 
 	try {
-		if (deleted)
-			roles.remove(role);
-		else
+		if (added)
 			roles.add(role);
+		else
+			roles.remove(role);
 	} catch (e) {
 		console.log(`[reaction role] ${e.message}`);
 	}

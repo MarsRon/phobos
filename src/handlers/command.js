@@ -25,7 +25,7 @@ for (const categoryName of readdirSync("./src/commands")) {
 			category.set(name, command);
 			cooldowns.set(name, new Collection());
 			if (alias)
-				alias.forEach(a => aliases.set(a, command));	
+				alias.forEach(a => aliases.set(a, command));
 		});
 	commands.set(categoryName, category);
 }

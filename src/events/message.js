@@ -9,18 +9,18 @@ module.exports = async (client, message) => {
 	if (message.partial)
 		try {
 			await message.fetch();
-		} catch {
-			return;
+		} catch(e) {
+			return console.log("[event/message] Message Partial error", e);
 		}
 
 	const { author, channel, content, guild, webhookID } = message;
 
-	// User Partial
-	if (author.partial)
+	// DM Channel Partial
+	if (channel.partial)
 		try {
-			await author.fetch();
-		} catch {
-			return;
+			await channel.fetch();
+		} catch(e) {
+			return console.log("[event/message] Channel Partial error", e);
 		}
 
 	if (author.bot || webhookID) return;
