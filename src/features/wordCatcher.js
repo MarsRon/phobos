@@ -1,7 +1,7 @@
 const catchers = [
 
 	function imDad(message, text) {
-		const match = text.match(/^i\s*['`a]?\s*m\s*/);
+		const match = text.match(/\bi\s*['`a]?\s*m\s+/);
 		if (match)
 			message.reply(`Hi **${message.content.slice(match[0].length) || "blank"}**, I'm dad!`);
 	},
@@ -24,7 +24,7 @@ const catchers = [
 			[/nice/, "Nice"],
 			[/shut|stfu/, "shut"],
 			[/\b(?:yo)?u\s+suck?/, "no u"],
-			[/\bn(?:o+|u+)b/, "<:unoreverse:835873190638649426>"],
+			[/\bn(?:o+|u+)b\b/, "<:unoreverse:835873190638649426>"],
 			[/<@!?738252807525892139>/, "why ping me"],
 			[/phobos/, "who called me"],
 		];
