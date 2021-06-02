@@ -6,6 +6,9 @@ console.log = function () {
 	log.apply(console, args);
 };
 
+// Stop unhandledRejection from exiting nodejs
+process.on("unhandledRejection", console.log);
+
 // Configure environment variables
 require("dotenv").config();
 
