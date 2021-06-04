@@ -4,7 +4,12 @@ module.exports = {
 	description: "Displays the changes made to Phobos.",
 	execute(message) {
 		message.reply({embed: {
-			description: `**June 2**
+			description: `**June 4**
+Fixed [\`imDad\`](https://github.com/MarsRon/phobos/blob/master/src/features/wordCatcher.js#L6) not getting correct string
+Changed \`rock-paper-scissors\` command to include emojis in the results
+Disabled pings when replying to users
+
+**June 2**
 Added timeToStr utility function
 Added \`rock-paper-scissors\` command - Play rock paper scissors with the bot.
 Enabled partials for CHANNEL, MESSAGE and REACTION

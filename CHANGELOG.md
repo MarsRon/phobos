@@ -2,6 +2,12 @@
 
 *This will be very unprofessional please bare with me*
 
+### June 4
+
+ - Fixed [`imDad`](https://github.com/MarsRon/phobos/blob/master/src/features/wordCatcher.js#L6) not getting correct string
+ - Changed `rock-paper-scissors` command to include emojis in the results
+ - Disabled pings when replying to users
+
 ### June 2
 
  - Added timeToStr utility function
