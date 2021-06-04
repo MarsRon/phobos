@@ -1,5 +1,5 @@
 const emojis = ["🧱", "📄", "✂️"];
-const names = ["Rock", "Paper", "Scissors"];
+const names = [":bricks: Rock", ":page_facing_up: Paper", ":scissors: Scissors"];
 
 /**
  * Rock Paper Scissors result
