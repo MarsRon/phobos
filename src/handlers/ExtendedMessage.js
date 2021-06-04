@@ -2,7 +2,7 @@ const { APIMessage, Structures } = require("discord.js");
 
 class Message extends Structures.get("Message") {
 	async reply(content, options) {
-		const mentionRepliedUser = typeof ((options || content || {}).allowedMentions || {}).repliedUser === "undefined" ? true : ((options || content).allowedMentions).repliedUser;
+		const mentionRepliedUser = typeof ((options || content || {}).allowedMentions || {}).repliedUser === "undefined" ? false : ((options || content).allowedMentions).repliedUser;
 		delete((options || content || {}).allowedMentions || {}).repliedUser;
 
 		const apiMessage = content instanceof APIMessage ? content.resolveData() : APIMessage.create(this.channel, content, options).resolveData();
