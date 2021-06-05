@@ -5,7 +5,7 @@ const names = [":bricks: Rock", ":page_facing_up: Paper", ":scissors: Scissors"]
  * Rock Paper Scissors result
  * @param {number} p1 - Player 1's index
  * @param {number} p2 - Player 2's index
- * @returns {number} - 1 if player 1 wins, -1 if player 2 wins, 0 if draw
+ * @returns {number} - Returns 1 if Player1 wins, -1 if Player2 wins, 0 if draw
  */
 const rps = (p1, p2) =>
 	p1 === p2 ? 0 : (p1 === 0 && p2 === 2) || (p1 === 1 && p2 === 0) || (p1 === 2 && p2 === 1) ? 1 : -1;
@@ -45,9 +45,7 @@ module.exports = {
 							}
 						}});
 					})
-					.catch(() => {
-						message.channel.send(":x: You didn't react in time.");
-					});
+					.catch(() => msg.reply(":x: You didn't react in time."));
 				for (const emoji of emojis)
 					await msg.react(emoji);
 			});
