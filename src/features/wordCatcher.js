@@ -17,10 +17,11 @@ const catchers = [
 
 	function normal(message, text) {
 		const words = [
-			// Note: Please put "not?\s*<keyword>" first before "<keyword>"
-			[/not?\s*sad/, "Yes, be happy! \\:)"],
+			[/\b(?:idk|i\s+don'?t\s+know)\b/, "ask `.8ball` it will know"],
+			// Note: Please put "not?\s+<keyword>" first before "<keyword>"
+			[/not?\s+sad/, "Yes, be happy! \\:)"],
 			[/sad/, "Don't be sad, I'm here for you \\:)"],
-			[/not?\s*nice/, "Not nice \\:("],
+			[/not?\s+nice/, "Not nice \\:("],
 			[/nice/, "Nice"],
 			[/shut|stfu/, "shut"],
 			[/\b(?:yo)?u\s+suck?/, "no u"],
