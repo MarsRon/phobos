@@ -1,1 +1,0 @@
-module.exports = (client, info) => console.log(`[event/debug] ${info}`);
