@@ -4,6 +4,8 @@ import Command from './command'
 
 import logger from './logger'
 
+require('./InlineReply.js')
+
 export class PhobosClient extends Client {
   commands: Collection<string, Collection<string, Command>>
   cooldowns: Collection<string, Collection<string, number>>

@@ -1,9 +1,6 @@
 import { Message } from 'discord.js'
 
-function timeToDHMS (t: number): string {
-  t /= 1000
-  return `${~~(t / 86400)}d ${~~(t / 3600) % 24}h ${~~(t / 60) % 60}m ${~~(t) % 60}s`
-}
+import { timeToDHMS } from '../../utils'
 
 export default {
   name: 'ping',
