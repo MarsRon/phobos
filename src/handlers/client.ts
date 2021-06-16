@@ -13,7 +13,7 @@ export class PhobosClient extends Client {
   getCmd: Function
   // distube: Distube
   log: Logger
-  constructor (options?: ClientOptions) {
+  constructor (options: ClientOptions) {
     super(options)
     this.commands = new Collection()
     this.cooldowns = new Collection()

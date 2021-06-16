@@ -23,7 +23,7 @@ const logger = createLogger({
       )
     }),
     new transports.File({
-      filename: 'logger.log',
+      filename: 'phobos.log',
       format: format.printf(log =>
         `${new Date().toISOString()} [${log.level.toUpperCase()}] - ${logMsg(log.stack ?? log.message)}`
       )

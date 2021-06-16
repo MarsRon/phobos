@@ -10,7 +10,7 @@ dotenv.config()
 
 // Require handlers
 readdirSync(path.join(__dirname, './handlers'))
-  .forEach(handler => require(`./handlers/${handler}`))
+  .forEach(handler => import(`./handlers/${handler}`))
 
 // Login bot
 client.login(process.env.TOKEN)

@@ -4,6 +4,7 @@ import path from 'path'
 
 type EventHandler = {
   default: (...args: any[]) => void
+  once: boolean
 }
 
 readdir(path.join(__dirname, '../events'), (err, files) => {
@@ -14,6 +15,11 @@ readdir(path.join(__dirname, '../events'), (err, files) => {
     .map(name => name.slice(0, -3))
     .forEach(async name => {
       const eventHandler: EventHandler = await import(`../events/${name}`)
-      client.on(name, eventHandler.default)
+      if (eventHandler.once) {
+        client.once(name, eventHandler.default)
+      } else {
+        client.on(name, eventHandler.default)
+      }
+      client.log.info(`Loaded event '${name}'`)
     })
 })
