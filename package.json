@@ -7,8 +7,8 @@
     "start": "npx nodemon --config nodemon.json src/index.ts",
     "build": "npx tsc",
     "deploy": "node .",
-    "test": "npx jest --verbose --coverage",
-    "test:watch": "npm jest --verbose --watchAll",
+    "test": "npx jest --verbose --coverage --detectOpenHandles --passWithNoTests",
+    "test:watch": "npx jest --verbose --watchAll --detectOpenHandles",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "prepare": "npx husky install"
@@ -38,6 +38,7 @@
     "owofire": "^1.0.4",
     "tslib": "^2.3.0",
     "utf-8-validate": "^5.0.5",
+    "winston": "^3.3.3",
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
