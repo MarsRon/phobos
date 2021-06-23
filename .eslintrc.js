@@ -1,12 +1,10 @@
 module.exports = {
   env: {
     es2021: true,
-    node: true,
-    'jest/globals': true
+    node: true
   },
   extends: [
-    'standard',
-    'plugin:jest/recommended'
+    'standard'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,5 +15,5 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {},
-  ignorePatterns: ['dist/**/*', 'coverage/**/*']
+  ignorePatterns: ['dist/**/*']
 }

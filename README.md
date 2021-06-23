@@ -22,8 +22,6 @@ Yeah basically this bot isn't documented very well. Hopefully it will be customi
 | `start` | Start the development server |
 | `build` | Build the application |
 | `deploy` | Deploy the application (Run `build` beforehand) |
-| `test` | Run test files and outputs code coverage report |
-| `test:watch` | Automatically rerun tests when file changes occur |
 | `lint` | Find problems with code using ESLint |
 | `lint:fix` | Basically `lint` but automatically fixes some of the problems |
 | `prepare` | Install [`husky`](https://typicode.github.io/husky) |
