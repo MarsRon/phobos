@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-eval */
+
 import { Message } from 'discord.js'
 import { inspect } from 'util'
 import { avatar, color, url } from '../../embed'
@@ -32,7 +34,6 @@ async function discordEval (code: string, message: Message) {
 
   try {
     // Inject variables
-    // eslint-disable-next-line no-unused-vars
     const { channel, client, content, guild, member, author: user } = message
 
     if (code.includes('await')) {
