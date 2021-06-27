@@ -1,10 +1,15 @@
 import { Client, ClientOptions, Collection, Intents } from 'discord.js'
 import { Logger } from 'winston'
 import Command from './command'
+import { DBManager, User } from '../db'
 
 import logger from './logger'
 
 require('./InlineReply.js')
+
+interface Idb {
+  user: DBManager
+}
 
 export class PhobosClient extends Client {
   commands: Collection<string, Collection<string, Command>>
@@ -13,6 +18,7 @@ export class PhobosClient extends Client {
   getCmd: Function
   // distube: Distube
   log: Logger
+  db: Idb
   constructor (options: ClientOptions) {
     super(options)
     this.commands = new Collection()
@@ -28,6 +34,9 @@ export class PhobosClient extends Client {
       return this.aliases.get(name)
     }
     this.log = logger
+    this.db = {
+      user: User
+    }
   }
 }
 

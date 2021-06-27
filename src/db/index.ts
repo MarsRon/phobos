@@ -1,5 +1,5 @@
+/* eslint-disable import/first */
 import mongoose from 'mongoose'
-import DBManager from './DBManager'
 import client from '../handlers/client'
 
 mongoose.pluralize(null)
@@ -21,4 +21,10 @@ db.on('error', (err: any) => {
   client.log.error(`connection error: ${err}`)
 })
 
-export default DBManager
+import DBManager from './DBManager'
+import User from './user'
+
+export {
+  DBManager,
+  User
+}

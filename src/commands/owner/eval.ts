@@ -4,6 +4,7 @@
 import { Message } from 'discord.js'
 import { inspect } from 'util'
 import { avatar, color, url } from '../../embed'
+import { PhobosClient } from '../../handlers/client'
 
 const { OWNER_ID: ownerID, PREFIX: prefix } = process.env
 
@@ -35,9 +36,14 @@ async function discordEval (code: string, message: Message) {
   try {
     // Inject variables
     const { channel, client, content, guild, member, author: user } = message
+    const { db } = client as PhobosClient
 
     if (code.includes('await')) {
-      result = await (eval(`async () => {${code}}`)() as Promise<any>)
+      result = await (
+        eval(
+          `async () => {${code}}`
+        )() as Promise<any>
+      )
     } else {
       result = eval(code)
     }
