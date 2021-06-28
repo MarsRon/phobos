@@ -1,6 +1,8 @@
 import { Message } from 'discord.js'
 import { timeToDHMS } from '../../utils'
-import { avatar, color, url } from '../../embed'
+import config from '../../config'
+
+const { avatar, color, url } = config.embed
 
 export default {
   name: 'ping',
