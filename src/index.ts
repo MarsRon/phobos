@@ -13,4 +13,4 @@ readdirSync(path.join(__dirname, './handlers'))
   .forEach(handler => import(`./handlers/${handler}`))
 
 // Login bot
-client.login(process.env.TOKEN)
+client.login(process.env.DISCORD_TOKEN)

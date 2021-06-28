@@ -4,7 +4,7 @@ import client from '../handlers/client'
 
 mongoose.pluralize(null)
 
-mongoose.connect(process.env.MONGODB_SRV!, {
+mongoose.connect(process.env.MONGODB_URI!, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
