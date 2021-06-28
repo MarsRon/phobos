@@ -20,6 +20,6 @@ readdir(path.join(__dirname, '../events'), (err, files) => {
       } else {
         client.on(name, eventHandler.default)
       }
-      client.log.info(`Loaded event '${name}'`)
+      client.log.debug(`Loaded event '${name}'`)
     })
 })

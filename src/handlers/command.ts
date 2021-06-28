@@ -53,7 +53,7 @@ readdir(path.join(__dirname, '../commands'), (err, commandsFolder) => {
           }
         }
 
-        client.log.info(`Loaded ${commands.length} commands from category '${category}'`)
+        client.log.debug(`Loaded ${commands.length} commands from category '${category}'`)
       })
     })
   }
