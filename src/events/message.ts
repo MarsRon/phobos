@@ -1,10 +1,11 @@
 import client from '../handlers/client'
 import { DMChannel, Message } from 'discord.js'
 
-import wordCatcher from '../features/wordCatcher'
+import config from '../config'
 import { timeToStr } from '../utils'
+import wordCatcher from '../features/wordCatcher'
 
-const prefix = process.env.PREFIX as string
+const { prefix } = config
 
 export default async function (message: Message) {
   // Message Partial

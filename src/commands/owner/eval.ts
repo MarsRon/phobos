@@ -6,8 +6,8 @@ import { inspect } from 'util'
 import config from '../../config'
 import { PhobosClient } from '../../handlers/client'
 
-const { OWNER_ID: ownerID, PREFIX: prefix } = process.env
-const { avatar, color, url } = config.embed
+const { OWNER_ID: ownerID } = process.env
+const { prefix, embed: { avatar, color, url } } = config
 
 async function discordEval (code: string, message: Message) {
   if (!code) return
