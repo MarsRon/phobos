@@ -6,6 +6,7 @@ interface PhobosEmbedConfig {
 }
 interface PhobosConfig {
   prefix: string
+  ownerID: string
   embed: PhobosEmbedConfig
 }
 
@@ -19,6 +20,7 @@ export const embed: PhobosEmbedConfig = {
 // Change the bot configurations here!
 const config: PhobosConfig = {
   prefix: '.',
+  ownerID: '611166639534112769',
   embed
 }
 
