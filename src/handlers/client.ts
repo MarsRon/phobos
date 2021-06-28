@@ -45,4 +45,8 @@ const options: ClientOptions = {
   partials: ['CHANNEL', 'MESSAGE', 'REACTION']
 }
 
-export default new PhobosClient(options)
+const client = new PhobosClient(options)
+
+client.login(process.env.DISCORD_TOKEN)
+
+export default client

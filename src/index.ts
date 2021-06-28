@@ -2,15 +2,15 @@
 import dotenv from 'dotenv'
 import { readdirSync } from 'fs'
 import path from 'path'
-
 import client from './handlers/client'
 
 // Configure environment variables
 dotenv.config()
 
 // Require handlers
-readdirSync(path.join(__dirname, './handlers'))
-  .forEach(handler => import(`./handlers/${handler}`))
 
-// Login bot
-client.login(process.env.DISCORD_TOKEN)
+const imports = readdirSync(path.join(__dirname, './handlers'))
+  .map(handler => import(`./handlers/${handler}`))
+
+Promise.all(imports)
+  .then(() => client.log.info('All handlers are loaded'))
