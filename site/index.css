@@ -164,12 +164,25 @@ span.ripple {
 .about-section {
   padding: 5rem 10rem;
   background-color: var(--blue-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.about-section>p {
-  padding: .5rem 0;
+.about-section>div {
+  max-width: 84rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-section>div>p {
+  padding: .8rem 0;
   font-size: 2.2rem;
-  color: #d5d5d5
+  color: #d5d5d5;
+  text-align: left
 }
 
 @media (max-width:30.625em) {
