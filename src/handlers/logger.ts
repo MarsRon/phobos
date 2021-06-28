@@ -12,7 +12,7 @@ const logColors = {
 const logMsg = (message: any) => typeof message === 'string' ? message : inspect(message)
 
 const logger = createLogger({
-  level: 'info',
+  level: process.env.DEBUG === 'true' ? 'debug' : 'info',
   format: format.errors({ stack: true }),
   transports: [
     new transports.Console({

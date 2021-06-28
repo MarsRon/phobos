@@ -52,7 +52,7 @@ To deploy this project run
 
 ## Scripts
 
-| Script | Function |
+| Script | Description |
 |-|-|
 | `start` | Start the development server |
 | `build` | Build the project |
@@ -66,6 +66,7 @@ To run this project, you will need to add the following environment variables to
 
 | Variable | Description |
 |-|-|
+| `DEBUG` | Enables debug mode if value is `true` |
 | `DISCORD_TOKEN` | Authorization token for the Discord bot |
 | `MONGODB_URI` | MongoDB database connection URI |
 

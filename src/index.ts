@@ -13,4 +13,4 @@ const imports = readdirSync(path.join(__dirname, './handlers'))
   .map(handler => import(`./handlers/${handler}`))
 
 Promise.all(imports)
-  .then(() => client.log.info('All handlers are loaded'))
+  .then(() => client.log.debug('All handlers are loaded'))
