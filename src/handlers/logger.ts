@@ -1,32 +1,52 @@
 import { createLogger, format, transports } from 'winston'
-import { redBright, keyword, greenBright, yellowBright, cyanBright } from 'chalk'
+import { bgRed, blueBright, cyanBright, greenBright, yellow } from 'chalk'
+import { TransformableInfo } from 'logform'
 import { inspect } from 'util'
 
 const logColors = {
-  error: redBright.bold,
-  info: greenBright,
-  debug: yellowBright,
-  warn: keyword('orange')
+  error: bgRed.bold,
+  info: greenBright.bold,
+  debug: blueBright.bold,
+  warn: yellow.bold
 }
 
-const logMsg = (message: any) => typeof message === 'string' ? message : inspect(message)
+// This logs to the command line with colors
+const cliLogFormat = format.printf(
+  ({ timestamp, level, message, stack }: TransformableInfo) => {
+    // Use stack trace if available (Errors only)
+    message = stack ?? message
+    return `${cyanBright((timestamp as string).substr(11, 8))} ${
+      logColors[level as keyof typeof logColors](`[${level.toUpperCase()}]`)
+    } ${
+      typeof message === 'string' ? message : inspect(message, { colors: true })
+    }`
+  }
+)
+
+// This logs to a file called phobos.log
+const fileLogFormat = format.printf(
+  ({ timestamp, level, message, stack }: TransformableInfo) => {
+    // Use stack trace if available (Errors only)
+    message = stack ?? message
+    return `${timestamp} [${level.toUpperCase()}] ${
+      typeof message === 'string' ? message : inspect(message)
+    }`
+  }
+)
 
 const logger = createLogger({
   level: process.env.DEBUG === 'true' ? 'debug' : 'info',
-  format: format.errors({ stack: true }),
+  format: format.combine(
+    format.timestamp(),
+    format.errors({ stack: true })
+  ),
   transports: [
     new transports.Console({
-      format: format.printf(log =>
-        `${cyanBright(new Date().toISOString().substr(11, 8))} ${
-          logColors[log.level as keyof typeof logColors](`[${log.level.toUpperCase()}]`)
-        } - ${logMsg(log.stack ?? log.message)}`
-      )
+      format: cliLogFormat
     }),
     new transports.File({
       filename: 'phobos.log',
-      format: format.printf(log =>
-        `${new Date().toISOString()} [${log.level.toUpperCase()}] - ${logMsg(log.stack ?? log.message)}`
-      )
+      format: fileLogFormat
     })
   ],
   exitOnError: false
