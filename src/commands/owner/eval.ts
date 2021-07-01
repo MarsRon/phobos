@@ -6,11 +6,7 @@ import { inspect } from 'util'
 import config from '../../config'
 import { PhobosClient } from '../../handlers/client'
 
-const {
-  prefix,
-  ownerID,
-  embed: { avatar, color, url }
-} = config
+const { embed: { avatar, color, url }, ownerID, prefix } = config
 
 async function discordEval (code: string, message: Message) {
   if (!code) return
@@ -29,11 +25,7 @@ async function discordEval (code: string, message: Message) {
         ['Type', `\`${typeof result}\``]
       ].map(([name, value]) => ({ name, value, inline: true })),
       color,
-      author: {
-        name: 'Eval Result',
-        url,
-        icon_url: avatar
-      }
+      author: { name: 'Eval Result', url, icon_url: avatar }
     }
   })
 

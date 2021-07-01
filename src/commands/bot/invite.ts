@@ -7,11 +7,7 @@ const inviteEmbed = {
   embed: {
     description: `[**Add me**](${invite}) to your server! 🎉`,
     color,
-    author: {
-      name: 'Invite Phobos',
-      url,
-      icon_url: avatar
-    },
+    author: { name: 'Invite Phobos', url, icon_url: avatar },
     footer: { text: "It's easy, fast, free & non-regrettable." }
   }
 }

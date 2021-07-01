@@ -13,16 +13,12 @@ export default {
     message.reply(':ping_pong: Pong!').then(msg => msg.edit({
       embed: {
         fields: [
-          ['Bot Latency', `${Date.now() - msg.createdTimestamp}ms`],
-          ['API Latency', `${Math.round(ws.ping)}ms`],
+          ['Bot Latency', `${msg.createdTimestamp - message.createdTimestamp}ms`],
+          ['Websocket Ping', `${Math.round(ws.ping)}ms`],
           ['Uptime', timeToDHMS(uptime!)]
         ].map(([name, value]) => ({ name, value, inline: true })),
         color,
-        author: {
-          name: 'Phobos',
-          url,
-          icon_url: avatar
-        }
+        author: { name: 'Phobos Ping & Latency', url, icon_url: avatar }
       }
     }))
   }
