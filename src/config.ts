@@ -7,6 +7,8 @@ interface PhobosEmbedConfig {
 interface PhobosConfig {
   prefix: string
   ownerID: string
+  invite: string
+  supportServer: string
   embed: PhobosEmbedConfig
 }
 
@@ -21,6 +23,8 @@ export const embed: PhobosEmbedConfig = {
 const config: PhobosConfig = {
   prefix: '.',
   ownerID: '611166639534112769',
+  invite: 'https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591',
+  supportServer: 'https://discord.gg/TSqw3jx',
   embed
 }
 
