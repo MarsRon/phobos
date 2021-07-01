@@ -1,4 +1,5 @@
 import { Message } from 'discord.js'
+import emoji from '../emoji.json'
 
 type WordCatcher = (message: Message, text: string) => void
 
@@ -11,7 +12,7 @@ const normalWords: Array<[RegExp, string]> = [
   [/nice/, 'Nice'],
   [/shut|stfu/, 'shut'],
   [/\b(?:yo)?u\s+suck?/, 'no u'],
-  [/\bn(?:o+|u+)b\b/, '<:unoreverse:835873190638649426>'],
+  [/\bn(?:o+|u+)b\b/, emoji.unoreverse],
   [/<@!?738252807525892139>/, 'why ping me'],
   [/phobos/, 'who called me']
 ]

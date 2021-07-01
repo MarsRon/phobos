@@ -1,5 +1,6 @@
 import { Message } from 'discord.js'
 import config from '../../config'
+import emoji from '../../emoji.json'
 
 const { embed: { avatar, color, url }, invite, prefix, supportServer } = config
 
@@ -9,9 +10,9 @@ const helpEmbed = {
       ['📂 Commands List', `\`${prefix}cmds <category|command>\``],
       ['✅ Help Page', url],
       ['❓ Arguments usage', '`<required>`, `[optional]`'],
-      ['Developed by', '[<:marsron:860010994486214667> MarsRon](https://marsron.github.io)', true],
-      ['Invite link', `[<:phobos:860008684952485928> ${prefix}invite](${invite})`, true],
-      ['Support server', `[<:discord:860008685102170142> Mars Hangout](${supportServer})`, true]
+      ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.github.io)`, true],
+      ['Invite link', `[${emoji.phobos} ${prefix}invite](${invite})`, true],
+      ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`, true]
     ] as any[][]).map(([name, value, inline]) => ({ name, value, inline })),
     color,
     author: { name: 'Phobos Help Page', url, icon_url: avatar },
