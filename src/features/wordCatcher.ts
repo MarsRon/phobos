@@ -22,6 +22,7 @@ const catchers: WordCatcher[] = [
   function imDad (message, text) {
     const match = text.match(/\bi\s*['`a]?\s*m(?:\s+|\b)/)
     if (match) {
+      if (Math.random() < 0.5) return
       message.reply(`Hi **${
         message.content.slice(match.index! + match[0].length) || 'blank'
       }**, I'm dad!`)
