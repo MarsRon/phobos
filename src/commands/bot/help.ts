@@ -13,7 +13,7 @@ const helpEmbed = {
       ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.github.io)`, true],
       ['Invite link', `[${emoji.phobos} ${prefix}invite](${invite})`, true],
       ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`, true]
-    ] as any[][]).map(([name, value, inline]) => ({ name, value, inline })),
+    ] as Array<[string, string, boolean]>).map(([name, value, inline]) => ({ name, value, inline })),
     color,
     author: { name: 'Phobos Help Page', url, icon_url: avatar },
     thumbnail: { url: avatar + '?size=512' }
