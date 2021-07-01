@@ -46,7 +46,10 @@ const logger = createLogger({
     }),
     new transports.File({
       filename: 'phobos.log',
-      format: fileLogFormat
+      format: format.combine(
+        fileLogFormat,
+        format.uncolorize()
+      )
     })
   ],
   exitOnError: false
