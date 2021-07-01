@@ -5,19 +5,16 @@ const { embed: { avatar, color, url }, invite, prefix, supportServer } = config
 
 const helpEmbed = {
   embed: {
-    fields: [
+    fields: ([
       ['📂 Commands List', `\`${prefix}cmds <category|command>\``],
       ['✅ Help Page', url],
       ['❓ Arguments usage', '`<required>`, `[optional]`'],
-      ['📄 Still need help?', `[**Click here**](${supportServer}) to join our Discord server!`],
-      ['✨ Add me!', `[${prefix}invite](${invite})`]
-    ].map(([name, value]) => ({ name, value })),
+      ['Developed by', '[<:marsron:860010994486214667> MarsRon](https://marsron.github.io)', true],
+      ['Invite link', `[<:phobos:860008684952485928> ${prefix}invite](${invite})`, true],
+      ['Support server', `[<:discord:860008685102170142> Mars Hangout](${supportServer})`, true]
+    ] as any[][]).map(([name, value, inline]) => ({ name, value, inline })),
     color,
-    author: {
-      name: 'Phobos Help Page',
-      url,
-      icon_url: avatar
-    },
+    author: { name: 'Phobos Help Page', url, icon_url: avatar },
     thumbnail: { url: avatar + '?size=512' }
   }
 }
