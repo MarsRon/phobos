@@ -24,14 +24,17 @@ const cliLogFormat = format.printf(
 )
 
 // This logs to a file called phobos.log
-const fileLogFormat = format.printf(
-  ({ timestamp, level, message, stack }: TransformableInfo) => {
-    // Use stack trace if available (Errors only)
-    message = stack ?? message
-    return `${timestamp} [${level.toUpperCase()}] ${
-      typeof message === 'string' ? message : inspect(message)
-    }`
-  }
+const fileLogFormat = format.combine(
+  format.printf(
+    ({ timestamp, level, message, stack }: TransformableInfo) => {
+      // Use stack trace if available (Errors only)
+      message = stack ?? message
+      return `${timestamp} [${level.toUpperCase()}] ${
+        typeof message === 'string' ? message : inspect(message)
+      }`
+    }
+  ),
+  format.uncolorize()
 )
 
 const logger = createLogger({
@@ -46,10 +49,12 @@ const logger = createLogger({
     }),
     new transports.File({
       filename: 'phobos.log',
-      format: format.combine(
-        fileLogFormat,
-        format.uncolorize()
-      )
+      format: fileLogFormat
+    }),
+    new transports.File({
+      filename: 'phobos-errors.log',
+      level: 'error',
+      format: fileLogFormat
     })
   ],
   exitOnError: false
