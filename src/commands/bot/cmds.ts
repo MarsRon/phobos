@@ -64,7 +64,7 @@ function getEmbed (query: string): MessageEmbed {
 export default {
   name: 'cmds',
   alias: ['commands'],
-  description: 'Shows information of a command/category.',
+  description: 'Shows information about a command/category.',
   usage: '<category|command>',
   execute (message: Message, args: string[]) {
     message.reply(getEmbed(args[0]))
