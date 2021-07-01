@@ -5,11 +5,11 @@ import mongoose, { Document, Model, Schema } from 'mongoose'
  * @extends Map
  */
 export class DBItem extends Map {
-  id: string
-  _doc: Document
-  _saving: boolean = false
+  public id: string
+  private _doc: Document
+  private _saving: boolean = false
 
-  _set = Map.prototype.set
+  private _set = Map.prototype.set
 
   /**
    * Create a database item.
@@ -39,7 +39,7 @@ export class DBItem extends Map {
    * Save this item to the database.
    * @returns {DBItem}
    */
-  save (): DBItem {
+  public save (): DBItem {
     if (!this._saving) {
       this._saving = true
       this._doc.save().then(() => {
@@ -55,7 +55,7 @@ export class DBItem extends Map {
    * @param {any} value - Value
    * @returns {DBItem}
    */
-  set (key: string, value: any) {
+  public set (key: string, value: any) {
     this._set(key, value)
     this._doc.set(key, value)
     this.save()
@@ -67,7 +67,7 @@ export class DBItem extends Map {
    * @param {object} keyValue - Keys and values in Object form
    * @returns {DBItem}
    */
-  setMultiple (keyValue: Record<string, any>): DBItem {
+  public setMultiple (keyValue: Record<string, any>): DBItem {
     for (const [key, value] of Object.entries(keyValue)) {
       this._set(key, value)
       this._doc.set(key, value)
@@ -81,7 +81,7 @@ export class DBItem extends Map {
    * @param {any} increment - Increment value
    * @returns {DBItem}
    */
-  inc (key: string, increment: any): DBItem {
+  public inc (key: string, increment: any): DBItem {
     return this.set(key, this.get(key) + increment)
   }
 }
@@ -92,12 +92,12 @@ const IDSchema = {
 
 /** Class representing a database item manager. */
 class DBManager {
-  name: string
-  defaultValues: Record<string, any>
-  schema: Schema
+  public name: string
+  public defaultValues: Record<string, any>
+  public schema: Schema
 
-  Model: Model<Document>
-  cache: Map<string, DBItem>
+  public Model: Model<Document>
+  public cache: Map<string, DBItem>
 
   constructor (
     name: string,
@@ -147,7 +147,7 @@ class DBManager {
    * @param {string} id - ID of the item
    * @returns {Promise<DBItem>}
    */
-  async get (id: string): Promise<DBItem> {
+  public async get (id: string): Promise<DBItem> {
     let item = this.cache.get(id)
     if (item !== undefined) {
       return item
@@ -170,7 +170,7 @@ class DBManager {
    * Obtain all items from the database, or the items cache if it's already available.
    * @returns {Promise<DBItem[]>}
    */
-  async getAll (): Promise<DBItem[]> {
+  public async getAll (): Promise<DBItem[]> {
     const docs = await this.Model.find()
     return docs.map(doc => new DBItem(doc.id, doc, this.defaultValues))
   }
@@ -179,7 +179,7 @@ class DBManager {
    * Refresh all items in the database.
    * @returns {Promise<DBItem[]>}
    */
-  refreshAll (): Promise<DBItem[]> {
+  public refreshAll (): Promise<DBItem[]> {
     this.cache.clear()
     return this.getAll()
   }
