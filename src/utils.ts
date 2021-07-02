@@ -48,7 +48,7 @@ export async function getUserFromMessage (
     return userMention
   }
 
-  if (guild) {
+  if (guild && idQuery) {
     const id = idQuery.match(/\d+/)?.[0]
     if (id) {
       const member = await guild.members.fetch(id)
@@ -75,7 +75,7 @@ export async function getMemberFromMessage (
     return memberMention
   }
 
-  if (guild) {
+  if (guild && idQuery) {
     const id = idQuery.match(/\d+/)?.[0]
     if (id) {
       return await guild.members.fetch(id)
