@@ -1,5 +1,5 @@
 // Modules
-import { Collection, Message } from 'discord.js'
+import { Collection, Message, PermissionResolvable } from 'discord.js'
 import { readdir } from 'fs'
 import path from 'path'
 
@@ -13,7 +13,7 @@ type Command = {
   args: boolean
   usage: string
   guildOnly: boolean
-  permission: string
+  permission: PermissionResolvable
   cooldown: number
   execute: (message: Message, args: string[]) => any
 }

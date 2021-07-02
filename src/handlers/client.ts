@@ -15,7 +15,7 @@ export class PhobosClient extends Client {
   commands: Collection<string, Collection<string, Command>>
   cooldowns: Collection<string, Collection<string, number>>
   aliases: Collection<string, Command>
-  getCmd: Function
+  getCmd: (name: string) => Command | undefined
   // distube: Distube
   log: Logger
   db: Idb
@@ -24,7 +24,7 @@ export class PhobosClient extends Client {
     this.commands = new Collection()
     this.cooldowns = new Collection()
     this.aliases = new Collection()
-    this.getCmd = function getCmd (name: string) {
+    this.getCmd = function getCmd (name) {
       for (const category of this.commands.values()) {
         const cmd = category.get(name)
         if (cmd) {
