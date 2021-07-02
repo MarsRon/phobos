@@ -5,7 +5,7 @@ import config from '../config'
 import { timeToStr } from '../utils'
 import wordCatcher from '../features/wordCatcher'
 
-const { prefix } = config
+const { prefix, ownerID } = config
 
 export default async function (message: Message) {
   // Message Partial
@@ -77,13 +77,16 @@ export default async function (message: Message) {
 
     // Execute command
     try {
-      command.execute(message, args)
       // Cooldown
       timestamps!.set(author.id, now)
       setTimeout(() => timestamps!.delete(author.id), cooldownAmount)
+
+      await command.execute(message, args)
     } catch (error: any) {
-      client.log.error(`${error}`)
-      message.reply(`:x: An error occurred: ${error.message}`)
+      client.log.error(error)
+      message.reply(`:x: An error occurred: ${error.message}
+You should usually never see this message
+Please send a report to <@${ownerID}> (${(await client.users.fetch(ownerID)).tag}) `)
     }
   }
 }
