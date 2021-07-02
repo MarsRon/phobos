@@ -3,7 +3,7 @@ import config from '../config'
 
 export const once = true
 
-export default async function () {
+export default function () {
   const { guilds, user } = client
   client.log.info(`${user!.tag} is online`)
   user!.setActivity(
