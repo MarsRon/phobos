@@ -15,7 +15,7 @@ type Command = {
   guildOnly: boolean
   permission: PermissionResolvable
   cooldown: number
-  execute: (message: Message, args: string[]) => any
+  execute: (message: Message, args?: string[]) => any
 }
 export default Command
 
