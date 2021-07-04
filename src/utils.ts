@@ -32,14 +32,30 @@ export function timeToStr (seconds: number): string {
   return str
 }
 
+const formatInt = (int: number) => int < 10 ? `0${int}` : `${int}`
+
+export function formatDuration (milliseconds: any): string {
+  if (!milliseconds || isNaN(milliseconds)) {
+    return '00:00'
+  }
+  const ms = parseInt(milliseconds) / 1000
+  const seconds = Math.floor(ms % 60)
+  const minutes = Math.floor(ms % 3600 / 60)
+  const hours = Math.floor(ms / 3600)
+  if (hours > 0) {
+    return `${formatInt(hours)}:${formatInt(minutes)}:${formatInt(seconds)}`
+  }
+  return `${formatInt(minutes)}:${formatInt(seconds)}`
+};
+
 /**
  * Get a user from a Message's mentions
  * @param {Message} message - Discord message
- * @param {string} idQuery - ID query
+ * @param {string} id - ID query
  * @returns {Promise<User>}
  */
 export async function getUserFromMessage (
-  message: Message, idQuery: string
+  message: Message, id: string
 ): Promise<User> {
   const { author, guild, mentions } = message
 
@@ -48,10 +64,10 @@ export async function getUserFromMessage (
     return userMention
   }
 
-  if (guild && idQuery) {
-    const id = idQuery.match(/\d+/)?.[0]
-    if (id) {
-      const member = await guild.members.fetch(id)
+  if (guild && id) {
+    const _id = id.match(/\d+/)?.[0]
+    if (_id) {
+      const member = await guild.members.fetch(_id)
       return member.user
     }
   }
@@ -62,11 +78,11 @@ export async function getUserFromMessage (
 /**
  * Get a member from a Message's mentions
  * @param {Message} message - Discord message
- * @param {string} idQuery - ID query
+ * @param {string} id - ID query
  * @returns {Promise<GuildMember | null>}
  */
 export async function getMemberFromMessage (
-  message: Message, idQuery: string
+  message: Message, id: string
 ): Promise<GuildMember | null> {
   const { member, guild, mentions } = message
 
@@ -75,10 +91,10 @@ export async function getMemberFromMessage (
     return memberMention
   }
 
-  if (guild && idQuery) {
-    const id = idQuery.match(/\d+/)?.[0]
-    if (id) {
-      return await guild.members.fetch(id)
+  if (guild && id) {
+    const _id = id.match(/\d+/)?.[0]
+    if (_id) {
+      return await guild.members.fetch(_id)
     }
   }
 

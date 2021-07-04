@@ -2,6 +2,7 @@ import { Client, ClientOptions, Collection, Intents } from 'discord.js'
 import { Logger } from 'winston'
 import Command from './handlers/command'
 import { DBManager, User } from './db'
+import DisTube from 'distube'
 
 import logger from './handlers/logger'
 
@@ -16,9 +17,9 @@ export class PhobosClient extends Client {
   cooldowns: Collection<string, Collection<string, number>>
   aliases: Collection<string, Command>
   getCmd: (name: string) => Command | undefined
-  // distube: Distube
   log: Logger
   db: Idb
+  distube?: DisTube
   constructor (options: ClientOptions) {
     super(options)
     this.commands = new Collection()

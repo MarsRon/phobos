@@ -6,11 +6,10 @@ import path from 'path'
 // Configure environment variables
 dotenv.config()
 
-// Require handlers
-
 // eslint-disable-next-line import/first
 import client from './client'
 
+// Require handlers
 const imports = readdirSync(path.join(__dirname, './handlers'))
   .map(handler => import(`./handlers/${handler}`))
 
