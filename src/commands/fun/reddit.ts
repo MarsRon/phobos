@@ -14,7 +14,7 @@ const getUrl = (sub?: string) => `https://www.reddit.com/r/${
 export default {
   name: 'reddit',
   alias: ['meme', 'r', 'rdt'],
-  description: 'Sends memes from reddit. If no subreddit is specified, it sends random stuff from reddit',
+  description: 'Sends memes from reddit. If no subreddit is specified, it sends random stuff from reddit.',
   usage: '[subreddit]',
   async execute (message: Message, args: string[]) {
     const { data } = await axios.get(getUrl(args[0]))
@@ -22,7 +22,7 @@ export default {
     let posts: Record<string, any>[] = data[0].data.children
 
     if (!(message.channel as TextChannel).nsfw) {
-      posts = posts.filter(({ data: post }) => !post.over_18)
+      posts = posts.filter(post => !post.data.over_18)
     }
 
     if (posts.length === 0) {
