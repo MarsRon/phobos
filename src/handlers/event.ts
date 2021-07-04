@@ -1,4 +1,4 @@
-import client from './client'
+import client from '../client'
 import { readdir } from 'fs'
 import path from 'path'
 

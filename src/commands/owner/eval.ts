@@ -4,7 +4,7 @@
 import { Message } from 'discord.js'
 import { inspect } from 'util'
 import config from '../../config'
-import { PhobosClient } from '../../handlers/client'
+import { PhobosClient } from '../../client'
 
 const { embed: { avatar, color, url }, ownerID, prefix } = config
 

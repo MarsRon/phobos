@@ -1,4 +1,4 @@
-import client from '../handlers/client'
+import client from '../client'
 import { DMChannel, Message } from 'discord.js'
 
 import config from '../config'

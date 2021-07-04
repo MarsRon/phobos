@@ -1,11 +1,11 @@
 import { Client, ClientOptions, Collection, Intents } from 'discord.js'
 import { Logger } from 'winston'
-import Command from './command'
-import { DBManager, User } from '../db'
+import Command from './handlers/command'
+import { DBManager, User } from './db'
 
-import logger from './logger'
+import logger from './handlers/logger'
 
-require('./InlineReply.js')
+require('./handlers/InlineReply.js')
 
 interface Idb {
   user: DBManager

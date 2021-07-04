@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 import mongoose from 'mongoose'
-import client from '../handlers/client'
+import client from '../client'
 
 mongoose.pluralize(null)
 

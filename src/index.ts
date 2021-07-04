@@ -9,7 +9,7 @@ dotenv.config()
 // Require handlers
 
 // eslint-disable-next-line import/first
-import client from './handlers/client'
+import client from './client'
 
 const imports = readdirSync(path.join(__dirname, './handlers'))
   .map(handler => import(`./handlers/${handler}`))

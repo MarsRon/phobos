@@ -1,5 +1,5 @@
 import { ActivityOptions } from 'discord.js'
-import { PhobosClient } from './handlers/client'
+import { PhobosClient } from './client'
 
 // Types
 interface PhobosEmbedConfig {

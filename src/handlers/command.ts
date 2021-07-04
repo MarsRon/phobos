@@ -3,7 +3,7 @@ import { Collection, Message, PermissionResolvable } from 'discord.js'
 import { readdir } from 'fs'
 import path from 'path'
 
-import client from './client'
+import client from '../client'
 
 // Types
 type Command = {
