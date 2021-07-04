@@ -11,6 +11,7 @@ const normalWords: Array<[RegExp, string]> = [
   [/not?\s+nice/, 'Not nice \\:('],
   [/nice/, 'Nice'],
   [/shut|stfu/, 'shut'],
+  [/fu(?:c|k|ck)\s+(:yo)?u/, 'No u'],
   [/\b(?:yo)?u\s+suck?/, 'no u'],
   [/\bn(?:o+|u+)b\b/, emoji.unoreverse],
   [/<@!?738252807525892139>/, 'why ping me'],
