@@ -100,3 +100,25 @@ export async function getMemberFromMessage (
 
   return member
 }
+
+/**
+ * Formats date into a presentable form
+ * @param {Date} date
+ * @returns {string}
+ */
+export function formatDate (date: Date | number): string {
+  if (!date) return ''
+  if (typeof date === 'number') {
+    date = new Date(date)
+  }
+  const str = date.toLocaleString('en-GB', {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  })
+  return str.slice(0, -2) + str.slice(-2).toUpperCase()
+}
