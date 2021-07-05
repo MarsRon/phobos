@@ -7,15 +7,17 @@ const { embed: { avatar, color, url }, prefix } = config
 const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
 function getEmbed (query: string): MessageEmbed {
+  const embed = new MessageEmbed()
+    .setColor(color)
+
   if (query) {
     const command = client.getCmd(query)
     if (command) {
       // Send command info
-      return new MessageEmbed()
-        .setAuthor('Phobos', avatar, url)
+      return embed
+        .setAuthor('Command Info', avatar, url)
         .setTitle(prefix + command.name)
         .setDescription(command.description)
-        .setColor(color)
         .addField(
           'Usage',
           `\`${prefix}${command.name}${command.usage ? ` ${command.usage}` : ''}\``,
@@ -31,13 +33,13 @@ function getEmbed (query: string): MessageEmbed {
           `${command.cooldown ?? '1'} seconds`,
           true
         )
+        .setFooter('Arguments usage: <required> [optional]')
     } else {
       // Send commands in category
       const category = client.commands.get(query)
       if (category) {
-        return new MessageEmbed()
+        return embed
           .setAuthor(`${titleCase(query)} Category`, avatar, url)
-          .setColor(color)
           .addFields([...category.values()]
             .map(({ name, description: value }) =>
               ({ name: prefix + name, value, inline: true })
@@ -48,9 +50,8 @@ function getEmbed (query: string): MessageEmbed {
   }
 
   // Send categories
-  return new MessageEmbed()
+  return embed
     .setAuthor('Phobos Commands', avatar, url)
-    .setColor(color)
     .addFields(
       [...client.commands.keys()].map(category => ({
         name: titleCase(category),
