@@ -22,16 +22,17 @@ export default {
         description: user.toString(),
         color,
         fields: ([
-          ['Joined server at', formatDate(member.joinedAt!), true],
-          ['Created account at', formatDate(user.createdAt), true],
+          ['Joined server at', formatDate(member.joinedAt!)],
+          ['Created account at', formatDate(user.createdAt)],
           [
             `Roles [${member.roles.cache.size - 1}]`,
             member.roles.cache
               .filter(role => role.name !== '@everyone')
-              .map(role => role.toString()).join(' ')
+              .map(role => role.toString()).join(' '),
+            false
           ]
         ] as Array<[string, string, boolean?]>).map(
-          ([name, value, inline = false]) => ({ name, value, inline })
+          ([name, value, inline = true]) => ({ name, value, inline })
         ),
         author: {
           name: user.tag,
