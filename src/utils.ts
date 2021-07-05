@@ -111,7 +111,7 @@ export function formatDate (date: Date | number): string {
   if (typeof date === 'number') {
     date = new Date(date)
   }
-  const str = date.toLocaleString('en-GB', {
+  return date.toLocaleString('en-US', {
     weekday: 'short',
     year: 'numeric',
     month: 'short',
@@ -120,5 +120,4 @@ export function formatDate (date: Date | number): string {
     minute: 'numeric',
     hour12: true
   })
-  return str.slice(0, -2) + str.slice(-2).toUpperCase()
 }
