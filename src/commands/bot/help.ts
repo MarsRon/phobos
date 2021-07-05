@@ -7,15 +7,17 @@ const { embed: { avatar, color, url }, invite, prefix, supportServer } = config
 const helpEmbed = {
   embed: {
     fields: ([
-      ['📂 Commands List', `\`${prefix}cmds <category|command>\``],
-      ['✅ Help Page', url],
-      ['❓ Arguments usage', '`<required>`, `[optional]`'],
-      ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.github.io)`, true],
-      ['Invite link', `[${emoji.phobos} ${prefix}invite](${invite})`, true],
-      ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`, true]
-    ] as Array<[string, string, boolean]>).map(([name, value, inline]) => ({ name, value, inline })),
+      ['📂 Commands List', `\`${prefix}cmds <category|command>\``, false],
+      ['✅ Help Page', url, false],
+      ['Open-source', `[${emoji.github} GitHub repo](https://github.com/MarsRon/phobos)`],
+      ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.github.io)`],
+      ['Invite link', `[${emoji.phobos} ${prefix}invite](${invite})`],
+      ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`]
+    ] as Array<[string, string, boolean]>)
+      .map(([name, value, inline = true]) => ({ name, value, inline })),
     color,
     author: { name: 'Phobos Help Page', url, icon_url: avatar },
+    footer: { text: 'Arguments usage: <required> [optional]' },
     thumbnail: { url: avatar + '?size=512' }
   }
 }
