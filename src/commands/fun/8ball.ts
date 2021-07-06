@@ -45,11 +45,7 @@ export default {
       embed: {
         description: `Question: ${args.join(' ')}\nAnswer: ${getAnswer()}`,
         color,
-        author: {
-          name: '8Ball',
-          url,
-          icon_url: avatar
-        }
+        author: { name: '8Ball', url, icon_url: avatar }
       }
     })
   }
