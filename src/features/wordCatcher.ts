@@ -30,14 +30,6 @@ const catchers: WordCatcher[] = [
     }
   },
 
-  async function brrr (message, text) {
-    if (text.includes('brrr')) {
-      for (const emoji of ['🏎️', '🇻', '🇷', '🇴', '🅾', '🇲']) {
-        await message.react(emoji).catch(() => {})
-      }
-    }
-  },
-
   function normal (message, text) {
     const match = normalWords.find(kv => kv[0].test(text))
     if (match && Math.random() >= 0.1) {
