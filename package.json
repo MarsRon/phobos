@@ -33,9 +33,9 @@
     "ffmpeg-static": "^4.4.0",
     "libsodium-wrappers": "^0.7.9",
     "mongoose": "^5.13.2",
-    "owofire": "^1.0.4",
     "tslib": "^2.3.0",
     "utf-8-validate": "^5.0.5",
+    "uwuifier": "^4.0.4",
     "winston": "^3.3.3",
     "zlib-sync": "^0.1.7"
   },
