@@ -42,7 +42,29 @@ export class PhobosClient extends Client {
 }
 
 const options: ClientOptions = {
-  ws: { intents: new Intents(Intents.ALL) },
+  ws: {
+    intents: new Intents(
+      // Read from left to right
+      // [X] meaning removed intent
+
+      // [X] DIRECT_MESSAGE_TYPING
+      // DIRECT_MESSAGE_REACTIONS
+      // DIRECT_MESSAGES
+      // [X] GUILD_MESSAGE_TYPING
+      // GUILD_MESSAGE_REACTIONS
+      // GUILD_MESSAGES
+      // [X] GUILD_PRESENCES
+      // GUILD_VOICE_STATES
+      // [X] GUILD_INVITES
+      // [X] GUILD_WEBHOOKS
+      // [X] GUILD_INTEGRATIONS
+      // GUILD_EMOJIS
+      // GUILD_BANS
+      // GUILD_MEMBERS
+      // GUILDS
+      Intents.ALL - 0b100100101110000
+    )
+  },
   partials: ['CHANNEL', 'MESSAGE', 'REACTION']
 }
 
