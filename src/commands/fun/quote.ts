@@ -11,7 +11,7 @@ export default {
   usage: '<user> [quote]',
   guildOnly: true,
   async execute (message: Message, args: string[]) {
-    const user = await getUserFromMessage(message, args.shift()!)
+    const user = await getUserFromMessage(message, args.shift())
     message.channel.send({
       embed: {
         description: args.length === 0 ? '*blank*' : args.join(' '),

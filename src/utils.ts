@@ -51,11 +51,11 @@ export function formatDuration (milliseconds: any): string {
 /**
  * Get a user from a Message's mentions
  * @param {Message} message - Discord message
- * @param {string} id - ID query
+ * @param {string} [id] - ID query
  * @returns {Promise<User>}
  */
 export async function getUserFromMessage (
-  message: Message, id: string
+  message: Message, id?: string
 ): Promise<User> {
   const { author, guild, mentions } = message
 
@@ -78,11 +78,11 @@ export async function getUserFromMessage (
 /**
  * Get a member from a Message's mentions
  * @param {Message} message - Discord message
- * @param {string} id - ID query
+ * @param {string} [id] - ID query
  * @returns {Promise<GuildMember | null>}
  */
 export async function getMemberFromMessage (
-  message: Message, id: string
+  message: Message, id?: string
 ): Promise<GuildMember | null> {
   const { member, guild, mentions } = message
 
