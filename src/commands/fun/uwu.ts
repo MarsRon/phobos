@@ -3,7 +3,7 @@ import Uwuifier from 'uwuifier'
 
 const uwu = new Uwuifier()
 
-module.exports = {
+export default {
   name: 'uwu',
   alias: ['owo'],
   description: 'Uwuifies your message.',
