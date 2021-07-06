@@ -23,7 +23,7 @@ const catchers: WordCatcher[] = [
   function imDad (message, text) {
     const match = text.match(/\bi\s*['`a]?\s*m(?:\s+|\b)/)
     if (match) {
-      if (Math.random() < 0.5) return
+      if (Math.random() < 0.1) return
       message.reply(`Hi **${
         message.content.slice(match.index! + match[0].length) || 'blank'
       }**, I'm dad!`)
@@ -40,7 +40,7 @@ const catchers: WordCatcher[] = [
 
   function normal (message, text) {
     const match = normalWords.find(kv => kv[0].test(text))
-    if (match) {
+    if (match && Math.random() >= 0.1) {
       message.reply(match[1])
     }
   }
