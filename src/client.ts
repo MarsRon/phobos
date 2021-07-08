@@ -5,6 +5,7 @@ import { DBManager, User } from './db'
 import DisTube from 'distube'
 
 import logger from './handlers/logger'
+import config, { PhobosConfig } from './config'
 
 require('./handlers/InlineReply.js')
 
@@ -13,18 +14,20 @@ interface Idb {
 }
 
 export class PhobosClient extends Client {
+  config: PhobosConfig
   commands: Collection<string, Collection<string, Command>>
-  cooldowns: Collection<string, Collection<string, number>>
   aliases: Collection<string, Command>
+  cooldowns: Collection<string, Collection<string, number>>
   getCmd: (name: string) => Command | undefined
   log: Logger
   db: Idb
   distube?: DisTube
   constructor (options: ClientOptions) {
     super(options)
+    this.config = config
     this.commands = new Collection()
-    this.cooldowns = new Collection()
     this.aliases = new Collection()
+    this.cooldowns = new Collection()
     this.getCmd = function getCmd (name) {
       for (const category of this.commands.values()) {
         const cmd = category.get(name)

@@ -11,7 +11,7 @@ interface PhobosActivity {
   name: (client: PhobosClient) => string
   options: ActivityOptions
 }
-interface PhobosConfig {
+export interface PhobosConfig {
   prefix: string
   ownerID: string
   invite: string

@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-eval */
+/* eslint-disable no-unused-vars */
 
 import { Message } from 'discord.js'
 import { inspect } from 'util'
-import config from '../../config'
 import { PhobosClient } from '../../client'
+import config from '../../config'
 
 const { embed: { avatar, color, url }, ownerID, prefix } = config
 
@@ -12,7 +12,7 @@ async function discordEval (code: string, message: Message) {
   if (!code) return
 
   if (code.startsWith('```')) {
-    code = code.replace(/^```(?:js)?([\S\s]+)```$/is, '$1').trim()
+    code = code.replace(/^```(?:js)?([\S\s]+)```$/is, '$1')
   }
 
   let result: any
@@ -32,7 +32,7 @@ async function discordEval (code: string, message: Message) {
   try {
     // Inject variables
     const { channel, client, content, guild, member, author: user } = message
-    const { db } = client as PhobosClient
+    const { db, config } = client as PhobosClient
 
     if (code.includes('await')) {
       result = await (
