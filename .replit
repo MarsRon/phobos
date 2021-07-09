@@ -1,2 +1,2 @@
-run="npm deploy"
+run="npm run deploy"
 language="node"
