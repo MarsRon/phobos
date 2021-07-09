@@ -43,7 +43,7 @@ export default async function (message: Message) {
     const now = Date.now()
     const timestamps = client.cooldowns.get(command.name)
     const userCooldown = timestamps!.get(author.id)
-    const cooldownAmount = (command.cooldown || 1) * 1000
+    const cooldownAmount = (command.cooldown ?? 3) * 1000
 
     if (userCooldown) {
       const timeLeft = userCooldown + cooldownAmount - now

@@ -16,6 +16,7 @@ export default {
   alias: ['meme', 'r', 'rdt'],
   description: 'Sends memes from reddit. If no subreddit is specified, it sends random stuff from reddit.',
   usage: '[subreddit]',
+  cooldown: 5,
   async execute (message: Message, args: string[]) {
     const { data } = await axios.get(getUrl(args[0]))
 

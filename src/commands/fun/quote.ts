@@ -9,7 +9,6 @@ export default {
   description: 'Forge a fake a quote by someone.',
   args: true,
   usage: '<user> [quote]',
-  guildOnly: true,
   async execute (message: Message, args: string[]) {
     const user = await getUserFromMessage(message, args.shift())
     message.channel.send({
