@@ -12,8 +12,8 @@ export default async function (message: Message) {
   if (message.partial) {
     try {
       await message.fetch()
-    } catch (e) {
-      return client.log.error(`Message Partial error ${e}`)
+    } catch (err: any) {
+      return client.log.error(err)
     }
   }
 
@@ -29,8 +29,8 @@ export default async function (message: Message) {
   if ((channel as DMChannel).partial) {
     try {
       await channel.fetch()
-    } catch (e) {
-      return client.log.error(`Channel Partial error ${e}`)
+    } catch (err: any) {
+      return client.log.error(err)
     }
   }
 
@@ -82,9 +82,9 @@ export default async function (message: Message) {
       setTimeout(() => timestamps!.delete(author.id), cooldownAmount)
 
       await command.execute(message, args)
-    } catch (error: any) {
-      client.log.error(error)
-      message.reply(`:x: An error occurred: ${error.message}
+    } catch (err: any) {
+      client.log.error(err)
+      message.reply(`:x: An error occurred: ${err.message}
 You should usually never see this message
 Please send a report to <@${ownerID}> (${(await client.users.fetch(ownerID)).tag}) `)
     }

@@ -51,7 +51,7 @@ export default {
         // Options
         { max: 1, time: 15000, errors: ['time'] }
       )
-    } catch (err) {
+    } catch (err: any) {
       msg.reply(":x: You didn't react in time.")
       return
     }

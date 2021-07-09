@@ -1,5 +1,5 @@
 import client from '../client'
 
-export default function (error: Error) {
-  client.log.error(error)
+export default function (err: Error) {
+  client.log.error(err)
 }

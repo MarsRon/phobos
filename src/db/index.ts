@@ -18,7 +18,7 @@ db.once('open', () => {
 })
 
 db.on('error', (err: any) => {
-  client.log.error(`connection error: ${err}`)
+  client.log.error(err)
 })
 
 import DBManager from './DBManager'
