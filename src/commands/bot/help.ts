@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
-import config from '../../config'
-import emoji from '../../emoji.json'
+import config from 'config'
+import emoji from 'emoji'
 
 const { embed: { avatar, color, url }, invite, prefix, supportServer } = config
 

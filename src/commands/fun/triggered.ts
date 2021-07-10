@@ -1,5 +1,5 @@
 import { Message, MessageAttachment } from 'discord.js'
-import { getUserFromMessage } from '../../utils'
+import { getUserFromMessage } from 'utils'
 import axios from 'axios'
 
 export default {

@@ -1,5 +1,5 @@
 import { Message, Collection, MessageReaction } from 'discord.js'
-import config from '../../config'
+import config from 'config'
 
 const { embed: { avatar, color, url } } = config
 

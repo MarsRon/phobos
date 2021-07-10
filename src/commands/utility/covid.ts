@@ -1,5 +1,5 @@
 import { Message } from 'discord.js'
-import emoji from '../../emoji.json'
+import emoji from 'emoji'
 
 export default {
   name: 'covid',

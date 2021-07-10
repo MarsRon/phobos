@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
-import { getMemberFromMessage, formatDate } from '../../utils'
-import config from '../../config'
+import { getMemberFromMessage, formatDate } from 'utils'
+import config from 'config'
 
 const { embed: { color, url } } = config
 
