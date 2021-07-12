@@ -3,8 +3,8 @@
 
 import { Message } from 'discord.js'
 import { inspect } from 'util'
-import { PhobosClient } from 'client'
-import config from 'config'
+import { PhobosClient } from '@phobos/client'
+import config from '@phobos/config'
 
 const { embed: { avatar, color, url }, ownerID, prefix } = config
 

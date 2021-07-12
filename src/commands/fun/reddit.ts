@@ -1,6 +1,6 @@
 import { Message, TextChannel } from 'discord.js'
 import axios from 'axios'
-import config from 'config'
+import config from '@phobos/config'
 
 const { embed: { avatar, color } } = config
 

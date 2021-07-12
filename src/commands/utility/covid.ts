@@ -1,5 +1,5 @@
 import { Message } from 'discord.js'
-import emoji from 'emoji'
+import emoji from '@phobos/emoji'
 
 export default {
   name: 'covid',

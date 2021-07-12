@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from 'discord.js'
-import client from 'client'
-import config from 'config'
+import client from '@phobos/client'
+import config from '@phobos/config'
 
 const { embed: { avatar, color, url }, prefix } = config
 

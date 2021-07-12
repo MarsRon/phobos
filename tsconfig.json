@@ -1,26 +1,22 @@
 {
   "extends": "@tsconfig/node14/tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2020"],
-    "module": "commonjs",
+    "lib": ["ES2021"],
     "target": "es2020",
-    "outDir": "./dist",
     "rootDir": "./src",
-    "importHelpers": true,
-    "strict": true,
-    "esModuleInterop": true,
+    "outDir": "./dist",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "resolveJsonModule": true,
-    "baseUrl": "src",
+    "strict": true,
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "paths": {
-      "client": ["client"],
-      "config": ["config"],
-      "emoji": ["emoji.json"],
-      "utils": ["utils"]
+      "@phobos/*": ["./src/*", "./dist/*"],
+      "@phobos/emoji": ["./src/emoji.json", "./dist/emoji.json"]
     }
   },
   "include": ["./src/**/*"]

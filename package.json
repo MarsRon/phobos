@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx nodemon --config nodemon.json src/index.ts",
     "build": "npx tsc",
-    "deploy": "node .",
+    "deploy": "node -r tsconfig-paths/register .",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "prepare": "npx husky install"
@@ -31,6 +31,7 @@
     "express": "^4.17.1",
     "ffmpeg-static": "^4.4.0",
     "mongoose": "^5.13.2",
+    "tsconfig-paths": "^3.10.1",
     "tslib": "^2.3.0",
     "uwuifier": "^4.0.4",
     "winston": "^3.3.3"

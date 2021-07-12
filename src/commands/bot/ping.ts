@@ -1,6 +1,6 @@
 import { Message } from 'discord.js'
-import { timeToDHMS } from 'utils'
-import config from 'config'
+import { timeToDHMS } from '@phobos/utils'
+import config from '@phobos/config'
 
 const { avatar, color, url } = config.embed
 
