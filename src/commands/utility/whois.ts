@@ -7,6 +7,7 @@ const { embed: { color, url } } = config
 export default {
   name: 'whois',
   alias: ['userinfo'],
+  description: 'Displays information about a user.',
   guildOnly: true,
   async execute (message: Message, args: string[]) {
     const member = await getMemberFromMessage(message, args[0])
