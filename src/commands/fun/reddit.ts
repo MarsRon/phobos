@@ -4,7 +4,7 @@ import config from '@phobos/config'
 
 const { embed: { avatar, color } } = config
 
-const subreddits = ['meme', 'memes', 'dankmemes']
+const subreddits = ['meme', 'memes', 'dankmemes', 'animemes', 'shitpost', '196']
 const limit = 100
 
 const getUrl = (sub?: string) => `https://www.reddit.com/r/${
