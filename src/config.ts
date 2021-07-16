@@ -1,4 +1,4 @@
-import { ActivityOptions } from 'discord.js'
+import { ActivityOptions, Snowflake } from 'discord.js'
 import { PhobosClient } from './client'
 
 // Types
@@ -13,11 +13,12 @@ interface PhobosActivity {
 }
 export interface PhobosConfig {
   prefix: string
-  ownerID: string
+  ownerID: Snowflake
   invite: string
   supportServer: string
   embed: PhobosEmbedConfig
   activity: PhobosActivity
+  logChannelID: Snowflake
 }
 
 // Change the bot configurations here!
@@ -73,7 +74,11 @@ const config: PhobosConfig = {
     // https://discord.js.org/#/docs/main/stable/typedef/ActivityOptions
     options: { type: 'PLAYING' }
 
-  }
+  },
+
+  // Logging channel
+  // This is where the bot logs errors
+  logChannelID: '823168168276131851'
 
 }
 

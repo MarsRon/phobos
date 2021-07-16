@@ -1,11 +1,11 @@
 import client from '../client'
-import { DMChannel, Message } from 'discord.js'
+import { DMChannel, Message, TextChannel } from 'discord.js'
 
 import config from '../config'
 import { timeToStr } from '../utils'
 import wordCatcher from '../features/wordCatcher'
 
-const { prefix, ownerID } = config
+const { prefix, ownerID, logChannelID } = config
 
 export default async function (message: Message) {
   // Message Partial
@@ -79,14 +79,33 @@ export default async function (message: Message) {
     try {
       // Cooldown
       timestamps!.set(author.id, now)
-      setTimeout(() => timestamps!.delete(author.id), cooldownAmount)
+      if (author.id !== ownerID) {
+        setTimeout(() => timestamps!.delete(author.id), cooldownAmount)
+      }
 
       await command.execute(message, args)
     } catch (err: any) {
       client.log.error(err)
+
       message.reply(`:x: An error occurred: ${err.message}
 You should usually never see this message
-Please send a report to <@${ownerID}> (${(await client.users.fetch(ownerID)).tag}) `)
+Please send a report to <@${ownerID}> (${(await client.users.fetch(ownerID)).tag})`)
+
+      const logChannel = client.channels.cache.get(logChannelID) as TextChannel
+      logChannel.send({
+        embed: {
+          title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
+          description: '```js\n' + err + '\n```',
+          url: message.url,
+          color: 0xFF0000,
+          fields: [
+            ['User', `${author.toString()} (${author.tag})`],
+            message.guild
+              ? ['Guild', `${message.guild.name} (${message.guild.id})`]
+              : ['DM', `${author.toString()} (${author.tag})`]
+          ].map(([name, value]) => ({ name, value, inline: true }))
+        }
+      })
     }
   }
 }
