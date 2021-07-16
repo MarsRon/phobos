@@ -30,6 +30,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.4.0",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.2",
     "tsconfig-paths": "^3.10.1",
     "tslib": "^2.3.0",
