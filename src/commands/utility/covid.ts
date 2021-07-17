@@ -57,12 +57,12 @@ export default {
             'Deceased',
             `**${deaths.toLocaleString()}**\n+${todayDeaths.toLocaleString()}`
           ],
+          ['Active', active.toLocaleString()],
           ['Critical', critical.toLocaleString()],
           ['Tested', tests.toLocaleString()],
-          ['Active', active.toLocaleString()],
-          ['1 Case Per', `${oneCasePerPeople} people`],
-          ['1 Death Per', `${oneDeathPerPeople} people`],
-          ['1 Test Per', `${oneTestPerPeople} people`],
+          ['1 Case Per', `${oneCasePerPeople.toLocaleString()} people`],
+          ['1 Death Per', `${oneDeathPerPeople.toLocaleString()} people`],
+          ['1 Test Per', `${oneTestPerPeople.toLocaleString()} people`],
           ['Last Reported', moment(updated).fromNow()]
         ].map(([name, value]) => ({ name, value, inline: true })),
         footer: {
