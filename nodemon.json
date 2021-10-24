@@ -1,8 +1,0 @@
-{
-  "watch": ["src/"],
-  "exec": "ts-node -r dotenv/config -r tsconfig-paths/register",
-  "env": {
-    "NODE_ENV": "development"
-  },
-  "ext": "ts,js,json"
-}

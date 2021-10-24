@@ -4,7 +4,7 @@
 [![Dependencies][dependencies-shield]][dependencies]
 [![License][license-shield]][license]
 
-The not so cool multi-purpose dumb Discord bot.
+Stupid discord.js bot by MarsRon with even worse code.
 
 Phobos has zero uses except playing music and other cool but useless stuff.\
 It includes commands for Fun, Economy, Music, Moderation, Utility and more.\
