@@ -1,36 +1,36 @@
 const { GuildMember, Message, User } = require('discord.js')
 
 /**
- * Format duration seconds into DHMS '1d 2h 3m 4s' string
- * @param {number} seconds - Duration in seconds
+ * Format duration milliseconds into DHMS '1d 2h 3m 4s' string
+ * @param {number} ms - Duration in milliseconds
  * @returns {string}
  */
-function timeToDHMS (seconds) {
-  seconds /= 1000
-  return `${~~(seconds / 86400)}d ${~~(seconds / 3600) % 24}h ${~~(
-    seconds / 60
-  ) % 60}m ${~~seconds % 60}s`
+function timeToDHMS (ms) {
+  ms /= 1000
+  return `${~~(ms / 86400)}d ${~~(ms / 3600) % 24}h ${~~(
+    ms / 60
+  ) % 60}m ${~~ms % 60}s`
 }
 
 /**
- * Format duration seconds into 'x hour(s) y minute(s) z second(s)' string
- * @param {number} seconds - Duration in seconds
+ * Format duration milliseconds into 'x hour(s) y minute(s) z second(s)' string
+ * @param {number} ms - Duration in milliseconds
  * @returns {string}
  */
-function timeToStr (seconds) {
-  seconds /= 1000
+function timeToStr (ms) {
+  ms /= 1000
   let str = ''
-  if (seconds >= 60) {
-    if (seconds >= 3600) {
-      const hour = ~~(seconds / 3600)
+  if (ms >= 60) {
+    if (ms >= 3600) {
+      const hour = ~~(ms / 3600)
       str += `${hour} hour${hour !== 1 ? 's' : ''} `
-      seconds %= 3600
+      ms %= 3600
     }
-    const minute = ~~(seconds / 60)
+    const minute = ~~(ms / 60)
     str += `${minute} minute${minute !== 1 ? 's' : ''} `
-    seconds %= 60
+    ms %= 60
   }
-  str += `${seconds.toFixed(0)} second${seconds !== 1 ? 's' : ''}`
+  str += `${ms.toFixed(0)} second${ms !== 1 ? 's' : ''}`
   return str
 }
 

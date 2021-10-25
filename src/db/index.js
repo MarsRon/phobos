@@ -17,5 +17,6 @@ db.on('error', err => {
 
 const DBManager = require('./DBManager')
 const User = require('./user')
+const Guild = require('./guild')
 
-module.exports = { DBManager, User }
+module.exports = { DBManager, User, Guild }

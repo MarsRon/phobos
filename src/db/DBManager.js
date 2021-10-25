@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
-const { Document, Model, Schema } = mongoose
+const { Model, Schema } = mongoose
 
 /**
  * Class representing a database item.
  * @extends Map
  */
 class DBItem extends Map {
+  _saving = false
+  _set = Map.prototype.set
   /**
    * Create a database item.
    * @constructor
@@ -53,8 +55,7 @@ class DBItem extends Map {
   set (key, value) {
     this._set(key, value)
     this._doc.set(key, value)
-    this.save()
-    return this
+    return this.save()
   }
 
   /**
@@ -78,6 +79,14 @@ class DBItem extends Map {
    */
   inc (key, increment) {
     return this.set(key, this.get(key) + increment)
+  }
+
+  /**
+   * Get the values of this item as an Object.
+   * @returns {Object}
+   */
+  data () {
+    return Object.fromEntries(this)
   }
 }
 
@@ -133,7 +142,7 @@ class DBManager {
    */
   async get (id) {
     let item = this.cache.get(id)
-    if (item !== undefined) {
+    if (typeof item !== 'undefined') {
       return item
     }
 
@@ -153,8 +162,12 @@ class DBManager {
    * @returns {Promise<DBItem[]>}
    */
   async getAll () {
-    const docs = await this.Model.find()
-    return docs.map(doc => new DBItem(doc.id, doc, this.defaultValues))
+    const docs = (await this.Model.find()).map(doc => {
+      const item = new DBItem(doc.id, doc, this.defaultValues)
+      this.cache.set(item.id, item)
+      return item
+    })
+    return docs
   }
 
   /**
