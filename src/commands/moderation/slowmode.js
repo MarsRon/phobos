@@ -15,7 +15,7 @@ module.exports = {
     }
 
     const target =
-      mentions.channels.first() || guild.channels.cache.get(args[0]) || channel
+      mentions.channels.first() ?? guild.channels.cache.get(args[0]) ?? channel
 
     target.setRateLimitPerUser(rate)
     message.reply(`${target} slowmode set to ${rate}s`)
