@@ -7,9 +7,8 @@ const { GuildMember, Message, User } = require('discord.js')
  */
 function timeToDHMS (ms) {
   ms /= 1000
-  return `${~~(ms / 86400)}d ${~~(ms / 3600) % 24}h ${~~(
-    ms / 60
-  ) % 60}m ${~~ms % 60}s`
+  return `${~~(ms / 86400)}d ${~~(ms / 3600) % 24}h ${~~(ms / 60) %
+    60}m ${~~ms % 60}s`
 }
 
 /**
@@ -32,22 +31,6 @@ function timeToStr (ms) {
   }
   str += `${ms.toFixed(0)} second${ms !== 1 ? 's' : ''}`
   return str
-}
-
-const formatInt = int => (int < 10 ? `0${int}` : `${int}`)
-
-function formatDuration (milliseconds) {
-  if (!milliseconds || isNaN(milliseconds)) {
-    return '00:00'
-  }
-  const ms = parseInt(milliseconds) / 1000
-  const seconds = Math.floor(ms % 60)
-  const minutes = Math.floor((ms % 3600) / 60)
-  const hours = Math.floor(ms / 3600)
-  if (hours > 0) {
-    return `${formatInt(hours)}:${formatInt(minutes)}:${formatInt(seconds)}`
-  }
-  return `${formatInt(minutes)}:${formatInt(seconds)}`
 }
 
 /**
@@ -123,7 +106,6 @@ function formatDate (date) {
 module.exports = {
   timeToDHMS,
   timeToStr,
-  formatDuration,
   getUserFromMessage,
   getMemberFromMessage,
   formatDate

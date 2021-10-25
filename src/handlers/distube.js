@@ -1,12 +1,10 @@
 const DisTube = require('distube')
 
 const client = require('../client')
-const { formatDuration } = require('../utils')
+const { formatDuration } = require('distube/dist/util')
 const config = require('../config')
 
-const {
-  embed: { avatar, color, url }
-} = config
+const { avatar, color, url } = config.embed
 
 /**
  * Get the queue status
@@ -33,22 +31,20 @@ distube
   // When a song starts playing
   .on(
     'playSong',
-    (
-      message,
-      queue,
-      { name, url: songUrl, formattedDuration, user, thumbnail }
-    ) =>
-      message.channel.send({
-        embed: {
-          description: `[${name}](${songUrl}) - \`${formattedDuration}\`
+    (queue, { name, url: songUrl, formattedDuration, user, thumbnail }) =>
+      queue.textChannel.send({
+        embeds: [
+          {
+            description: `[${name}](${songUrl}) - \`${formattedDuration}\`
 
 \`Requested by:\` <@${user.id}> (${user.tag})
 
 ${getStatus(queue)}`,
-          color,
-          thumbnail: { url: thumbnail },
-          author: { name: 'Now Playing ♪', url, icon_url: avatar }
-        }
+            color,
+            thumbnail: { url: thumbnail },
+            author: { name: 'Now Playing ♪', url, icon_url: avatar }
+          }
+        ]
       })
   )
 
@@ -56,67 +52,67 @@ ${getStatus(queue)}`,
   .on(
     'addSong',
     (
-      message,
       queue,
-      { name: title, url: songUrl, formattedDuration, thumbnail }
+      { name: title, url: songUrl, formattedDuration, thumbnail, user }
     ) =>
-      message.channel.send({
-        embed: {
-          title,
-          url: songUrl,
-          fields: [
-            ['Song Duration', formattedDuration],
-            [
-              'Estimated time until playing',
-              formatDuration(
-                queue.songs
-                  // Remove currently playing and newly added song
-                  .filter((_, i) => i !== 0 && i + 1 !== queue.songs.length)
-                  .reduce(
+      queue.textChannel.send({
+        embeds: [
+          {
+            title,
+            url: songUrl,
+            fields: [
+              ['Song Duration', formattedDuration],
+              [
+                'Estimated time until playing',
+                formatDuration(
+                  queue.songs.reduce(
                     // Add all song duration
                     (acc, cur) => acc + cur.duration,
                     // Calculate time left for current song
-                    queue.songs[0].duration -
-                      Math.floor(queue.currentTime / 1000)
-                  ) * 1000
-              )
-            ],
-            ['Position in queue', queue.songs.length - 1]
-          ].map(([name, value]) => ({ name, value, inline: true })),
-          color,
-          thumbnail: { url: thumbnail },
-          author: {
-            name: 'Added to queue ♪',
-            url,
-            icon_url: message.author.displayAvatarURL({ dynamic: true })
+                    -Math.floor(queue.currentTime) -
+                      queue.songs[queue.songs.length - 1].duration
+                  )
+                )
+              ],
+              ['Position in queue', (queue.songs.length - 1).toLocaleString()]
+            ].map(([name, value]) => ({ name, value, inline: true })),
+            color,
+            thumbnail: { url: thumbnail },
+            author: {
+              name: 'Added to queue ♪',
+              url,
+              icon_url: user.displayAvatarURL({ dynamic: true })
+            }
           }
-        }
+        ]
       })
   )
 
   // When a playlist is played
-  .on('playList', (message, queue, playlist, song) =>
-    message.channel.send({
-      embed: {
-        description: `Play \`${playlist.name}\` playlist (${
-          playlist.songs.length
-        } songs).
+  .on('playList', (queue, playlist, song) =>
+    queue.textChannel.send({
+      embeds: [
+        {
+          description: `Play \`${playlist.name}\` playlist (${
+            playlist.songs.length
+          } songs).
 Requested by: ${song.user}
 Now playing \`${song.name}\` - \`${song.formattedDuration}\`
 ${getStatus(queue)}`,
-        color,
-        author: {
-          name: 'Playlist added to queue ♪',
-          url,
-          icon_url: message.author.displayAvatarURL({ dynamic: true })
+          color,
+          author: {
+            name: 'Playlist added to queue ♪',
+            url,
+            icon_url: song.user.displayAvatarURL({ dynamic: true })
+          }
         }
-      }
+      ]
     })
   )
 
   // When a playlist is added to the queue
-  .on('addList', (message, queue, playlist) =>
-    message.channel.send(
+  .on('addList', (queue, playlist) =>
+    queue.textChannel.send(
       `Added \`${playlist.name}\` playlist (${
         playlist.songs.length
       } songs) to queue
@@ -139,11 +135,9 @@ ${result
   .on('searchCancel', message => message.reply(':white_check_mark:'))
 
   // When error occurs
-  .on('error', (message, err) => {
+  .on('error', (channel, err) => {
     client.log.error(err)
-    message.channel.send(`:x: An error occurred: ${err.message}`)
+    channel.send(`:x: An error occurred: ${err.message}`)
   })
 
 module.exports = client.distube = distube
-
-require('./logger').info('distube handler loaded')
