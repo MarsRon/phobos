@@ -51,7 +51,7 @@ module.exports = {
       ]
     })
 
-    // Collect reactions
+    // Collect input
     let int
     try {
       int = await msg.awaitMessageComponent({
@@ -60,7 +60,7 @@ module.exports = {
         time: 30000
       })
     } catch (err) {
-      return msg.reply(":x: You didn't react in time.")
+      return msg.reply(":x: You didn't press the buttons in time.")
     }
 
     // Get results
