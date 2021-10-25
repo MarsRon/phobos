@@ -99,18 +99,20 @@ Please send a report to <@${ownerID}> (${
 
       const logChannel = client.channels.cache.get(logChannelID)
       logChannel.send({
-        embed: {
-          title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
-          description: '```js\n' + err + '\n```',
-          url: message.url,
-          color: 0xff0000,
-          fields: [
-            ['User', `${author.toString()} (${author.tag})`],
-            message.guild
-              ? ['Guild', `${message.guild.name} (${message.guild.id})`]
-              : ['DM', `${author.toString()} (${author.tag})`]
-          ].map(([name, value]) => ({ name, value, inline: true }))
-        }
+        embeds: [
+          {
+            title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
+            description: '```js\n' + err + '\n```',
+            url: message.url,
+            color: 0xff0000,
+            fields: [
+              ['User', `${author.toString()} (${author.tag})`],
+              message.guild
+                ? ['Guild', `${message.guild.name} (${message.guild.id})`]
+                : ['DM', `${author.toString()} (${author.tag})`]
+            ].map(([name, value]) => ({ name, value, inline: true }))
+          }
+        ]
       })
     }
   }

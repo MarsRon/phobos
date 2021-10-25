@@ -11,5 +11,3 @@ app.use('/assets', express.static('assets'))
 app.listen(port, () =>
   logger.info(`Webserver running on https://localhost:${port}`)
 )
-
-logger.info('server handler loaded')

@@ -4,12 +4,17 @@ const { readdir } = require('fs')
 const path = require('path')
 
 const logger = require('./logger')
+
 // Get all categories
 readdir(path.join(__dirname, '../commands'), (err, commandsFolder) => {
   if (err) {
     return logger.error(err)
   }
-  const { commands: commandsCollection, cooldowns, aliases } = require('../client')
+  const {
+    commands: commandsCollection,
+    cooldowns,
+    aliases
+  } = require('../client')
   for (const category of commandsFolder) {
     const categoryCollection = new Collection()
     commandsCollection.set(category, categoryCollection)
@@ -41,5 +46,3 @@ readdir(path.join(__dirname, '../commands'), (err, commandsFolder) => {
     })
   }
 })
-
-logger.info('command handler loaded')

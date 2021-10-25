@@ -4,7 +4,7 @@ const path = require('path')
 
 readdir(path.join(__dirname, '../events'), (err, files) => {
   if (err) {
-    console.log(`[handler/event] ${err}`)
+    return client.log.error(`[handler/event] ${err}`)
   }
   files
     .filter(file => file.endsWith('.js'))
@@ -19,5 +19,3 @@ readdir(path.join(__dirname, '../events'), (err, files) => {
       client.log.debug(`Loaded event '${name}'`)
     })
 })
-
-client.log.info('event handler loaded')

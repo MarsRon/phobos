@@ -16,6 +16,4 @@ const logger = {
   error: message => log('ERROR', message)
 }
 
-logger.info('logger handler loaded')
-
 module.exports = logger
