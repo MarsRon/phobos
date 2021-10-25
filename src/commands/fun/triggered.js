@@ -18,9 +18,7 @@ module.exports = {
       }
     )
     message.reply({
-      files: [
-        new MessageAttachment(data, `${user.username}-triggered.gif`)
-      ]
+      files: [new MessageAttachment(data, `${user.username}-triggered.gif`)]
     })
   }
 }
