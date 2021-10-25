@@ -90,13 +90,13 @@ class DBItem extends Map {
   }
 }
 
-const IDSchema = {
+const IdSchema = {
   id: { type: String, required: true, unique: true }
 }
 
 /** Class representing a database item manager. */
 class DBManager {
-  constructor (name, schema = new Schema(IDSchema), defaultValues = {}) {
+  constructor (name, schema = new Schema(IdSchema), defaultValues = {}) {
     /**
      * Name of this database.
      * @type {string}
@@ -107,7 +107,7 @@ class DBManager {
      * Schema of this database.
      * @type {Schema}
      */
-    this.schema = schema.add(IDSchema)
+    this.schema = schema.add(IdSchema)
 
     /**
      * Default values of this database.

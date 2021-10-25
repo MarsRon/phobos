@@ -1,10 +1,10 @@
 const client = require('../client')
-
+const { Guild } = require('../db')
 const config = require('../config')
 const { timeToStr } = require('../utils')
 const wordCatcher = require('../features/wordCatcher')
 
-const { prefix, ownerID, logChannelID } = config
+const { ownerId, logChannelId } = config
 
 module.exports = async function (message) {
   // Message Partial
@@ -16,10 +16,11 @@ module.exports = async function (message) {
     }
   }
 
-  const { author, channel, content, webhookID } = message
+  const { author, channel, content, guild, webhookId } = message
 
-  if (author.bot || webhookID) return
+  if (author.bot || webhookId) return
 
+  const prefix = message.prefix = (await Guild.get(guild.id)).get('prefix')
   if (!content.startsWith(prefix)) {
     return wordCatcher(message)
   }
@@ -83,7 +84,7 @@ module.exports = async function (message) {
     try {
       // Cooldown
       timestamps.set(author.id, now)
-      if (author.id !== ownerID) {
+      if (author.id !== ownerId) {
         setTimeout(() => timestamps.delete(author.id), cooldownAmount)
       }
 
@@ -93,11 +94,11 @@ module.exports = async function (message) {
 
       message.reply(`:x: An error occurred: ${err.message}
 You should usually never see this message
-Please send a report to <@${ownerID}> (${
-        (await client.users.fetch(ownerID)).tag
+Please send a report to <@${ownerId}> (${
+        (await client.users.fetch(ownerId)).tag
       })`)
 
-      const logChannel = client.channels.cache.get(logChannelID)
+      const logChannel = client.channels.cache.get(logChannelId)
       logChannel.send({
         embeds: [
           {

@@ -1,15 +1,13 @@
 const { MessageEmbed } = require('discord.js')
+const { Guild } = require('../../db')
 const client = require('../../client')
 const config = require('../../config')
 
-const {
-  embed: { avatar, color, url },
-  prefix
-} = config
+const { avatar, color, url } = config.embed
 
 const titleCase = s => s.charAt(0).toUpperCase() + s.slice(1)
 
-function getEmbed (query) {
+function getEmbed (query, prefix) {
   const embed = new MessageEmbed().setColor(color)
 
   if (query) {
@@ -69,7 +67,9 @@ module.exports = {
   alias: ['commands'],
   description: 'Shows information about a command/category.',
   usage: '<category|command>',
-  execute (message, args) {
-    message.reply({ embeds: [getEmbed(args[0])] })
+  async execute (message, args) {
+    message.reply({
+      embeds: [getEmbed(args[0], message.prefix)]
+    })
   }
 }

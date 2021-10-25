@@ -3,8 +3,7 @@ const config = require('../../config')
 
 const {
   embed: { avatar, color, url },
-  ownerID,
-  prefix
+  ownerId
 } = config
 
 async function discordEval (code, message) {
@@ -61,8 +60,8 @@ module.exports = {
   usage: '<js_code>',
   async execute (message) {
     const { author, content } = message
-    if (author.id !== ownerID) return
-    const code = content.slice(prefix.length + 4).trim()
+    if (author.id !== ownerId) return
+    const code = content.slice(message.prefix.length + 4).trim()
     discordEval(code, message)
   }
 }

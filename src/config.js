@@ -13,7 +13,7 @@ const config = {
   // https://anidiots.guide/examples/making-an-eval-command#securing-your-eval
   // Or you can just remove the eval command ;)
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  ownerID: '611166639534112769',
+  ownerId: '611166639534112769',
 
   // Bot invite
   invite:
@@ -52,7 +52,7 @@ const config = {
 
   // Logging channel
   // This is where the bot logs errors
-  logChannelID: '823168168276131851'
+  logChannelId: '823168168276131851'
 }
 
 module.exports = config
