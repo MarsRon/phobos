@@ -1,5 +1,8 @@
 const { User } = require('../../db')
 const { getUserFromMessage } = require('../../utils')
+const config = require('../../config')
+
+const { ownerId } = config
 
 module.exports = {
   name: 'give-coins',
@@ -9,7 +12,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 5,
   async execute (message, args) {
-    if (message.author.id !== process.env.OWNER_ID) return
+    if (message.author.id !== ownerId) return
 
     const target = await getUserFromMessage(message, args[0])
     if (!target) {
@@ -23,6 +26,6 @@ module.exports = {
 
     const item = await User.get(target.id)
     item.inc('wallet', amount)
-    message.reply(`**${target.displayName}** successfully received ${amount}$`)
+    message.reply(`**${target.username}** successfully received ${amount}$`)
   }
 }

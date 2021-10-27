@@ -22,11 +22,11 @@ class DBItem extends Map {
     this.id = id
     this._doc = doc
 
-    this.set('id', id)
+    this._set('id', id)
 
     const docValues = doc.toObject()
     for (const [key, value] of Object.entries(defaultValues)) {
-      this.set(key, docValues[key] ?? value)
+      this._set(key, docValues[key] ?? value)
     }
 
     return this
@@ -37,12 +37,7 @@ class DBItem extends Map {
    * @returns {DBItem}
    */
   save () {
-    if (!this._saving) {
-      this._saving = true
-      this._doc.save().then(() => {
-        this._saving = false
-      })
-    }
+    this._doc.updateOne()
     return this
   }
 
