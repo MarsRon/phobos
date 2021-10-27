@@ -14,16 +14,17 @@ module.exports = {
   async execute (message) {
     const embed = {
       fields: [
-        ['📂 Commands List', `\`${message.prefix}cmds <category|command>\``, false],
+        [
+          '📂 Commands List',
+          `\`${message.prefix}cmds <category|command>\``,
+          false
+        ],
         ['✅ Help Page', url, false],
         [
           'Open-source',
           `[${emoji.github} GitHub repo](https://github.com/MarsRon/phobos)`
         ],
-        [
-          'Developed by',
-          `[${emoji.marsron} MarsRon](https://marsron.github.io)`
-        ],
+        ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.ml)`],
         ['Invite link', `[${emoji.phobos} ${message.prefix}invite](${invite})`],
         ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`]
       ].map(([name, value, inline = true]) => ({ name, value, inline })),

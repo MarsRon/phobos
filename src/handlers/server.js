@@ -3,7 +3,7 @@ const client = require('../client')
 const logger = require('./logger')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 8001
 
 app.use(express.static('site'))
 app.use('/assets', express.static('assets'))

@@ -45,7 +45,7 @@ module.exports = {
       num_comments: comments
     } = post
 
-    const image = preview?.images[0].source.url.replace('&amp;', '&') ?? post.url
+    const image = preview?.images[0].source.url.replace(/&amp;/g, '&') ?? post.url
 
     if (postType === 'rich:video') {
       return message.reply(video)
