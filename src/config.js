@@ -2,7 +2,7 @@
 
 const config = {
   // Command prefix (e.g. !help, ?help, >help, .help etc.)
-  prefix: ',',
+  prefix: '.',
 
   // YOUR Discord user ID
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
