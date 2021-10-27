@@ -21,7 +21,8 @@ class PhobosClient extends Client {
     }
     this.log = logger
     this.db = {
-      user: require('./db/index').User
+      user: require('./db').User,
+      guild: require('./db').Guild
     }
   }
 }

@@ -37,7 +37,7 @@ class DBItem extends Map {
    * @returns {DBItem}
    */
   save () {
-    this._doc.updateOne()
+    this._doc.save()
     return this
   }
 
