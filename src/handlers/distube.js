@@ -27,6 +27,10 @@ const distube = new DisTube.DisTube(client, {
 })
 
 distube
+  // Autoplay
+  .on('initQueue', queue => {
+    queue.autoplay = true
+  })
 
   // When a song starts playing
   .on(
