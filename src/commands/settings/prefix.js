@@ -6,7 +6,7 @@ module.exports = {
   args: true,
   usage: '<prefix>',
   guildOnly: true,
-  permission: 'MANAGE_SERVER',
+  permission: 'MANAGE_GUILD',
   cooldown: 5,
   async execute (message, args) {
     const item = await Guild.get(message.guild.id)

@@ -16,7 +16,7 @@ module.exports = async function (message) {
     }
   }
 
-  const { author, channel, content, guild, webhookId } = message
+  const { author, channel, content, guild, member, webhookId } = message
 
   if (author.bot || webhookId) return
 
@@ -64,7 +64,7 @@ module.exports = async function (message) {
       }
       // Permission check
       if (command.permission) {
-        const perms = channel.permissionsFor(author)
+        const perms = channel.permissionsFor(member)
         if (!(perms && perms.has(command.permission))) {
           return message.reply(':x: Missing permission')
         }
