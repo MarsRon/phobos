@@ -1,7 +1,8 @@
-const { Client, Collection, Intents } = require('discord.js')
+const { Client, Collection, Intents, Options } = require('discord.js')
 
 const logger = require('./handlers/logger')
 const config = require('./config')
+const db = require('./db')
 
 class PhobosClient extends Client {
   constructor (options) {
@@ -21,8 +22,8 @@ class PhobosClient extends Client {
     }
     this.log = logger
     this.db = {
-      user: require('./db').User,
-      guild: require('./db').Guild
+      user: db.User,
+      guild: db.Guild
     }
   }
 }
@@ -46,7 +47,10 @@ const options = {
     // 1 GUILDS
     0b011011010011111
   ),
-  partials: ['CHANNEL', 'MESSAGE', 'REACTION']
+  partials: ['CHANNEL', 'MESSAGE', 'REACTION'],
+  makeCache: Options.cacheWithLimits({
+    MessageManager: 100
+  })
 }
 
 const client = new PhobosClient(options)
