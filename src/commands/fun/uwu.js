@@ -1,6 +1,6 @@
 const Uwuifier = require('uwuifier')
 
-const { uwuifySentence: uwu } = new Uwuifier()
+const uwu = new Uwuifier()
 
 module.exports = {
   name: 'uwu',
@@ -9,6 +9,6 @@ module.exports = {
   args: true,
   usage: '<text>',
   execute (message, args) {
-    message.reply(uwu(args.join(' ')))
+    message.reply(uwu.uwuifySentence(args.join(' ')))
   }
 }
