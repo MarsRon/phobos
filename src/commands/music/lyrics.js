@@ -32,7 +32,7 @@ module.exports = {
 
     try {
       const { data } = await axios.get(
-        'https://some-random-api.ml/lyrics?title=' + encodeURI(query)
+        `https://some-random-api.ml/lyrics?title=${encodeURI(query)}`
       )
 
       if (typeof data === 'string') {
