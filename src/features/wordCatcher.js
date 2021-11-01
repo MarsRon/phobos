@@ -1,4 +1,3 @@
-const { Message } = require('discord.js')
 const emoji = require('../emoji.json')
 
 const normalWords = [
@@ -13,12 +12,7 @@ const normalWords = [
   [/\b(?:yo)?u\s+suck?/, 'no u'],
   [/\bn(?:o+|u+)b\b/, emoji.unoreverse],
   [/<@!?738252807525892139>/, 'why ping me'],
-  [/phobos/, 'who called me'],
-  [
-    /\b(?:l?ts|(?:lau\s*)?ting\s*sheng|[td]iu\s*seng)\b/,
-    "‼️1‼️1HOLY FUCKING SHIT11‼️‼️‼️1‼️ IS THAT A MOTHERFUCKING TING SHENG REFERENCE??????!!!!!!!!!!11!1!1!1!1!1!1! 😱😱😱😱😱😱😱 THREECOAST STRIKES AGAIN🔥🔥🔥🔥💯💯💯💯 FUCK YOUUUUU PC PLAYERS 😎😎😎😎😎😎😎👊👊👊👊👊 ORAORAORAORAORALORAORAORAORAORAORAORAORAORAORAORAORAORAORAORA 😩😩😩😩😩😩😩😩 😩😩😩😩 MUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDAMUDA 🤬😡🤬😡🤬😡🤬🤬😡🤬🤬😡WRYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY I😤LIVE😤IN😤SOUTH😤KOREA😤😤DONT😤BLAME😤MY😤😤😤INTERNET🗿 🗿 🗿 🗿 🗿 🗿 Oh you’re approaching me❓❓❓222❓❓2❓22❓❓❓❓That's what u get when u ANGER MEEEE‼️1‼️1‼️‼️1‼️‼️‼️‼️‼️WATCH ME FLYING IN SERVER!!!111!!1!!!!11!1😂🤣😂🤣😂🤣😂😂😂🤣🤣🤣😂😂😂 r/shitpostcrusaders r/builders r/fuckallpcplayers r/peasantsucks perfectly balanced as all things should be r/unexpectedthanos r/expectedthanos for balance\n‼️1‼️1HOLY FUCKING SHIT11‼️‼️‼️1‼️\nSHUT THE FUCK UP"
-  ],
-  [/pog(?:gers)?\s+story/, "pls enjoy ting sheng's poggers story https://marsron.ml/blog/ting-shengs-poggers-story"]
+  [/phobos/, 'who called me']
 ]
 
 const catchers = [
