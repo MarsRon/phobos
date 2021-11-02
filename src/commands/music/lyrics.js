@@ -32,23 +32,22 @@ module.exports = {
 
     try {
       const { data } = await axios.get(
-        `https://some-random-api.ml/lyrics?title=${encodeURI(query)}`
+        `https://some-random-api.ml/lyrics?title=${encodeURIComponent(query)}`
       )
-
-      if (typeof data === 'string') {
-        return message.channel.send(':x: Lyrics not found')
-      }
 
       const { author, links, lyrics, title, thumbnail } = data
 
+      // Split into multiple messages
       const lyricsChunks = splitMessage(lyrics)
       const embeds = lyricsChunks.map((description, index) => {
         const embed = { description, color }
+        // If it's first embed, add title and thumbnail
         if (index === 0) {
           embed.title = `${author} - ${title}`
           embed.thumbnail = { url: Object.values(thumbnail)[0] }
           embed.url = Object.values(links)[0]
         }
+        // If it's last embed, add footer
         if (index + 1 === lyricsChunks.length) {
           embed.footer = {
             text: `${title} - Requested by ${member?.displayName ??
@@ -61,9 +60,8 @@ module.exports = {
       for (const embed of embeds) {
         await message.channel.send({ embeds: [embed] })
       }
-    } catch (e) {
-      message.client.log.error(`${e}`)
-      message.reply(':x: An error occurred: ' + e.response?.data.error)
+    } catch (error) {
+      message.reply(`:x: ${error.response?.data.error}`)
     }
   }
 }

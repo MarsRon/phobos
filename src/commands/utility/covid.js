@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios').default
 const config = require('../../config')
 
 const { avatar, color } = config.embed
@@ -11,7 +11,14 @@ module.exports = {
   alias: ['covid19', 'cov'],
   description: 'COVID-19 Statistics for Malaysia.',
   async execute (message) {
-    const res = await axios.get(url)
+    let res
+    try {
+      res = await axios.get(url)
+    } catch (error) {
+      message.client.log.error(`${error}`)
+      return message.reply(':x: Sorry, an error occurred!')
+    }
+
     const {
       cases,
       todayCases,
@@ -19,15 +26,16 @@ module.exports = {
       todayRecovered,
       deaths,
       todayDeaths,
-      critical,
-      tests,
       active,
       oneCasePerPeople,
       oneDeathPerPeople,
-      oneTestPerPeople,
-
       countryInfo: { flag }
     } = res.data
+
+    // Yesterday 23:59
+    const timestamp = new Date()
+    timestamp.setDate(timestamp.getDate() - 1)
+    timestamp.setHours(23, 59, 0, 0)
 
     message.reply({
       embeds: [
@@ -49,17 +57,14 @@ module.exports = {
               `**${deaths.toLocaleString()}**\n+${todayDeaths.toLocaleString()}`
             ],
             ['Active', active.toLocaleString()],
-            ['Critical', critical.toLocaleString()],
-            ['Tested', tests.toLocaleString()],
-            ['1 Case Per', `${oneCasePerPeople.toLocaleString()} people`],
-            ['1 Death Per', `${oneDeathPerPeople.toLocaleString()} people`],
-            ['1 Test Per', `${oneTestPerPeople.toLocaleString()} people`]
+            ['Cases per 1k', (1000 / oneCasePerPeople).toLocaleString()],
+            ['Deaths per 1k', (1000 / oneDeathPerPeople).toLocaleString()]
           ].map(([name, value]) => ({ name, value, inline: true })),
           footer: {
-            text: 'Stay safe, mate.',
+            text: 'Get vaccinated, antivaxxers.',
             icon_url: avatar
           },
-          timestamp: Date.now(),
+          timestamp,
           thumbnail: { url: flag }
         }
       ]

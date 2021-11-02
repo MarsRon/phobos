@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios').default
 const config = require('../../config')
 
 const { color } = config.embed
@@ -11,14 +11,19 @@ module.exports = {
   description: 'Sends a random Hatsune Miku image!',
   cooldown: 5,
   async execute (message) {
-    const res = await axios.get(apiUrl)
-    message.reply({
-      embeds: [
-        {
-          color,
-          image: { url: res.data.url }
-        }
-      ]
-    })
+    try {
+      const { data } = await axios.get(apiUrl)
+      message.reply({
+        embeds: [
+          {
+            color,
+            image: { url: data.url }
+          }
+        ]
+      })
+    } catch (error) {
+      message.client.log.error(`${error}`)
+      message.reply(`:x: An error occurred`)
+    }
   }
 }
