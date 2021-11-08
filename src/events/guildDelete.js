@@ -1,4 +1,3 @@
-const { Guild } = require('discord.js')
 const client = require('../client')
 const config = require('../config')
 const { inspect } = require('util')
