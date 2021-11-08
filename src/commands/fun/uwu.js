@@ -1,3 +1,4 @@
+const { splitMessage } = require('discord.js').Util
 const Uwuifier = require('uwuifier')
 
 const uwu = new Uwuifier()
@@ -8,7 +9,12 @@ module.exports = {
   description: 'Uwuifies your message.',
   args: true,
   usage: '<text>',
-  execute (message, args) {
-    message.reply(uwu.uwuifySentence(args.join(' ')))
+  async execute (message, args) {
+    const uwuified = uwu
+      .uwuifySentence(args.join(' '))
+      .replace(/\(・`ω´・\)/g, '(・\\`ω´・)')
+    for (const text of splitMessage(uwuified, { char: ['\n', ' '] })) {
+      await message.reply(text)
+    }
   }
 }
