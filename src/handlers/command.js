@@ -27,7 +27,7 @@ readdir(path.join(__dirname, '../commands'), (err, commandsFolder) => {
       }
 
       const commands = categoryFolder
-        .filter(file => /\.[jt]s$/.test(file))
+        .filter(file => /\.js$/.test(file))
         .map(file => require(`../commands/${category}/${file}`))
 
       for (const command of commands) {
