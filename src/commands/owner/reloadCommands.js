@@ -1,3 +1,4 @@
+const { Collection } = require('discord.js')
 const { readdir } = require('fs/promises')
 const path = require('path')
 const config = require('../../config')
@@ -13,7 +14,7 @@ module.exports = {
 
     // Get all categories
     const commandsFolder = await readdir(path.join(__dirname, '../../commands'))
-    const { commands: commandsCollection, aliases } = message.client
+    const { commands: commandsCollection, cooldowns, aliases } = message.client
     for (const category of commandsFolder) {
       const categoryCollection = commandsCollection.get(category)
 
@@ -37,6 +38,10 @@ module.exports = {
         categoryCollection.set(name, command)
         if (alias) {
           alias.forEach(a => aliases.set(a, command))
+        }
+
+        if (!cooldowns.has(name)) {
+          cooldowns.set(name, new Collection())
         }
       }
 
