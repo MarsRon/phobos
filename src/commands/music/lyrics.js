@@ -21,7 +21,7 @@ module.exports = {
     if (query === '' && guild) {
       const queue = distube.getQueue(message)
       if (queue) {
-        query = queue.songs[0].title
+        query = queue.songs[0].name
       } else {
         return message.reply(
           ':x: You need to provide a song name to be searched'
