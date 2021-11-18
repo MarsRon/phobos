@@ -21,5 +21,15 @@ module.exports = {
     } else {
       queue.repeatMode = 0
     }
+
+    message.reply(
+      `Now looping ${
+        queue.repeatMode
+          ? queue.repeatMode === 2
+            ? 'queue'
+            : 'this song'
+          : 'no loop'
+      }`
+    )
   }
 }
