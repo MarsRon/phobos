@@ -14,22 +14,15 @@ module.exports = {
     }
     const arg = args[0]
 
+    let mode = 0
     if (/s|song|1/.test(arg)) {
-      queue.repeatMode = 1
+      mode = 1
     } else if (/q|queue|2/.test(arg)) {
-      queue.repeatMode = 2
-    } else {
-      queue.repeatMode = 0
+      mode = 2
     }
-
+    queue.repeatMode = mode
     message.reply(
-      `Now looping ${
-        queue.repeatMode
-          ? queue.repeatMode === 2
-            ? 'queue'
-            : 'this song'
-          : 'no loop'
-      }`
+      `Now looping ${mode ? (mode === 2 ? 'queue' : 'this song') : 'no loop'}`
     )
   }
 }
