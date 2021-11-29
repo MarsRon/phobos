@@ -61,7 +61,13 @@ ${getStatus(queue)}`,
     'addSong',
     (
       queue,
-      { name: title, url: songUrl, formattedDuration, thumbnail, user }
+      {
+        name: title,
+        url: songUrl,
+        formattedDuration,
+        thumbnail,
+        user
+      }
     ) =>
       queue.textChannel.send({
         embeds: [
@@ -74,15 +80,20 @@ ${getStatus(queue)}`,
                 'Estimated time until playing',
                 formatDuration(
                   queue.songs.reduce(
-                    // Add all song duration
-                    (acc, cur) => acc + cur.duration,
+                    // Add all song duration up until added song
+                    (acc, cur, i) =>
+                      i < queue.songs.findIndex(s => s.name === title)
+                        ? acc + cur.duration
+                        : acc,
                     // Calculate time left for current song
-                    -Math.floor(queue.currentTime) -
-                      queue.songs[queue.songs.length - 1].duration
+                    -Math.floor(queue.currentTime)
                   )
                 )
               ],
-              ['Position in queue', (queue.songs.length - 1).toLocaleString()]
+              [
+                'Position in queue',
+                queue.songs.findIndex(s => s.name === title).toLocaleString()
+              ]
             ].map(([name, value]) => ({ name, value, inline: true })),
             color,
             thumbnail: { url: thumbnail },
@@ -145,9 +156,7 @@ ${result
   // When error occurs
   .on('error', (channel, err) => {
     client.log.error(err)
-    channel.send(
-      ':x: Sorry, something went wrong ¯\\_(ツ)_/¯'
-    )
+    channel.send(':x: Sorry, something went wrong ¯\\_(ツ)_/¯')
     const logChannel = client.channels.cache.get(logChannelId)
     const message = channel.lastMessage
     logChannel.send({
