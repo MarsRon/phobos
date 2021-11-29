@@ -15,7 +15,7 @@ module.exports = {
     try {
       res = await axios.get(url)
     } catch (error) {
-      message.client.log.error(`${error}`)
+      message.client.log.error(error)
       return message.reply(':x: Sorry, an error occurred!')
     }
 

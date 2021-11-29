@@ -22,7 +22,7 @@ module.exports = {
         ]
       })
     } catch (error) {
-      message.client.log.error(`${error}`)
+      message.client.log.error(error)
       message.reply(`:x: An error occurred`)
     }
   }
