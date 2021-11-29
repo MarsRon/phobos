@@ -3,6 +3,7 @@ const { Guild } = require('../db')
 const config = require('../config')
 const { timeToStr } = require('../utils')
 const wordCatcher = require('../features/wordCatcher')
+const { inspect } = require('util')
 
 const { ownerId, logChannelId } = config
 
@@ -92,18 +93,14 @@ module.exports = async function (message) {
     } catch (err) {
       client.log.error(err)
 
-      message.reply(`:x: An error occurred: ${err.message}
-You should usually never see this message
-Please send a report to <@${ownerId}> (${
-        (await client.users.fetch(ownerId)).tag
-      })`)
+      message.reply(':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯')
 
       const logChannel = client.channels.cache.get(logChannelId)
       logChannel.send({
         embeds: [
           {
             title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
-            description: '```js\n' + err + '\n```',
+            description: '```js\n' + inspect(err) + '\n```',
             url: message.url,
             color: 0xff0000,
             fields: [

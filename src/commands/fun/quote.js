@@ -24,6 +24,6 @@ module.exports = {
         }
       ]
     })
-    message.delete().catch(message.client.log.error)
+    message.delete().catch(() => {})
   }
 }

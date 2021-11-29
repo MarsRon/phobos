@@ -23,7 +23,9 @@ module.exports = {
       })
     } catch (error) {
       message.client.log.error(error)
-      message.reply(`:x: An error occurred`)
+      message.reply(
+        ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
+      )
     }
   }
 }

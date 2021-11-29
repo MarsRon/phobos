@@ -1,10 +1,14 @@
 const DisTube = require('distube')
+const { inspect } = require('util')
 
 const client = require('../client')
 const { formatDuration } = require('distube/dist/util')
 const config = require('../config')
 
-const { avatar, color, url } = config.embed
+const {
+  embed: { avatar, color, url },
+  logChannelId
+} = config
 
 /**
  * Get the queue status
@@ -141,7 +145,25 @@ ${result
   // When error occurs
   .on('error', (channel, err) => {
     client.log.error(err)
-    channel.send(`:x: An error occurred: ${err.message}`)
+    channel.send(
+      ':x: Sorry, something went wrong ¯\\_(ツ)_/¯'
+    )
+    const logChannel = client.channels.cache.get(logChannelId)
+    const message = channel.lastMessage
+    logChannel.send({
+      embeds: [
+        {
+          title: 'Distube Error',
+          description: '```js\n' + inspect(err) + '\n```',
+          url: message.url,
+          color: 0xff0000,
+          fields: [
+            ['User', `${message.author} (${message.author.tag})`],
+            ['Guild', `${channel.guild.name} (${channel.guild.id})`]
+          ].map(([name, value]) => ({ name, value, inline: true }))
+        }
+      ]
+    })
   })
 
 module.exports = client.distube = distube
