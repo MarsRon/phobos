@@ -17,6 +17,12 @@ It includes commands for Fun, Economy, Music, Moderation, Utility and more.
 
 Note: The source code was not created to be a template, but for my own use. Feel free to take whatever inspiration from it that you want, but this code was not written with the intention of being cloned and deployed. As such, I do not provide support or guidance for doing that. I recommend learning to make your own bot from [discordjs.guide][discordjs.guide] or clone other open-sourced projects.
 
+## Dependencies
+
+- Node.js v17+
+- NPM v8+
+- `ffmpeg` installed globally
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE.md][license] for details.
