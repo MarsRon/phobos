@@ -1,4 +1,5 @@
-// Import modules
+// This is the main file where the bot starts from
+
 const dotenv = require('dotenv')
 const { readdirSync } = require('fs')
 const path = require('path')
@@ -9,10 +10,9 @@ dotenv.config()
 const client = require('./client')
 
 // Require handlers
-readdirSync(path.join(__dirname, './handlers')).map(handler =>
-  require(`./handlers/${handler}`)
-)
-
-client.login(process.env.DISCORD_TOKEN)
+const handlers = readdirSync(path.join(__dirname, './handlers'))
+handlers.forEach(handler => require(`./handlers/${handler}`))
 
 client.log.info('All handlers are loaded')
+
+client.login(process.env.DISCORD_TOKEN)

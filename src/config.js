@@ -4,7 +4,7 @@ const config = {
   // Command prefix (e.g. !help, ?help, >help, .help etc.)
   prefix: '.',
 
-  // YOUR Discord user ID
+  // YOUR DISCORD USER ID FOR EVAL COMMAND
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // NOTE: DO NOT PUT IDS OF ANYONE EXCEPT YOURSELF
   // BECAUSE THIS WILL ALLOW THEM TO USE THE EVAL COMMAND
