@@ -44,23 +44,6 @@ class PhobosClient extends Client {
     this.cooldowns = new Collection()
 
     /**
-     * Get a command from name or alias
-     * @param {string} name Command name or alias
-     * @returns {object}
-     */
-    this.getCmd = function getCmd (name) {
-      // Loop through all categories and find commands in them
-      for (const category of this.commands.values()) {
-        const cmd = category.get(name)
-        if (cmd) {
-          return cmd
-        }
-      }
-      // If not found, find in aliases
-      return this.aliases.get(name)
-    }
-
-    /**
      * Custom logger
      * @type {object}
      */
@@ -74,6 +57,23 @@ class PhobosClient extends Client {
       user: db.User,
       guild: db.Guild
     }
+  }
+
+  /**
+   * Get a command from name or alias
+   * @param {string} name Command name or alias
+   * @returns {object} Command
+   */
+  getCmd (name) {
+    // Loop through all categories and find commands in them
+    for (const category of this.commands.values()) {
+      const cmd = category.get(name)
+      if (cmd) {
+        return cmd
+      }
+    }
+    // If not found, find in aliases
+    return this.aliases.get(name)
   }
 }
 
