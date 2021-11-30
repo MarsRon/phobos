@@ -21,7 +21,7 @@ module.exports = async function (message) {
 
   if (author.bot || webhookId) return
 
-  const prefix = message.prefix = (await Guild.get(guild.id)).get('prefix')
+  const prefix = (message.prefix = (await Guild.get(guild.id)).get('prefix'))
   if (!content.startsWith(prefix)) {
     return wordCatcher(message)
   }
@@ -43,6 +43,9 @@ module.exports = async function (message) {
   const command = client.getCmd(args.shift().toLowerCase())
 
   if (command) {
+    // Make the user know the bot is responding
+    channel.sendTyping()
+
     // Cooldown check
     const now = Date.now()
     const timestamps = client.cooldowns.get(command.name)
@@ -93,14 +96,16 @@ module.exports = async function (message) {
     } catch (err) {
       client.log.error(err)
 
-      message.reply(':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯')
+      message.reply(
+        ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
+      )
 
       const logChannel = client.channels.cache.get(logChannelId)
       logChannel.send({
         embeds: [
           {
             title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
-            description: '```js\n' + inspect(err) + '\n```',
+            description: '```js\n' + err.message + '\n```',
             url: message.url,
             color: 0xff0000,
             fields: [
