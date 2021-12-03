@@ -50,7 +50,6 @@ module.exports = {
           description: teams
             .map((team, index) => `**Team ${index + 1}:** ${team.join(', ')}`)
             .join('\n'),
-          url,
           color,
           footer: {
             text: 'Have fun :)',
