@@ -10,37 +10,46 @@ const shuffleArray = arr => {
   return arr
 }
 
-const arrayChunks = (arr, size) =>
-  Array(Math.ceil(arr.length / size))
-    .fill()
-    .map((_, index) => index * size)
-    .map(begin => arr.slice(begin, begin + size))
+// I think this is round robin algorithm
+const getTeams = (players, n = 1) => {
+  // for some reason you can't do
+  // Array(n).fill([])
+  // because it references the same array
+  const teams = Array(n).fill(1).map(() => [])
+  let i = 0
+  while (players.length) {
+    teams[i].push(players.shift())
+    i++
+    if (i >= n) i = 0
+  }
+  return teams
+}
 
 module.exports = {
   name: 'team',
   alias: ['teams', 'teammate', 'teammates'],
   description: 'Let Phobos choose your teammates!',
   args: true,
-  usage: '<players per team> <player1> <player2>...',
+  usage: '<teamNumber> <player1> <player2>...',
   async execute (message, args) {
-    const playersPerTeam = parseInt(args.shift())
+    const teamNumber = parseInt(args.shift())
 
-    if (args.length < 2 || !playersPerTeam || playersPerTeam <= 0) {
+    if (args.length < 2 || !teamNumber || teamNumber <= 0) {
       return message.reply(
         `:x: Please enter the arguments correctly:\nUsage: \`${message.prefix}${this.name} ${this.usage}\``
       )
     }
 
     const players = shuffleArray([...args])
-    const teams = arrayChunks(players, playersPerTeam)
+    const teams = getTeams(players, teamNumber)
 
     message.reply({
       embeds: [
         {
           title: 'Team Distribution',
-          description: teams.map(
-            (team, index) => `**Team ${index + 1}:** ${team.join(', ')}`
-          ).join('\n'),
+          description: teams
+            .map((team, index) => `**Team ${index + 1}:** ${team.join(', ')}`)
+            .join('\n'),
           url,
           color,
           footer: {
