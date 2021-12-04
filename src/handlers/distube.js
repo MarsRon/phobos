@@ -163,7 +163,7 @@ ${result
       embeds: [
         {
           title: 'Distube Error',
-          description: '```js\n' + inspect(err) + '\n```',
+          description: '```js\n' + inspect(err).slice(0, 4086) + '```',
           url: message.url,
           color: 0xff0000,
           fields: [

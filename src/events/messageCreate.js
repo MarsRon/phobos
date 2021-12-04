@@ -105,7 +105,7 @@ module.exports = async function (message) {
         embeds: [
           {
             title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
-            description: '```js\n' + err.message + '\n```',
+            description: '```js\n' + err.message.slice(0, 4086) + '```',
             url: message.url,
             color: 0xff0000,
             fields: [
