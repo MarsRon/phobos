@@ -3,8 +3,6 @@ const config = require('../../config')
 
 const { color } = config.embed
 
-const apiUrl = 'https://miku-for.us/api/v2/random'
-
 module.exports = {
   name: 'miku',
   alias: ['hatsune-miku'],
@@ -12,7 +10,7 @@ module.exports = {
   cooldown: 5,
   async execute (message) {
     try {
-      const { data } = await axios.get(apiUrl)
+      const { data } = await axios.get('https://miku-for.us/api/v2/random')
       message.reply({
         embeds: [
           {
