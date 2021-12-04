@@ -51,7 +51,7 @@ module.exports = {
               ['Deaths per 1k', (deathsPerOneMillion / 1000).toLocaleString()]
             ].map(([name, value]) => ({ name, value, inline: true })),
             footer: {
-              text: 'Get vaccinated, antivaxxers.',
+              text: 'Stay safe.',
               icon_url: avatar
             },
             timestamp: updated,
