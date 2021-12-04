@@ -31,9 +31,9 @@ module.exports = {
     message.reply(`:mag_right: **Searching lyrics for** \`${query}\``)
 
     try {
-      const { data } = await axios.get(
-        `https://some-random-api.ml/lyrics?title=${encodeURIComponent(query)}`
-      )
+      const { data } = await axios.get('https://some-random-api.ml/lyrics', {
+        params: { title: query }
+      })
 
       const { author, links, lyrics, title, thumbnail } = data
 
@@ -61,7 +61,10 @@ module.exports = {
         await message.channel.send({ embeds: [embed] })
       }
     } catch (error) {
-      message.reply(`:x: ${error.response?.data.error}`)
+      message.client.log.error(error)
+      message.reply(
+        ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
+      )
     }
   }
 }
