@@ -27,6 +27,7 @@ module.exports = {
 
     item.inc('wallet', -depAmount)
     item.inc('bank', depAmount)
+    item.save()
     message.reply(`Deposited ${depAmount}$ into bank`)
   }
 }

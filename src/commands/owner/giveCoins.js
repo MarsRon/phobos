@@ -26,6 +26,7 @@ module.exports = {
 
     const item = await User.get(target.id)
     item.inc('wallet', amount)
+    item.save()
     message.reply(`**${target.username}** successfully received ${amount}$`)
   }
 }

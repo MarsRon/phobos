@@ -27,6 +27,7 @@ module.exports = {
 
     item.inc('bank', -wdAmount)
     item.inc('wallet', wdAmount)
+    item.save()
     message.reply(`Withdrawn ${wdAmount}$ from bank`)
   }
 }

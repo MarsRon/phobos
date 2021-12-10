@@ -21,6 +21,7 @@ module.exports = {
     const wallet = Math.round(200 * multiplier)
     item.inc('wallet', wallet)
     item.set('lastDaily', now)
+    item.save()
     message.reply(
       `You received ${wallet}$! Run this command everyday to get your free coins!`
     )

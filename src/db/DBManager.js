@@ -50,7 +50,6 @@ class DBItem extends Map {
   set (key, value) {
     this._set(key, value)
     this._doc.set(key, value)
-    return this.save()
   }
 
   /**

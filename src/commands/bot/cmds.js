@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js')
-const { Guild } = require('../../db')
 const client = require('../../client')
 const config = require('../../config')
 

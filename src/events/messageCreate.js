@@ -3,7 +3,6 @@ const { Guild } = require('../db')
 const config = require('../config')
 const { timeToStr } = require('../utils')
 const wordCatcher = require('../features/wordCatcher')
-const { inspect } = require('util')
 
 const { ownerId, logChannelId } = config
 
@@ -21,7 +20,9 @@ module.exports = async function (message) {
 
   if (author.bot || webhookId) return
 
-  const prefix = (message.prefix = (await Guild.get(guild.id)).get('prefix'))
+  const prefix = (await Guild.get(guild.id)).get('prefix')
+  message.prefix = prefix
+
   if (!content.startsWith(prefix)) {
     return wordCatcher(message)
   }

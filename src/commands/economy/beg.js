@@ -10,6 +10,7 @@ module.exports = {
       (Math.floor(Math.random() * 50) + 1) * item.get('multiplier')
     )
     item.inc('wallet', wallet)
+    item.save()
     message.reply(`You begged and received ${wallet}$!`)
   }
 }

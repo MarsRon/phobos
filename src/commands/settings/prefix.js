@@ -12,14 +12,15 @@ module.exports = {
     const item = await Guild.get(message.guild.id)
     if (args[0] === 'reset') {
       item.set('prefix', process.env.PREFIX)
+      item.save()
       return message.reply(
         `Successfully reset prefix to \`${process.env.PREFIX}\``
       )
     }
 
     const prefix = args[0].slice(0, 5)
-
     item.set('prefix', prefix)
+    item.save()
     message.reply(
       `Successfully set \`${prefix}\` as Phobos' prefix!\nIf you wish to reset it, please run \`${prefix}prefix reset\``
     )
