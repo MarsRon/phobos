@@ -20,6 +20,9 @@ module.exports = {
         ]
       })
     } catch (error) {
+      if (error.message === 'getaddrinfo ENOTFOUND miku-for.us') {
+        return message.reply(':x: Sorry, this command is under maintenance')
+      }
       message.client.log.error(error)
       message.reply(
         ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
