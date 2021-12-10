@@ -9,7 +9,9 @@ const log = (level, message) =>
 
 const logger = {
   debug: message => {
-    if (process.env.DEBUG) log('DEBUG', message)
+    if (process.env.DEBUG === 'true') {
+      log('DEBUG', message)
+    }
   },
   info: message => log('INFO', message),
   warn: message => log('WARN', message),
