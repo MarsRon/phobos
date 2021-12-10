@@ -3,8 +3,9 @@ const { Guild } = require('../db')
 const config = require('../config')
 const { timeToStr } = require('../utils')
 const wordCatcher = require('../features/wordCatcher')
+const { inspect } = require('util')
 
-const { ownerId, logChannelId } = config
+const { ownerId } = config
 
 module.exports = async function (message) {
   // Message Partial
@@ -94,26 +95,23 @@ module.exports = async function (message) {
       }
 
       await command.execute(message, args)
-    } catch (err) {
-      client.log.error(err)
-
+    } catch (error) {
+      client.log.error(error)
       message.reply(
         ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
       )
-
-      const logChannel = client.channels.cache.get(logChannelId)
-      logChannel.send({
+      client.logChannel.send({
         embeds: [
           {
             title: `${message.guild?.name ?? `DM ${author.tag}`} Error`,
-            description: '```js\n' + err.message.slice(0, 4086) + '```',
+            description: '```js\n' + inspect(error).slice(0, 4086) + '```',
             url: message.url,
             color: 0xff0000,
             fields: [
-              ['User', `${author.toString()} (${author.tag})`],
-              message.guild
-                ? ['Guild', `${message.guild.name} (${message.guild.id})`]
-                : ['DM', `${author.toString()} (${author.tag})`]
+              ['User', `${author} (${author.tag})`],
+              guild
+                ? ['Guild', `${guild.name} (${guild.id})`]
+                : ['DM', `${author} (${author.tag})`]
             ].map(([name, value]) => ({ name, value, inline: true }))
           }
         ]

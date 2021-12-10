@@ -1,21 +1,28 @@
+const { createLogger, format, transports } = require('winston')
 const { inspect } = require('util')
 
-const log = (level, message) =>
-  console.log(
-    `${new Date().toISOString()} [${level}] ${
-      typeof message === 'string' ? message : inspect(message, { colors: true })
-    }`
-  )
+const log = createLogger({
+  level: process.env.DEBUG === 'true' ? 'debug' : 'info',
+  format: format.combine(
+    format.timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }),
+    format.colorize({ level: true }),
+    format.errors({ stack: true }),
+    format.printf(a => {
+      const { level, message, timestamp } = a
+      const txt = `${timestamp} [${level.replace(
+        /(?<=\x1B\[.+?m).+?(?=\x1B\[.+?m)/,
+        m => m.toUpperCase()
+      )}]: ${
+        typeof message === 'string'
+          ? message
+          : inspect(message, { colors: true })
+      }`
+      return txt
+    })
+  ),
+  transports: [new transports.Console()]
+})
 
-const logger = {
-  debug: message => {
-    if (process.env.DEBUG === 'true') {
-      log('DEBUG', message)
-    }
-  },
-  info: message => log('INFO', message),
-  warn: message => log('WARN', message),
-  error: message => log('ERROR', message)
-}
-
-module.exports = logger
+module.exports = log

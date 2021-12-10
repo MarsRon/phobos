@@ -27,7 +27,8 @@
     "express": "^4.17.1",
     "mongoose": "^6.1.1",
     "sodium": "^3.0.2",
-    "uwuifier": "^4.0.4"
+    "uwuifier": "^4.0.4",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

@@ -1,7 +1,7 @@
 const { Client, Collection, Intents, Options } = require('discord.js')
 
 // Required handlers
-const logger = require('./handlers/logger')
+const log = require('./handlers/logger')
 const config = require('./config')
 const db = require('./db')
 
@@ -47,7 +47,7 @@ class PhobosClient extends Client {
      * Custom logger
      * @type {object}
      */
-    this.log = logger
+    this.log = log
 
     /**
      * Databases

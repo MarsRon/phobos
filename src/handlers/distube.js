@@ -5,10 +5,7 @@ const client = require('../client')
 const { formatDuration } = require('distube/dist/util')
 const config = require('../config')
 
-const {
-  embed: { avatar, color, url },
-  logChannelId
-} = config
+const { avatar, color, url } = config.embed
 
 /**
  * Get the queue status
@@ -61,13 +58,7 @@ ${getStatus(queue)}`,
     'addSong',
     (
       queue,
-      {
-        name: title,
-        url: songUrl,
-        formattedDuration,
-        thumbnail,
-        user
-      }
+      { name: title, url: songUrl, formattedDuration, thumbnail, user }
     ) =>
       queue.textChannel.send({
         embeds: [
@@ -134,8 +125,7 @@ ${getStatus(queue)}`,
     queue.textChannel.send(
       `Added \`${playlist.name}\` playlist (${
         playlist.songs.length
-      } songs) to queue
-${getStatus(queue)}`
+      } songs) to queue\n${getStatus(queue)}`
     )
   )
 
@@ -154,21 +144,31 @@ ${result
   .on('searchCancel', message => message.reply(':white_check_mark:'))
 
   // When error occurs
-  .on('error', (channel, err) => {
-    client.log.error(err)
+  .on('error', (channel, error) => {
+    if (error.message === 'No result found') {
+      return channel.send(':x: Sorry I found nothing ¯\\_(ツ)_/¯')
+    }
+    if (
+      error.name === 'PlayError' &&
+      error.message.replace(/^https?:\/\/\S+?\n/, '') ===
+        'Sign in to confirm your age'
+    ) {
+      return channel.send(':x: Sorry mate, no NSFW stuff')
+    }
+
+    client.log.error(error)
     channel.send(':x: Sorry, something went wrong ¯\\_(ツ)_/¯')
-    const logChannel = client.channels.cache.get(logChannelId)
-    const message = channel.lastMessage
-    logChannel.send({
+    const { author, guild } = channel.lastMessage
+    client.logChannel.send({
       embeds: [
         {
           title: 'Distube Error',
-          description: '```js\n' + inspect(err).slice(0, 4086) + '```',
-          url: message.url,
+          description: '```js\n' + inspect(error).slice(0, 4086) + '```',
+          url: channel.lastMessage.url,
           color: 0xff0000,
           fields: [
-            ['User', `${message.author} (${message.author.tag})`],
-            ['Guild', `${channel.guild.name} (${channel.guild.id})`]
+            ['User', `${author} (${author.tag})`],
+            ['Guild', `${guild.name} (${guild.id})`]
           ].map(([name, value]) => ({ name, value, inline: true }))
         }
       ]
