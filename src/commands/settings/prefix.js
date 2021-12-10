@@ -1,4 +1,6 @@
 const { Guild } = require('../../db')
+const config = require('../../config')
+const { prefix } = config
 
 module.exports = {
   name: 'prefix',
@@ -11,11 +13,9 @@ module.exports = {
   async execute (message, args) {
     const item = await Guild.get(message.guild.id)
     if (args[0] === 'reset') {
-      item.set('prefix', process.env.PREFIX)
+      item.set('prefix', prefix)
       item.save()
-      return message.reply(
-        `Successfully reset prefix to \`${process.env.PREFIX}\``
-      )
+      return message.reply(`Successfully reset prefix to \`${prefix}\``)
     }
 
     const prefix = args[0].slice(0, 5)
