@@ -5,8 +5,15 @@ const { activity, logChannelId } = config
 
 module.exports = async function () {
   const { log, user } = client
-  user.setActivity(activity.name(client), activity.options)
+
+  const setActivity = () => {
+    user.setActivity(activity.name(client), activity.options)
+  }
+  setActivity()
+  setInterval(setActivity, 60 * 60 * 1000)
+
   log.info(`${user.tag} is online`)
+
   client.logChannel = await client.channels.fetch(logChannelId)
 }
 
