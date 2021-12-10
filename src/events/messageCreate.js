@@ -21,7 +21,7 @@ module.exports = async function (message) {
 
   if (author.bot || webhookId) return
 
-  const prefix = (await Guild.get(guild.id)).get('prefix')
+  const prefix = guild ? (await Guild.get(guild.id)).get('prefix') : config.prefix
   message.prefix = prefix
 
   if (!content.startsWith(prefix)) {
@@ -93,6 +93,14 @@ module.exports = async function (message) {
       if (author.id !== ownerId) {
         setTimeout(() => timestamps.delete(author.id), cooldownAmount)
       }
+
+      client.log.info('Command: ' + JSON.stringify({
+        user: author.tag,
+        id: author.id,
+        guild: guild?.name,
+        guild: guild?.id,
+        command: content
+      }))
 
       await command.execute(message, args)
     } catch (error) {
