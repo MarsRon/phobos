@@ -19,8 +19,7 @@ Note: The source code was not created to be a template, but for my own use. Feel
 
 ## Dependencies
 
-- Node.js v17+
-- NPM v8+
+- Node.js v16+
 - `ffmpeg` installed globally
 
 ## License
