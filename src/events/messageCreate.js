@@ -98,7 +98,7 @@ module.exports = async function (message) {
         user: author.tag,
         id: author.id,
         guild: guild?.name,
-        guild: guild?.id,
+        guildId: guild?.id,
         command: content
       }))
 
