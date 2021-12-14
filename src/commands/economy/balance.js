@@ -6,7 +6,7 @@ const { color, url } = config.embed
 
 module.exports = {
   name: 'balance',
-  alias: ['bal'],
+  alias: ['bal', 'wallet'],
   description: "Check your coin balance or a user's.",
   usage: '[user]',
   cooldown: 5,
