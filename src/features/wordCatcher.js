@@ -1,3 +1,4 @@
+const client = require('../client')
 const emoji = require('../emoji.json')
 
 const normalWords = [
@@ -16,24 +17,20 @@ const normalWords = [
 ]
 
 const catchers = [
-  function normal (message, text) {
+  function normal (text, message) {
     const match = normalWords.find(kv => kv[0].test(text))
     if (match) {
-      message.reply(match[1])
-      return true
+      return match[1]
     }
   },
-  function imDad (message, text) {
+  function imDad (text, message) {
     const match = text.match(/\bi\s*['`a]?\s*m(?:\s+|\b)/)
     if (match) {
-      message.reply(
-        `Hi **${
-          match[0].length
-            ? message.content.slice(match.index + match[0].length)
-            : 'blank'
-        }**, I'm dad!`
-      )
-      return true
+      return `Hi **${
+        match[0].length
+          ? message.content.slice(match.index + match[0].length)
+          : 'blank'
+      }**, I'm dad!`
     }
   }
 ]
@@ -42,7 +39,20 @@ const catchers = [
 const blacklist = ['548770927039610921']
 
 module.exports = async message => {
-  if (blacklist.includes(message.author.id)) return
-  const text = message.content.toLowerCase()
-  catchers.some(func => func(message, text) === true)
+  const { author, content, guild } = message
+  if (blacklist.includes(author.id)) return
+  const text = content.toLowerCase()
+  let response
+  catchers.some(func => (response = func(text, message)) !== undefined)
+  message.reply(response)
+  client.log.info(
+    `Word catcher: ${JSON.stringify({
+      user: author.tag,
+      id: author.id,
+      guild: guild?.name,
+      guildId: guild?.id,
+      content,
+      response
+    })}`
+  )
 }
