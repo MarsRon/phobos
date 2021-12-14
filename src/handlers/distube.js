@@ -36,7 +36,17 @@ distube
   // When a song starts playing
   .on(
     'playSong',
-    (queue, { name, url: songUrl, formattedDuration, user, thumbnail }) =>
+    (queue, { name, url: songUrl, formattedDuration, user, thumbnail }) => {
+      client.log.info(
+        `DisTube play song: ${JSON.stringify({
+          user: user.tag,
+          id: user.id,
+          guild: queue.textChannel.guild.name,
+          guildId: queue.textChannel.guildId,
+          songName: name,
+          url: songUrl,
+        })}`
+      )
       queue.textChannel.send({
         embeds: [
           {
@@ -51,6 +61,7 @@ ${getStatus(queue)}`,
           }
         ]
       })
+    }
   )
 
   // When a new song is added to the queue
