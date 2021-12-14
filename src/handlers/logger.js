@@ -4,14 +4,11 @@ const { inspect } = require('util')
 const log = createLogger({
   level: process.env.DEBUG === 'true' ? 'debug' : 'info',
   format: format.combine(
-    format.timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss'
-    }),
     format.colorize({ level: true }),
     format.errors({ stack: true }),
     format.printf(
-      ({ level, message, timestamp, stack }) =>
-        `${timestamp} [${level.replace(
+      ({ level, message, stack }) =>
+        `[${level.replace(
           /(?<=^\x1B\[.+?m).+?(?=\x1B\[.+?m$)/,
           m => m.toUpperCase()
         )}] ${
