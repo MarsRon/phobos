@@ -17,22 +17,20 @@ module.exports = {
     const item = await User.get(user.id)
     const { wallet, bank } = item.data()
 
-    message.reply({
-      embeds: [
-        {
-          fields: [
-            ['Wallet', `${wallet}$`],
-            ['Bank', `${bank}$`],
-            ['Total', `${bank + wallet}$`]
-          ].map(([name, value]) => ({ name, value, inline: true })),
-          color,
-          author: {
-            name: `${member.displayName ?? user.username}'s Balance`,
-            url,
-            icon_url: user.displayAvatarURL({ dynamic: true })
-          }
-        }
-      ]
-    })
+    const embed = {
+      fields: [
+        ['Wallet', `${wallet}$`],
+        ['Bank', `${bank}$`],
+        ['Total', `${bank + wallet}$`]
+      ].map(([name, value]) => ({ name, value, inline: true })),
+      color,
+      author: {
+        name: `${member.displayName ?? user.username}'s Balance`,
+        url,
+        icon_url: user.displayAvatarURL({ dynamic: true })
+      }
+    }
+
+    message.reply({ embeds: [embed] })
   }
 }

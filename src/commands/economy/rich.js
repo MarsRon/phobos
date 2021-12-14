@@ -9,39 +9,38 @@ module.exports = {
   description: 'See who the richest users of Phobos are!',
   cooldown: 15,
   async execute (message) {
-    const emoji = [':first_place:', ':second_place:', ':third_place:']
     const data = await User.getAll()
     const top = data
+      // Sort descending by sum
       .sort(
         (a, b) =>
           b.get('wallet') + b.get('bank') - a.get('wallet') - a.get('bank')
       )
+      // Get first 10
       .slice(0, 10)
+      // Format to string
       .map(async (item, index) => {
         const { id, wallet, bank } = item.data()
-        let user
+        let tag = ':x: User not found.'
         try {
-          user = await message.client.users.fetch(id)
-        } catch (e) {
-          user = { tag: ':x: User not found.' }
-        }
-        return `${emoji[index] ?? '🔹'} **${(
-          wallet + bank
-        ).toLocaleString()}$** - ${user.tag}`
+          tag = (await message.client.users.fetch(id)).tag
+        } catch {}
+        const sum = (wallet + bank).toLocaleString()
+        const emoji = [':first_place:', ':second_place:', ':third_place:']
+        return `${emoji[index] ?? '🔹'} **${sum}$** - ${tag}`
       })
-    message.reply({
-      embeds: [
-        {
-          description: (await Promise.all(top)).join('\n'),
-          color,
-          author: {
-            name: 'Top 10 Richest Users Of Phobos',
-            url,
-            icon_url: avatar + '?size=32'
-          },
-          footer: { text: 'NOTE: This does not include inventory items.' }
-        }
-      ]
-    })
+
+    const embed = {
+      description: (await Promise.all(top)).join('\n'),
+      color,
+      author: {
+        name: 'Top 10 Richest Users Of Phobos',
+        url,
+        icon_url: avatar + '?size=32'
+      },
+      footer: { text: 'NOTE: This does not include inventory items.' }
+    }
+
+    message.reply({ embeds: [embed] })
   }
 }
