@@ -5,7 +5,7 @@ module.exports = {
   args: true,
   usage: '<a or b or c or ...>',
   execute (message, args) {
-    const choices = args.join(' ').split(/ or /)
+    const choices = args.join(' ').split(/ or /i)
     message.reply(choices[Math.floor(Math.random() * choices.length)])
   }
 }
