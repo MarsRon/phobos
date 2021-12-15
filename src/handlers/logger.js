@@ -8,14 +8,12 @@ const log = createLogger({
     format.errors({ stack: true }),
     format.printf(
       ({ level, message, stack }) =>
-        `[${level.replace(
-          /(?<=^\x1B\[.+?m).+?(?=\x1B\[.+?m$)/,
-          m => m.toUpperCase()
-        )}] ${
-          stack ?? typeof message === 'string'
+        `[${level.replace(/(?<=^\x1B\[.+?m).+?(?=\x1B\[.+?m$)/, m =>
+          m.toUpperCase()
+        )}] ${stack ??
+          (typeof message === 'string'
             ? message
-            : inspect(message, { colors: true })
-        }`
+            : inspect(message, { colors: true }))}`
     )
   ),
   transports: [new transports.Console()]
