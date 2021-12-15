@@ -9,15 +9,14 @@ const normalWords = [
   [/not?\s+nice/, 'Not nice \\:('],
   [/nice/, 'Nice'],
   [/shut|stfu/, 'shut'],
-  [/fu(?:c|k|ck)\s+(:yo)?u/, 'No u'],
-  [/\b(?:yo)?u\s+suck?/, 'no u'],
-  [/\bn(?:o+|u+)b\b/, emoji.unoreverse],
+  [/fu(?:c|k|ck)\s+(:yo)?u|(?:yo)?u\s+suck?/, 'No u'],
+  [/n(?:o+?|u+?)b/, emoji.unoreverse],
   [/<@!?738252807525892139>/, 'why ping me'],
   [/phobos/, 'who called me']
 ]
 
 const catchers = [
-  function normal (text, message) {
+  function normal (text) {
     const match = normalWords.find(kv => kv[0].test(text))
     if (match) {
       return match[1]
