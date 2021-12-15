@@ -1,6 +1,6 @@
-const petPetGif = require('pet-pet-gif')
 const { MessageAttachment } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
+const petPetGif = require('pet-pet-gif')
 
 module.exports = {
   name: 'petpet',
