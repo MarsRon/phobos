@@ -25,7 +25,7 @@ module.exports = {
   description: 'Play rock paper scissors with the bot.',
   cooldown: 5,
   async execute (message) {
-    const { author, channel, client } = message
+    const { author, client } = message
 
     // Send base message
     const msg = await message.reply({
@@ -77,7 +77,7 @@ module.exports = {
           description: `**Congratulations, ${
             result === 0
               ? "it's a draw"
-              : `${(result === 1 ? author : client.user).toString()} wins`
+              : `${result === 1 ? author : client.user} wins`
           }!**`,
           fields: [
             [names[user], author.toString()],
