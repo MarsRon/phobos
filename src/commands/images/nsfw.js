@@ -6,7 +6,7 @@ module.exports = {
   name: 'nsfw',
   alias: ['hentai', 'porn'],
   description: ':smirk:',
-  cooldown: 5,
+  cooldown: 10,
   async execute (message) {
     const { author, client } = message
     const [bonkSauce, userAvatar, bonkAvatar] = await Promise.all([

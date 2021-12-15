@@ -6,7 +6,7 @@ module.exports = {
   name: 'triggered',
   description: "I'm triggered. >:(",
   usage: '[user]',
-  cooldown: 5,
+  cooldown: 10,
   async execute (message, args) {
     const user = await getUserFromMessage(message, args[0])
     const avatar = user.displayAvatarURL({ format: 'png', size: 256 })

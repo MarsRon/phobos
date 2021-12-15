@@ -6,7 +6,7 @@ module.exports = {
   description: "Shut up I'm having a presentation",
   args: true,
   usage: '<text>',
-  cooldown: 5,
+  cooldown: 10,
   async execute (message, args) {
     let text = args.join(' ')
     if (text.length > 300) {

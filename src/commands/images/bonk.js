@@ -8,7 +8,7 @@ module.exports = {
   description: 'No horny!',
   args: true,
   usage: '<user>',
-  cooldown: 5,
+  cooldown: 10,
   async execute (message, args) {
     const bonkUser = await getUserFromMessage(message, args[0])
     const [bonkSauce, userAvatar, bonkAvatar] = await Promise.all([
