@@ -1,4 +1,7 @@
 const { getUserFromMessage } = require('../../utils')
+const config = require('../../config')
+
+const { color } = config.embed
 
 module.exports = {
   name: 'pp',
@@ -13,7 +16,8 @@ module.exports = {
       title: 'PP Size Calculator',
       description: `${user}'s PP is ${ppSize} banana${
         ppSize === 1 ? '  ' : 's'
-      } long!\n\`\`\`${pp}\`\`\``
+      } long!\n\`\`\`${pp}\`\`\``,
+      color
     }
     message.reply({ embeds: [embed] })
   }
