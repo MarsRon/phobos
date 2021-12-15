@@ -44,15 +44,17 @@ module.exports = async message => {
   const text = content.toLowerCase()
   let response
   catchers.some(func => (response = func(text, message)) !== undefined)
-  message.reply(response)
-  client.log.info(
-    `Word catcher: ${JSON.stringify({
-      user: author.tag,
-      id: author.id,
-      guild: guild?.name,
-      guildId: guild?.id,
-      content,
-      response
-    })}`
-  )
+  if (response) {
+    message.reply(response)
+    client.log.info(
+      `Word catcher: ${JSON.stringify({
+        user: author.tag,
+        id: author.id,
+        guild: guild?.name,
+        guildId: guild?.id,
+        content,
+        response
+      })}`
+    )
+  }
 }
