@@ -12,7 +12,7 @@ module.exports = {
   async execute (message, args) {
     const uwuified = uwu
       .uwuifySentence(args.join(' '))
-      .replace(/\(・`ω´・\)/g, '(・\\`ω´・)')
+      .replaceAll('(・`ω´・)', '(・\\`ω´・)')
     for (const text of splitMessage(uwuified, { char: ['\n', ' '] })) {
       await message.reply(text)
     }
