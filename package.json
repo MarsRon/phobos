@@ -26,6 +26,7 @@
     "distube": "^3.0.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jimp": "^0.16.1",
     "mathjs": "^10.0.0",
     "mongoose": "^6.1.1",
     "pet-pet-gif": "^1.0.9",
