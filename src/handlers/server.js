@@ -9,7 +9,7 @@ const app = express()
 const port = process.env.PORT || 8001
 
 // Static serve
-app.use(express.static('site'))
+app.use(express.static('website'))
 app.use('/assets', express.static('assets'))
 
 // Redirect 404 requests to root
@@ -19,5 +19,5 @@ app.all('*', (req, res) => {
 
 // Start server
 app.listen(port, () =>
-  logger.info(`Webserver running on https://localhost:${port}`)
+  logger.info(`Webserver running on *:${port}`)
 )
