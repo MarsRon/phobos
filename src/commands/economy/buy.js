@@ -6,6 +6,7 @@ module.exports = {
   description: 'Buy something from the store.',
   args: true,
   usage: '<item>',
+  cooldown: 10,
   async execute (message, args) {
     const { author, prefix } = message
 
