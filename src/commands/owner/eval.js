@@ -28,7 +28,11 @@ module.exports = {
 
     // Get class of object
     const handleResultClass = result =>
-      result !== undefined && result !== null ? result.constructor.name : 'void'
+      result !== undefined && result !== null
+        ? result.__proto__ !== undefined
+          ? result.constructor.name
+          : 'no prototype'
+        : 'void'
 
     // Display objects with inspect but not strings
     const handleResult = result => {
