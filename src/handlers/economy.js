@@ -17,6 +17,10 @@ const items = {
     mansion: {
       name: 'Mansion',
       price: 1500
+    },
+    afookpen: {
+      name: 'A Fook Pen',
+      price: -69
     }
   },
   'Useful Items': {
