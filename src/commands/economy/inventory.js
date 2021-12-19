@@ -11,8 +11,8 @@ function parseInventory (inventory) {
     return items
       .map(([name, sum]) => [getItem(name), sum])
       .map(([item, sum], i) => {
-        const multiple = sum === 1 ? '' : ` × ${sum}`
-        return `${i + 1}. ${item.name}${multiple} (${item.price * sum}$)`
+        const multiple = sum === 1 ? '' : ` × ${sum.toLocaleString()}`
+        return `${i + 1}. ${item.name}${multiple} (${(item.price * sum).toLocaleString()}$)`
       })
       .join('\n')
   }
