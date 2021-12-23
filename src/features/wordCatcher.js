@@ -3,7 +3,10 @@ const emoji = require('../emoji.json')
 
 const normalWords = [
   // Note: Please put "not?\s+<keyword>" first before "<keyword>"
-  [/idk|i\s+don'?t\s+know/, 'ask `.8ball` it will know'],
+  [
+    /idk|i\s+don'?t\s+know/,
+    message => `ask \`${message.prefix}8ball\` it will know`
+  ],
   [/not?\s+sad/, 'Yes, be happy! \\:)'],
   [/sad/, "Don't be sad, I'm here for you \\:)"],
   [/not?\s+nice/, 'Not nice \\:('],
@@ -16,10 +19,10 @@ const normalWords = [
 ]
 
 const catchers = [
-  function normal (text) {
+  function normal (text, message) {
     const match = normalWords.find(kv => kv[0].test(text))
     if (match) {
-      return match[1]
+      return typeof match[1] === 'function' ? match[1](message) : match[1]
     }
   },
   function imDad (text, message) {
