@@ -2,7 +2,7 @@ const client = require('../client')
 const { Guild } = require('../db')
 const config = require('../config')
 const { timeToStr } = require('../utils')
-const wordCatcher = require('../features/wordCatcher')
+const wordCatcher = require('../handlers/wordCatcher')
 const { inspect } = require('util')
 
 const { ownerId } = config
