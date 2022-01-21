@@ -11,13 +11,6 @@ files
   .map(name => name.slice(0, -3))
   .forEach(name => {
     const eventHandler = require(`../events/${name}`)
-
-    // Run some events only once
-    if (eventHandler.once) {
-      client.once(name, eventHandler)
-    } else {
-      client.on(name, eventHandler)
-    }
-
-    client.log.debug(`Loaded event '${name}'`)
+    client.on(name, eventHandler)
+    client.log.debug(`Loaded event ${name}`)
   })

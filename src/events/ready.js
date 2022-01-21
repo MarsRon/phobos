@@ -16,5 +16,3 @@ module.exports = async function () {
 
   client.logChannel = await client.channels.fetch(logChannelId)
 }
-
-module.exports.once = true
