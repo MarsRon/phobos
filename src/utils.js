@@ -103,10 +103,29 @@ function formatDate (date) {
   })
 }
 
+/**
+ * Get the queue status
+ * @param {Queue} queue - DisTube Queue
+ * @returns {string} status
+ */
+const getQueueStatus = queue => {
+  const { volume } = queue
+  const filter = queue.filter ?? '❌'
+  let loop = '❌'
+  if (queue.repeatMode === 2) {
+    loop = 'All Queue'
+  } else if (queue.repeatMode) {
+    loop = 'This Song'
+  }
+  const autoplay = queue.autoplay ? 'On' : '❌'
+  return `Volume: ${volume}% | Filter: ${filter} | Loop: ${loop} | Autoplay: ${autoplay}`
+}
+
 module.exports = {
   timeToDHMS,
   timeToStr,
   getUserFromMessage,
   getMemberFromMessage,
-  formatDate
+  formatDate,
+  getQueueStatus
 }
