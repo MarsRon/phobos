@@ -27,7 +27,7 @@ const estimatedTimeUntilPlaying = (queue, song) =>
         ? acc + cur.duration
         : acc,
     // Calculate time left for current song
-    -queue.currentTime
+    -Math.floor(queue.currentTime)
   )
 
 /**
