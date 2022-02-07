@@ -1,19 +1,20 @@
 const { MessageActionRow, MessageButton } = require('discord.js')
 const config = require('../../config')
+const { getQueueStatus } = require('../../utils')
 
 const { color } = config.embed
 
 /**
  * Split array into N items per chunks
  * @param {Array} array - Input array
- * @param {number} chunk - Number of elements per chunk
+ * @param {number} number - Number of elements per chunk
  * @returns {Array[]}
  */
-const arrayChunks = (array, chunk) =>
+const arrayChunks = (array, number) =>
   array.reduce((all, item, i) => {
-    const ch = Math.floor(i / chunk)
-    if (!all[ch]) all[ch] = []
-    all[ch].push(item)
+    const chunk = Math.floor(i / number)
+    if (!all[chunk]) all[chunk] = []
+    all[chunk].push(item)
     return all
   }, [])
 
@@ -39,7 +40,7 @@ module.exports = {
     const songs = arrayChunks(
       queue.songs.map(
         ({ name, url, formattedDuration, user }, index) =>
-          `\`${index}.\` [${name}](${url}) | \`${formattedDuration}\` Requested by: <@${user.id}> (${user.tag})`
+          `**${index}.** [${name}](${url}) - ${formattedDuration} Requested by: ${user} (${user.tag})`
       ),
       5
     )
@@ -53,14 +54,7 @@ module.exports = {
           }`,
           color,
           footer: {
-            text: `Volume: ${queue.volume}% | Filter: ${queue.filter ||
-              '❌'} | Loop: ${
-              queue.repeatMode
-                ? queue.repeatMode === 2
-                  ? 'Entire Queue'
-                  : 'This Song'
-                : '❌'
-            } | Autoplay: ${queue.autoplay ? 'On' : '❌'}`,
+            text: getQueueStatus(queue),
             icon_url: author.displayAvatarURL({ dynamic: true })
           }
         }
@@ -99,8 +93,7 @@ function embedPager (message, pages, user) {
   }
   let pageIndex = 0
   const collector = message.createMessageComponentCollector({
-    filter: i =>
-      ['prev', 'next'].includes(i.customId) && i.user.id === user.id,
+    filter: i => ['prev', 'next'].includes(i.customId) && i.user.id === user.id,
     componentType: 'BUTTON',
     time: 60000
   })

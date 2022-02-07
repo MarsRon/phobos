@@ -61,6 +61,9 @@ module.exports = {
         await message.channel.send({ embeds: [embed] })
       }
     } catch (error) {
+      if (error.response?.status === 404) {
+        return message.reply(":x: Sorry, I couldn't find anything")
+      }
       message.client.log.error(error)
       message.reply(
         ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'

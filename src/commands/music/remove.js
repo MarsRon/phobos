@@ -25,6 +25,6 @@ module.exports = {
       return client.getCmd('skip').execute(message)
     }
     const song = songs.splice(index, 1)[0]
-    message.reply(`**Removed** \`${song.name}\``)
+    message.reply(`**Removed** ${song.name}`)
   }
 }

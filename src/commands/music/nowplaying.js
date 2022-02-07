@@ -1,4 +1,5 @@
 const config = require('../../config')
+const { getQueueStatus } = require('../../utils')
 
 const { avatar, color } = config.embed
 
@@ -21,11 +22,11 @@ module.exports = {
     message.reply({
       embeds: [
         {
-          description: `[${name}](${url})
+          description: `[${name}](${url}) - ${formattedCurrentTime} / ${formattedDuration}
 
-\`${formattedCurrentTime} / ${formattedDuration}\`
+Requested by: <@${user.id}> (${user.tag})
 
-\`Requested by:\` <@${user.id}> (${user.tag})`,
+${getQueueStatus(queue)}`,
           color,
           thumbnail: { url: thumbnail },
           author: {
