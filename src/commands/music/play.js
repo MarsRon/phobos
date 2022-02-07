@@ -15,7 +15,7 @@ module.exports = {
       )
     }
 
-    const query = args.join(' ').replace(/^<.+>$/, '$1')
+    const query = args.join(' ').replace(/^<(https?:\/\/\S+)>$/, '$1')
     message.reply(`:mag_right: **Searching** \`${query}\``)
     message.client.distube.play(vc, query, {
       member,
