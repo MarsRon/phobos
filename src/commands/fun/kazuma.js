@@ -14,7 +14,7 @@ module.exports = {
     try {
       const res = await axios.get(endpoint, {
         params: {
-          message: args.join(' ')
+          message: args.join(' ').slice(0, 300)
         }
       })
 
