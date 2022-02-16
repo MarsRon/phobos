@@ -12,16 +12,16 @@ module.exports = {
   cooldown: 10,
   async execute (message, args) {
     try {
-      const {
-        data: { response, compute_time }
-      } = await axios.get(endpoint, {
+      const res = await axios.get(endpoint, {
         params: {
           message: args.join(' ')
         }
       })
 
+      const { response, compute_time } = res.data
+
       message.reply(
-        `Kazuma: ${response}
+        `Kazuma: ${response.slice(0, 3933)}
 Compute time: ${compute_time.toFixed(3)}s
 You're talking to a AI chatbot btw`
       )
