@@ -21,7 +21,9 @@ module.exports = {
       })
 
       message.reply(
-        `Kazuma: ${response}\nCompute time: ${compute_time.toFixed(3)}s`
+        `Kazuma: ${response}
+Compute time: ${compute_time.toFixed(3)}s
+You're talking to a AI chatbot btw`
       )
     } catch (error) {
       const { author, client, guild } = message
