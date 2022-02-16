@@ -10,6 +10,7 @@ Commands include music, fun, images/GIFs, economy, utility and more.
 ## Features
 
 - Music system using [DisTube](https://distube.js.org)
+- Kazuma AI chatbot command
 - Some fun(?) commands
 - Weird images/GIFs commands
 - Very lacking economy system
