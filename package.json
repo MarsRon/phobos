@@ -20,18 +20,18 @@
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
     "@discordjs/voice": "^0.8.0",
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "discord-image-generation": "^1.4.12",
     "discord.js": "^13.6.0",
-    "distube": "^3.3.1-1",
+    "distube": "^3.3.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "mathjs": "^10.1.1",
-    "mongoose": "^6.2.0",
+    "mongoose": "^6.2.1",
     "pet-pet-gif": "^1.0.9",
     "sodium": "^3.0.2",
     "uwuifier": "^4.0.4",
-    "winston": "^3.5.1"
+    "winston": "^3.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
