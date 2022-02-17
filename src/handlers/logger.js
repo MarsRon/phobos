@@ -4,17 +4,17 @@ const { inspect } = require('util')
 const log = createLogger({
   level: process.env.DEBUG === 'true' ? 'debug' : 'info',
   format: format.combine(
-    format.colorize({ level: true }),
     format.errors({ stack: true }),
-    format.printf(
-      ({ level, message, stack }) =>
-        `[${level.replace(/(?<=^\x1B\[.+?m).+?(?=\x1B\[.+?m$)/, m =>
-          m.toUpperCase()
-        )}] ${stack ??
-          (typeof message === 'string'
-            ? message
-            : inspect(message, { colors: true }))}`
-    )
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+    format.printf(info => {
+      const level = info.level.toUpperCase()
+      const message =
+        info.stack ??
+        (typeof info.message === 'string'
+          ? info.message
+          : inspect(info.message))
+      return `${info.timestamp} [${level.toUpperCase()}] ${message}`
+    })
   ),
   transports: [new transports.Console()]
 })
