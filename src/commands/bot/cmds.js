@@ -29,7 +29,7 @@ function getEmbed (query, prefix) {
           command.alias ? `\`${command.alias.join('` `')}\`` : 'None',
           true
         )
-        .addField('Cooldown', `${command.cooldown ?? '1'} seconds`, true)
+        .addField('Cooldown', `${command.cooldown ?? 3} seconds`, true)
         .setFooter('Arguments usage: <required> [optional]')
     } else {
       // Send commands in category
