@@ -1,6 +1,6 @@
 # Phobos
 
-[![Invite me!](https://img.shields.io/badge/Invite%20me!-%237289DA.svg?logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8589934591)
+[![Invite me!](https://img.shields.io/badge/Invite%20me!-%237289DA.svg?logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot&permissions=8)
 
 Stupid discord.js bot by MarsRon with even worse code.
 

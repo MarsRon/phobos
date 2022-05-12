@@ -17,7 +17,7 @@ const config = {
 
   // Bot invite
   invite:
-    'https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot%20applications.commands&permissions=8589934591',
+    'https://discord.com/oauth2/authorize?client_id=738252807525892139&scope=bot%20applications.commands&permissions=8',
 
   // Discord support server invite link, or just your personal discord server
   supportServer: 'https://discord.gg/TSqw3jx',
