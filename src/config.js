@@ -32,7 +32,7 @@ const config = {
     color: 0x4169e1,
 
     // URL of the embeds
-    url: 'https://phobos.marsron.ml'
+    url: 'https://phobos.marsron.name.my'
   },
 
   // Bot activity (optional)
