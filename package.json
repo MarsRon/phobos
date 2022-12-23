@@ -18,32 +18,32 @@
   },
   "homepage": "https://phobos.marsron.ml",
   "dependencies": {
-    "@discordjs/opus": "^0.7.0",
-    "@discordjs/voice": "^0.8.0",
-    "axios": "^0.26.0",
-    "discord-image-generation": "^1.4.12",
-    "discord.js": "^13.6.0",
-    "distube": "^3.3.2",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.2",
-    "mathjs": "^10.1.1",
-    "mongoose": "^6.2.1",
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.14.0",
+    "axios": "^1.2.1",
+    "discord-image-generation": "^1.4.15",
+    "discord.js": "^13.12.0",
+    "distube": "^3.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mathjs": "^11.5.0",
+    "mongoose": "^6.8.1",
     "pet-pet-gif": "^1.0.9",
     "sodium": "^3.0.2",
     "uwuifier": "^4.0.4",
-    "winston": "^3.6.0"
+    "winston": "^3.8.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.20"
   },
   "optionalDependencies": {
-    "bufferutil": "^4.0.6",
+    "bufferutil": "^4.0.7",
     "erlpack": "github:discord/erlpack",
-    "utf-8-validate": "^5.0.8",
+    "utf-8-validate": "^5.0.10",
     "zlib-sync": "^0.1.7"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
