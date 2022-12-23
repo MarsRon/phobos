@@ -1,4 +1,4 @@
-const { splitMessage } = require('discord.js').Util
+const { splitMessage } = require('../../utils')
 const Uwuifier = require('uwuifier')
 
 const uwu = new Uwuifier()
