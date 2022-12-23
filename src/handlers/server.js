@@ -6,7 +6,7 @@ const logger = require('./logger')
 
 const app = express()
 // In case I ever need to change the port
-const port = process.env.PORT || 8001
+const port = process.env.PORT || 80
 
 // Static serve
 app.use(express.static('website'))
