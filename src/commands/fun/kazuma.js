@@ -28,6 +28,7 @@ You're talking to a AI chatbot btw`
     } catch (error) {
       const { author, client, guild } = message
       client.log.error(error)
+      /*
       client.logChannel.send({
         embeds: [
           {
@@ -44,6 +45,7 @@ You're talking to a AI chatbot btw`
           }
         ]
       })
+      */
       message.reply(
         ':x: Sorry, something went wrong. Please try again later ¯\\_(ツ)_/¯'
       )
