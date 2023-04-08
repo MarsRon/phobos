@@ -1,5 +1,5 @@
 const axios = require('axios').default
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const config = require('../../config')
 
 const { avatar, color } = config.embed
@@ -17,10 +17,9 @@ const subreddits = [
 const limit = 100
 
 const getUrl = sub =>
-  `https://www.reddit.com/r/${sub ??
-    subreddits[
-      Math.floor(Math.random() * subreddits.length)
-    ]}/random/.json?limit=${limit}`
+  `https://www.reddit.com/r/${
+    sub ?? subreddits[Math.floor(Math.random() * subreddits.length)]
+  }/random/.json?limit=${limit}`
 
 const parseRedditPost = post => {
   const {
@@ -36,12 +35,12 @@ const parseRedditPost = post => {
     is_video
   } = post
 
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle(title.slice(0, 255))
     .setURL(`https://reddit.com${permalink}`)
     .setColor(color)
-    .setAuthor(sub, avatar, `https://reddit.com/${sub}`)
-    .setFooter(`👍 ${ups} | 💬 ${num_comments}`)
+    .setAuthor({ name: sub, iconURL: avatar, url: `https://reddit.com/${sub}` })
+    .setFooter({ text: `👍 ${ups} | 💬 ${num_comments}` })
 
   // Link post
   if (post_hint === 'link') {
@@ -55,11 +54,11 @@ const parseRedditPost = post => {
 
   // Image/video post
   const image = preview?.images[0].source.url.replace(/&amp;/g, '&') ?? post.url
-  
+
   if (is_video) {
     embed.setDescription('This is a video, check out the original post!')
   }
-  
+
   return embed.setImage(image)
 }
 

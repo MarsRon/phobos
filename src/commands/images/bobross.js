@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
 const { Bobross } = require('discord-image-generation')
 
@@ -12,7 +12,9 @@ module.exports = {
     const avatar = user.displayAvatarURL({ format: 'png', size: 256 })
     const bobross = await new Bobross().getImage(avatar)
     message.reply({
-      files: [new MessageAttachment(bobross, `${user.username}-bobross.png`)]
+      files: [
+        new AttachmentBuilder(bobross, { name: `${user.username}-bobross.png` })
+      ]
     })
   }
 }

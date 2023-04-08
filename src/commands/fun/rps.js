@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder } = require('discord.js')
 const config = require('../../config')
 
 const { avatar, color, url } = config.embed
@@ -31,18 +31,18 @@ module.exports = {
     const msg = await message.reply({
       content: 'Please choose your move:',
       components: [
-        new MessageActionRow().addComponents(
-          new MessageButton()
+        new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
             .setCustomId('rock')
             .setLabel('Rock')
             .setEmoji('🧱')
             .setStyle('PRIMARY'),
-          new MessageButton()
+          new ButtonBuilder()
             .setCustomId('paper')
             .setLabel('Paper')
             .setEmoji('📄')
             .setStyle('PRIMARY'),
-          new MessageButton()
+          new ButtonBuilder()
             .setCustomId('scissors')
             .setLabel('Scissors')
             .setEmoji('✂️')

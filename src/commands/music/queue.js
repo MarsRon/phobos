@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder } = require('discord.js')
 const config = require('../../config')
 const { getQueueStatus } = require('../../utils')
 
@@ -62,13 +62,13 @@ module.exports = {
       components:
         songs.length > 1
           ? [
-              new MessageActionRow().addComponents(
-                new MessageButton()
+              new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
                   .setCustomId('prev')
                   .setLabel('Previous')
                   .setEmoji('⬅')
                   .setStyle('PRIMARY'),
-                new MessageButton()
+                new ButtonBuilder()
                   .setCustomId('next')
                   .setLabel('Next')
                   .setEmoji('➡')

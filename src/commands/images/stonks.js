@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
 const { Stonk, NotStonk } = require('discord-image-generation')
 
@@ -16,7 +16,9 @@ module.exports = {
       : new NotStonk()
     ).getImage(avatar)
     message.reply({
-      files: [new MessageAttachment(stonks, `${user.username}-stonks.png`)]
+      files: [
+        new AttachmentBuilder(stonks, { name: `${user.username}-stonks.png` })
+      ]
     })
   }
 }

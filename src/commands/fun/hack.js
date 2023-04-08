@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const config = require('../../config')
 const { getUserFromMessage } = require('../../utils')
 
@@ -138,14 +138,21 @@ module.exports = {
       await editMsg('Status: ■■■■■■■■■■ 100%: Completed')
 
       // Hacking result
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle('Hacking completed successfully')
         .setDescription(`${target} has been hacked!`)
-        .addField('INFO', 'Information about the user that you hacked.')
-        .addField('EMAIL', `${target.username}@${domain}`)
-        .addField('PASSWORD', password)
-        .addField('IP address', ip)
-        .setFooter("Wow you hacked some 8yo's account, you happy now?")
+        .addFields([
+          {
+            name: 'INFO',
+            value: 'Information about the user that you hacked.'
+          },
+          { name: 'EMAIL', value: `${target.username}@${domain}` },
+          { name: 'PASSWORD', password },
+          { name: 'IP ADDRESS', ip }
+        ])
+        .setFooter({
+          text: "Wow you hacked some 8yo's account, you happy now?"
+        })
         .setColor(color)
 
       channel.send({ embeds: [embed] })

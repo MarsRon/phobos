@@ -1,7 +1,6 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { createCanvas, loadImage } = require('canvas')
 const path = require('path')
-const { getUserFromMessage } = require('../../utils')
 
 const bonkPath = path.join(__dirname, '../../../assets/bonk.jpg')
 let bonkSauce
@@ -40,7 +39,9 @@ module.exports = {
 
     message.reply({
       content: 'No horny!',
-      files: [new MessageAttachment(bonk, `${author.username}-bonk.jpg`)]
+      files: [
+        new AttachmentBuilder(bonk, { name: `${author.username}-bonk.jpg` })
+      ]
     })
   }
 }

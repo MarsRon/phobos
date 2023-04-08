@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
 const { Triggered } = require('discord-image-generation')
 
@@ -13,7 +13,9 @@ module.exports = {
     const triggered = await new Triggered().getImage(avatar)
     message.reply({
       files: [
-        new MessageAttachment(triggered, `${user.username}-triggered.gif`)
+        new AttachmentBuilder(triggered, {
+          name: `${user.username}-triggered.gif`
+        })
       ]
     })
   }

@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
 const { Delete } = require('discord-image-generation')
 
@@ -13,7 +13,9 @@ module.exports = {
     const deleteTrash = await new Delete().getImage(avatar)
     message.reply({
       files: [
-        new MessageAttachment(deleteTrash, `${user.username}-delete-trash.png`)
+        new AttachmentBuilder(deleteTrash, {
+          name: `${user.username}-delete-trash.png`
+        })
       ]
     })
   }

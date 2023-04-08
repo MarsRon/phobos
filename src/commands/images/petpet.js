@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { getUserFromMessage } = require('../../utils')
 const petPetGif = require('pet-pet-gif')
 
@@ -12,7 +12,9 @@ module.exports = {
     const avatar = user.displayAvatarURL({ format: 'png', size: 256 })
     const petpet = await petPetGif(avatar)
     message.reply({
-      files: [new MessageAttachment(petpet, `${user.username}-petpet.gif`)]
+      files: [
+        new AttachmentBuilder(petpet, { name: `${user.username}-petpet.gif` })
+      ]
     })
   }
 }

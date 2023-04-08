@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const client = require('../../client')
 const config = require('../../config')
 
@@ -7,36 +7,46 @@ const { avatar, color, url } = config.embed
 const titleCase = s => s.charAt(0).toUpperCase() + s.slice(1)
 
 function getEmbed (query, prefix) {
-  const embed = new MessageEmbed().setColor(color)
+  const embed = new EmbedBuilder().setColor(color)
 
   if (query) {
     const command = client.getCmd(query)
     if (command) {
       // Send command info
       return embed
-        .setAuthor('Command Info', avatar, url)
+        .setAuthor({ name: 'Command Info', iconURL: avatar, url })
         .setTitle(prefix + command.name)
         .setDescription(command.description)
-        .addField(
-          'Usage',
-          `\`${prefix}${command.name}${
-            command.usage ? ` ${command.usage}` : ''
-          }\``,
-          true
-        )
-        .addField(
-          'Aliases',
-          command.alias ? `\`${command.alias.join('` `')}\`` : 'None',
-          true
-        )
-        .addField('Cooldown', `${command.cooldown ?? 3} seconds`, true)
-        .setFooter('Arguments usage: <required> [optional]')
+        .addFields([
+          {
+            name: 'Usage',
+            value: `\`${prefix}${command.name}${
+              command.usage ? ` ${command.usage}` : ''
+            }\``,
+            inline: true
+          },
+          {
+            name: 'Aliases',
+            value: command.alias ? `\`${command.alias.join('` `')}\`` : 'None',
+            inline: true
+          },
+          {
+            name: 'Cooldown',
+            value: `${command.cooldown ?? 3} seconds`,
+            inline: true
+          }
+        ])
+        .setFooter({ text: 'Arguments usage: <required> [optional]' })
     } else {
       // Send commands in category
       const category = client.commands.get(query)
       if (category) {
         return embed
-          .setAuthor(`${titleCase(query)} Category`, avatar, url)
+          .setAuthor({
+            name: `${titleCase(query)} Category`,
+            iconURL: avatar,
+            url
+          })
           .addFields(
             [...category.values()].map(({ name, description: value }) => ({
               name: prefix + name,
@@ -50,7 +60,7 @@ function getEmbed (query, prefix) {
 
   // Send categories
   return embed
-    .setAuthor('Phobos Commands', avatar, url)
+    .setAuthor({ name: 'Phobos Commands', iconURL: avatar, url })
     .addFields(
       [...client.commands.keys()].map(category => ({
         name: titleCase(category),

@@ -1,4 +1,4 @@
-const { MessageAttachment } = require('discord.js')
+const { AttachmentBuilder } = require('discord.js')
 const { LisaPresentation } = require('discord-image-generation')
 
 module.exports = {
@@ -15,10 +15,9 @@ module.exports = {
     const presentation = await new LisaPresentation().getImage(text)
     message.reply({
       files: [
-        new MessageAttachment(
-          presentation,
-          `${message.author.username}-presentation.png`
-        )
+        new AttachmentBuilder(presentation, {
+          name: `${message.author.username}-presentation.png`
+        })
       ]
     })
   }
