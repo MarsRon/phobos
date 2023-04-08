@@ -35,7 +35,7 @@ module.exports = {
         `:x: Invalid filter\nAvailable filters: \`${filters.join('`, `')}\``
       )
     }
-    if (queue.filters[0] === chosen) {
+    if (queue.filters.has(chosen)) {
       queue.filters.clear()
     } else {
       queue.filters.set([chosen])
