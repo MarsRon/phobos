@@ -1,4 +1,5 @@
 const { DisTube, formatDuration, Queue, Song, Playlist } = require('distube')
+const { YtDlpPlugin } = require('@distube/yt-dlp')
 const { Message, Channel } = require('discord.js')
 const client = require('../client')
 const { inspect } = require('util')
@@ -10,7 +11,7 @@ const { avatar, color, url } = config.embed
 // Create a DisTube client
 const distube = new DisTube(client, {
   emitNewSongOnly: true,
-  youtubeDL: false
+  plugins: [new YtDlpPlugin()]
 })
 
 /**

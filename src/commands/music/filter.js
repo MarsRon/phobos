@@ -23,18 +23,25 @@ module.exports = {
   guildOnly: true,
   async execute (message, args) {
     const { distube } = message.client
-    if (!distube.getQueue(message)) {
+    const queue = distube.getQueue(message)
+    const chosen = args[0]
+    if (!queue) {
       return message.reply(
         `:x: **I am not playing music. Use** \`${message.prefix}play\`** to play some music!**`
       )
     }
-    if (!filters.includes(args[0])) {
+    if (!filters.includes(chosen)) {
       return message.reply(
         `:x: Invalid filter\nAvailable filters: \`${filters.join('`, `')}\``
       )
     }
+    if (queue.filters[0] === chosen) {
+      queue.filters.clear()
+    } else {
+      queue.filters.set([chosen])
+    }
     message.reply(
-      `Current filter: ${distube.setFilter(message, args[0]) || 'Off'}`
+      `Current filter: ${queue.filters.size === 0 ? 'Off' : chosen}`
     )
   }
 }
