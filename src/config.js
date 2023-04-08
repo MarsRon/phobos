@@ -1,5 +1,7 @@
 // Change the bot configurations here!
 
+const { ActivityType } = require("discord.js")
+
 const config = {
   // Command prefix (e.g. !help, ?help, >help, .help etc.)
   prefix: '.',
@@ -47,7 +49,7 @@ const config = {
     // Bot activity options (optional)
     // All available options here:
     // https://discord.js.org/#/docs/main/stable/typedef/ActivityOptions
-    options: { type: 'PLAYING' }
+    options: { type: ActivityType.Playing }
   },
 
   // Logging channel

@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, Message } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder, Message, ComponentType, ButtonStyle } = require('discord.js')
 const config = require('../../config')
 const { getQueueStatus } = require('../../utils')
 
@@ -67,12 +67,12 @@ module.exports = {
                   .setCustomId('prev')
                   .setLabel('Previous')
                   .setEmoji('⬅')
-                  .setStyle('PRIMARY'),
+                  .setStyle(ButtonStyle.Primary),
                 new ButtonBuilder()
                   .setCustomId('next')
                   .setLabel('Next')
                   .setEmoji('➡')
-                  .setStyle('PRIMARY')
+                  .setStyle(ButtonStyle.Primary)
               )
             ]
           : null
@@ -100,7 +100,7 @@ function embedPager (message, pages, user) {
   let pageIndex = 0
   const collector = message.createMessageComponentCollector({
     filter: i => ['prev', 'next'].includes(i.customId) && i.user.id === user.id,
-    componentType: 'BUTTON',
+    componentType: ComponentType.Button,
     time: 60000
   })
   collector.on('collect', async int => {

@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder, ComponentType, ButtonStyle } = require('discord.js')
 const config = require('../../config')
 
 const { avatar, color, url } = config.embed
@@ -36,17 +36,17 @@ module.exports = {
             .setCustomId('rock')
             .setLabel('Rock')
             .setEmoji('🧱')
-            .setStyle('PRIMARY'),
+            .setStyle(ButtonStyle.Primary),
           new ButtonBuilder()
             .setCustomId('paper')
             .setLabel('Paper')
             .setEmoji('📄')
-            .setStyle('PRIMARY'),
+            .setStyle(ButtonStyle.Primary),
           new ButtonBuilder()
             .setCustomId('scissors')
             .setLabel('Scissors')
             .setEmoji('✂️')
-            .setStyle('PRIMARY')
+            .setStyle(ButtonStyle.Primary)
         )
       ]
     })
@@ -56,7 +56,7 @@ module.exports = {
     try {
       int = await msg.awaitMessageComponent({
         filter: i => selections.includes(i.customId) && i.user.id === author.id,
-        componentType: 'BUTTON',
+        componentType: ComponentType.Button,
         time: 30000
       })
     } catch (err) {
