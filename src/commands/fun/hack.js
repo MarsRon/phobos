@@ -147,8 +147,8 @@ module.exports = {
             value: 'Information about the user that you hacked.'
           },
           { name: 'EMAIL', value: `${target.username}@${domain}` },
-          { name: 'PASSWORD', password },
-          { name: 'IP ADDRESS', ip }
+          { name: 'PASSWORD', value: password },
+          { name: 'IP ADDRESS', value: ip }
         ])
         .setFooter({
           text: "Wow you hacked some 8yo's account, you happy now?"
