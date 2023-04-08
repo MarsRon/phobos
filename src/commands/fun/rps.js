@@ -1,7 +1,7 @@
 const { ActionRowBuilder, ButtonBuilder, ComponentType, ButtonStyle } = require('discord.js')
 const config = require('../../config')
 
-const { avatar, color, url } = config.embed
+const { avatar, url } = config.embed
 
 const selections = ['rock', 'paper', 'scissors']
 const names = [':bricks: Rock', ':page_facing_up: Paper', ':scissors: Scissors']
@@ -68,17 +68,23 @@ module.exports = {
     const bot = Math.floor(Math.random() * selections.length)
     const result = rps(user, bot)
 
+    let description = `**Congratulations, ${client.user} wins!**`
+    let color = 0x00ff00
+    if (result === -1) {
+      description = `**You lost to ${author}**`
+      color = 0xff0000
+    } else if (result === 0) {
+      description = "It's a draw"
+      color = 0xff8000
+    }
+
     // Send message
     int.update({
       content: null,
       components: [],
       embeds: [
         {
-          description: `**Congratulations, ${
-            result === 0
-              ? "it's a draw"
-              : `${result === 1 ? author : client.user} wins`
-          }!**`,
+          description,
           fields: [
             [names[user], author.toString()],
             ['vs', 'vs'],
