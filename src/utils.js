@@ -1,4 +1,5 @@
-const { GuildMember, Message, User } = require('discord.js')
+const Discord = require('discord.js')
+const { GuildMember, Message, User } = Discord
 
 class Util {
   /**
