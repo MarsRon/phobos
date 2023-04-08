@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder, Message } = require('discord.js')
 const config = require('../../config')
 const { getQueueStatus } = require('../../utils')
 
@@ -85,6 +85,12 @@ module.exports = {
   }
 }
 
+/**
+ * Embed pagination
+ * @param {Message} message Discord.js Message
+ * @param {Message[]} pages Array of Message
+ * @param {User} user Discord.js User
+ */
 function embedPager (message, pages, user) {
   const pageResolver = (pages, pageIndex, id) => {
     if (id === 'prev') return pageIndex > 0 ? pageIndex - 1 : pages.length - 1
@@ -103,5 +109,8 @@ function embedPager (message, pages, user) {
     if (!message.deleted && currentPage !== pageIndex) {
       int.update(pages[pageIndex])
     }
+  })
+  collector.on('end', (collected, reason) => {
+    if (reason === 'messageDelete') message.deleted = true
   })
 }
