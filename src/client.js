@@ -94,7 +94,8 @@ const options = {
     GatewayIntentBits.GuildEmojisAndStickers,
     GatewayIntentBits.GuildModeration,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.Guilds
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent
   ],
   partials: [
     Partials.Channel,
