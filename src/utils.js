@@ -1,6 +1,6 @@
-const { GuildMember, Message, User, Util: DUtil } = require('discord.js')
+const { GuildMember, Message, User } = require('discord.js')
 
-class Util extends DUtil {
+class Util {
   /**
    * Format duration milliseconds into DHMS '1d 2h 3m 4s' string
    * @param {number} ms - Duration in milliseconds
@@ -143,7 +143,7 @@ class Util extends DUtil {
     text,
     { maxLength = 2000, char = '\n', prepend = '', append = '' } = {}
   ) {
-    text = DUtil.verifyString(text)
+    text = Discord.verifyString(text)
     if (text.length <= maxLength) return [text]
     let splitText = [text]
     if (Array.isArray(char)) {
