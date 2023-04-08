@@ -16,7 +16,7 @@ module.exports = {
 
     const [userAvatar, bonkAvatar] = await Promise.all(
       [client.user, author].map(user =>
-        loadImage(user.displayAvatarURL({ format: 'png', size: 256 }))
+        loadImage(user.displayAvatarURL({ extension: 'png', size: 256 }))
       )
     )
 

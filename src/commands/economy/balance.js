@@ -27,7 +27,7 @@ module.exports = {
       author: {
         name: `${member.displayName ?? user.username}'s Balance`,
         url,
-        icon_url: user.displayAvatarURL({ dynamic: true })
+        icon_url: user.displayAvatarURL()
       }
     }
 

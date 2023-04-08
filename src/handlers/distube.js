@@ -103,7 +103,7 @@ ${getQueueStatus(queue)}`,
       author: {
         name: 'Added to queue ♪',
         url,
-        icon_url: user.displayAvatarURL({ dynamic: true })
+        icon_url: user.displayAvatarURL()
       }
     }
 
@@ -139,7 +139,7 @@ ${getQueueStatus(queue)}`,
       author: {
         name: 'Added to queue ♪',
         url,
-        icon_url: user.displayAvatarURL({ dynamic: true })
+        icon_url: user.displayAvatarURL()
       }
     }
 

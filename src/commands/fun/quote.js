@@ -18,7 +18,7 @@ module.exports = {
           author: {
             name: user.tag,
             url,
-            icon_url: user.displayAvatarURL({ dynamic: true })
+            icon_url: user.displayAvatarURL()
           },
           footer: { text: 'Sent • sometime' }
         }

@@ -52,7 +52,7 @@ module.exports = {
           embed.footer = {
             text: `${title} - Requested by ${member?.displayName ??
               user.username}`,
-            icon_url: user.displayAvatarURL({ dynamic: true, size: 32 })
+            icon_url: user.displayAvatarURL({ size: 32 })
           }
         }
         return embed

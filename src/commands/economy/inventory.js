@@ -36,7 +36,7 @@ module.exports = {
       color,
       author: {
         name: `${target.username}'s Inventory`,
-        icon_url: target.displayAvatarURL({ dynamic: true })
+        icon_url: target.displayAvatarURL()
       }
     }
 

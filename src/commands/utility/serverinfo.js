@@ -23,7 +23,7 @@ module.exports = {
           color,
           author: { name, url, icon_url: avatar },
           image: { url: guild.bannerURL({ size: 4096 }) },
-          thumbnail: { url: guild.iconURL({ dynamic: true, size: 4096 }) }
+          thumbnail: { url: guild.iconURL({ size: 4096 }) }
         }
       ]
     })

@@ -35,11 +35,11 @@ module.exports = {
       author: {
         name: user.tag,
         url,
-        icon_url: user.displayAvatarURL({ dynamic: true })
+        icon_url: user.displayAvatarURL()
       },
       footer: { text: `ID: ${user.id}` },
       thumbnail: {
-        url: user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 })
+        url: user.displayAvatarURL({ extension: 'png', size: 4096 })
       }
     }
 

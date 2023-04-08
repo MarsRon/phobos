@@ -9,7 +9,7 @@ module.exports = {
   cooldown: 10,
   async execute (message, args) {
     const user = await getUserFromMessage(message, args[0])
-    const avatar = user.displayAvatarURL({ format: 'png', size: 256 })
+    const avatar = user.displayAvatarURL({ extension: 'png', size: 256 })
     const triggered = await new Triggered().getImage(avatar)
     message.reply({
       files: [

@@ -55,7 +55,7 @@ module.exports = {
           color,
           footer: {
             text: getQueueStatus(queue),
-            icon_url: author.displayAvatarURL({ dynamic: true })
+            icon_url: author.displayAvatarURL()
           }
         }
       ],

@@ -12,8 +12,7 @@ module.exports = {
     const user = await getUserFromMessage(message, args[0])
 
     const url = user.displayAvatarURL({
-      format: 'png',
-      dynamic: true,
+      extension: 'png',
       size: 4096
     })
 
