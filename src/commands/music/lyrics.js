@@ -1,5 +1,5 @@
 const axios = require('axios').default
-const { splitMessage } = require('discord.js').Util
+const { splitMessage } = require('../../utils')
 const config = require('../../config')
 
 const { color } = config.embed
