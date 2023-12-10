@@ -28,6 +28,7 @@
     "distube": "4.0.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "is-online": "^10.0.0",
     "mathjs": "^11.8.0",
     "mongoose": "^7.0.3",
     "pet-pet-gif": "^1.0.9",
