@@ -19,7 +19,7 @@ Commands include music, fun, images/GIFs, economy, utility and more.
 
 ## Dependencies
 
-- Node.js v16+, I recommend using [nvm](https://github.com/nvm-sh/nvm#readme)
+- Node.js v20+, I recommend using [nvm](https://github.com/nvm-sh/nvm#readme)
 - FFmpeg install globally, or [`ffmpeg-static`](https://www.npmjs.com/package/ffmpeg-static)
 
 ## Developing
@@ -40,6 +40,7 @@ Install NPM dependencies
 ```bash
 $ npm i
 ```
+> Note: If you encounter some issues with `node-canvas`, try [installing the necessary dependencies](https://github.com/Automattic/node-canvas?tab=readme-ov-file#compiling).
 
 Copy `.env.example` to `.env`
 

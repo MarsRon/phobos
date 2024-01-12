@@ -1,5 +1,5 @@
 const { splitMessage } = require('../../utils')
-const Uwuifier = require('uwuifier')
+const Uwuifier = require('uwuifier').default
 
 const uwu = new Uwuifier()
 
