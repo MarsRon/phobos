@@ -78,7 +78,7 @@ $ pm2 start src/index.js --name phobos --log-date-format YYYY-MM-DD\ HH:mm:ss
 
 ## Contact
 
-Feel free to contact me at https://marsron.ml/contact for stuff.
+Feel free to contact me at https://marsron.name.my for stuff.
 
 ## License
 

@@ -24,7 +24,7 @@ module.exports = {
           'Open-source',
           `[${emoji.github} GitHub repo](https://github.com/MarsRon/phobos)`
         ],
-        ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.ml)`],
+        ['Developed by', `[${emoji.marsron} MarsRon](https://marsron.name.my)`],
         ['Invite link', `[${emoji.phobos} ${message.prefix}invite](${invite})`],
         ['Support server', `[${emoji.discord} Mars Hangout](${supportServer})`]
       ].map(([name, value, inline = true]) => ({ name, value, inline })),
