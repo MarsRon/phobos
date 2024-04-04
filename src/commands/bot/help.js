@@ -9,7 +9,7 @@ const {
 
 module.exports = {
   name: 'help',
-  alias: ['phobos'],
+  alias: ['phobos', 'info'],
   description: 'Bring up the help message.',
   async execute (message) {
     const embed = {
