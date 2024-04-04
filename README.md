@@ -7,6 +7,8 @@ Stupid discord.js bot by MarsRon with even worse code.
 Phobos plays music and does useless stuff.\
 Commands include music, fun, images/GIFs, economy, utility and more.
 
+> Note: Phobos has not been under active development since 2023. I will continue to patch any major issues, but other than that, there will be no more major updates to the bot. Thank you for your understanding.
+
 ## Features
 
 - Music system using [DisTube](https://distube.js.org)

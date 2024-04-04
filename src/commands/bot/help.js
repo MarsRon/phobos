@@ -12,6 +12,7 @@ module.exports = {
   alias: ['phobos', 'info'],
   description: 'Bring up the help message.',
   async execute (message) {
+    const content = "Note: Phobos has not been under active development since 2023. I will continue to patch any major issues, but other than that, there will be no more major updates to the bot. Thank you for your understanding."
     const embed = {
       fields: [
         [
@@ -33,6 +34,6 @@ module.exports = {
       footer: { text: 'Arguments usage: <required> [optional]' },
       thumbnail: { url: avatar + '?size=512' }
     }
-    message.reply({ embeds: [embed] })
+    message.reply({ content, embeds: [embed] })
   }
 }
