@@ -111,7 +111,7 @@ small {
 
 .divider.bottom {
   position: relative;
-  bottom: calc(8vh + 1px);
+  bottom: calc(8vh);
 }
 
 .divider.top {
