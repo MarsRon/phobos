@@ -7,6 +7,8 @@ Stupid discord.js bot by MarsRon with even worse code.
 Phobos plays music and does useless stuff.\
 Commands include music, fun, images/GIFs, economy, utility and more.
 
+Started this project since 21 March 2021.
+
 > Note: Phobos has not been under active development since 2023. I will continue to patch any major issues, but other than that, there will be no more major updates to the bot. Thank you for your understanding.
 
 ## Features
@@ -19,10 +21,15 @@ Commands include music, fun, images/GIFs, economy, utility and more.
 - Stupid, and I mean very stupid, word catchers
 - Some other trash
 
-## Dependencies
+## Tech Stack
 
-- Node.js v20+, I recommend using [nvm](https://github.com/nvm-sh/nvm#readme)
-- FFmpeg install globally, or [`ffmpeg-static`](https://www.npmjs.com/package/ffmpeg-static)
+- [Node.js v20+](https://nodejs.org/en), I recommend using [nvm](https://github.com/nvm-sh/nvm#readme)
+- [Discord.js v14](https://github.com/discordjs/discord.js)
+- [DisTube v5](https://github.com/skick1234/DisTube)
+- [Express](https://expressjs.com) for website
+- [MongoDB](https://www.mongodb.com)
+- [FFmpeg](https://www.ffmpeg.org/) install globally, or [`ffmpeg-static`](https://www.npmjs.com/package/ffmpeg-static)
+- And some other packages which can be found in [`package.json`](./package.json)
 
 ## Developing
 
