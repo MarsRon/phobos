@@ -31,7 +31,7 @@
     "express": "^4.19.2",
     "is-online": "^10.0.0",
     "mathjs": "^11.12.0",
-    "mongoose": "^7.8.1",
+    "mongoose": "^7.8.4",
     "pet-pet-gif": "^1.0.9",
     "sodium": "^3.0.2",
     "uwuifier": "^4.2.2",
