@@ -174,10 +174,13 @@ ${formattedResults}
 
   /**
    * When error occurs
-   * @param {Channel} channel - Discord.js Channel
    * @param {Error} error - Error
+   * @param {Queue} queue - DisTube Queue
+   * @param {Song} song - DisTube Song
    */
-  error (channel, error) {
+  error (error, queue, song) {
+    channel = queue.textChannel
+    
     // No results
     if (error.message === 'No result found') {
       return channel.send(':x: Sorry, I found nothing ¯\\_(ツ)_/¯')
