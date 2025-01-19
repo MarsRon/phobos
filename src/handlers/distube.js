@@ -214,6 +214,14 @@ ${formattedResults}
         }
       ]
     })
+  },
+
+  /**
+   * Emitted for logging FFmpeg debug information.
+   * @param {string} debug - FFmpeg debug information.
+   */
+  ffmpegDebug (debug) {
+    client.log.debug(debug)
   }
 }
 
