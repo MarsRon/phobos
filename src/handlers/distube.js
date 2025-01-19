@@ -179,11 +179,21 @@ ${formattedResults}
    * @param {Song} song - DisTube Song
    */
   error (error, queue, song) {
-    channel = queue.textChannel
+    const channel = queue.textChannel
+
+    // console.log('message: ',error.message)
+    // console.log('name: ',error.name)
+    // console.log('code: ',error.code)
+    // console.log('errorCode: ',error.errorCode)
+    // console.log(Object.keys(error))
     
     // No results
     if (error.message === 'No result found') {
       return channel.send(':x: Sorry, I found nothing ¯\\_(ツ)_/¯')
+    }
+
+    if (error.code === 'UNAVAILABLE_VIDEO') {
+      return channel.send(':x: Sorry, this video is unavailable')
     }
 
     if (error.name === 'PlayError') {
