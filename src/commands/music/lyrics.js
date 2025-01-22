@@ -31,7 +31,7 @@ module.exports = {
     message.reply(`:mag_right: **Searching lyrics for** \`${query}\``)
 
     try {
-      const { data } = await axios.get('https://some-random-api.ml/lyrics', {
+      const { data } = await axios.get('https://some-random-api.com/lyrics', {
         params: { title: query }
       })
 
