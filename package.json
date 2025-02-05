@@ -18,7 +18,6 @@
   },
   "homepage": "https://phobos.marsron.name.my",
   "dependencies": {
-    "@discordjs/opus": "^0.9.0",
     "@discordjs/voice": "^0.18.0",
     "@distube/direct-link": "^1.0.1",
     "@distube/youtube": "^1.0.4",
@@ -33,8 +32,9 @@
     "is-online": "^10.0.0",
     "mathjs": "^11.12.0",
     "mongoose": "^7.8.4",
+    "opusscript": "^0.0.8",
     "pet-pet-gif": "^1.0.9",
-    "sodium": "^3.0.2",
+    "sodium-native": "^4.3.1",
     "uwuifier": "^4.2.2",
     "winston": "^3.14.2"
   },
