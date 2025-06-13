@@ -71,6 +71,8 @@ $ npm start
 
 ## Deploying
 
+### PM2
+
 I use [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) to deploy Phobos.
 
 Install pm2 globally
@@ -83,6 +85,21 @@ Start Phobos
 
 ```bash
 $ pm2 start src/index.js --name phobos --log-date-format YYYY-MM-DD\ HH:mm:ss
+```
+
+### Docker
+
+(WIP)
+
+```bash
+$ docker build -t phobos .
+$ docker run --env-file=.env phobos
+```
+
+or
+
+```bash
+$ docker compose up -d
 ```
 
 ## Contact
